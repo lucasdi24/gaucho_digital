@@ -130,6 +130,10 @@ export function Footer() {
             <Link href="#" className="text-[11px] text-slate-500 hover:text-white uppercase tracking-widest">
               Términos
             </Link>
+            <span className="text-slate-700">•</span>
+            <Link href="/admin" className="text-[11px] text-slate-700 hover:text-slate-400 uppercase tracking-widest">
+              Admin
+            </Link>
           </div>
         </div>
       </div>
