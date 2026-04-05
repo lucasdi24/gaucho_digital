@@ -1,10 +1,12 @@
-import { profesores } from "@/data/profesores";
+import { readProfesores } from "@/lib/profesoresData";
 import { HeroSection } from "@/components/ui/HeroSection";
 import Image from "next/image";
 
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Profesores" };
 
-export default function ProfesoresPage() {
+export default async function ProfesoresPage() {
+  const profesores = readProfesores();
   return (
     <>
       <HeroSection
@@ -18,7 +20,7 @@ export default function ProfesoresPage() {
       <section className="py-24 px-6 md:px-12">
         <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
           {profesores.map((prof) => (
-            <div key={prof.name} className="flex flex-col items-center group">
+            <div key={prof.id} className="flex flex-col items-center group">
               <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-surface-container-high group-hover:border-on-primary-container transition-colors mb-6">
                 <Image src={prof.imageSrc} alt={prof.name} width={160} height={160} className="w-full h-full object-cover" />
               </div>

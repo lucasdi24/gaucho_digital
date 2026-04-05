@@ -6,7 +6,7 @@ interface HeroSectionProps {
   subtitle?: string;
   imageSrc: string;
   imageAlt: string;
-  gradient?: "primary" | "secondary" | "primary-container";
+  gradient?: "primary" | "secondary" | "secondarySoft" | "primary-container";
   height?: string;
   children?: React.ReactNode;
 }
@@ -14,6 +14,7 @@ interface HeroSectionProps {
 const gradientMap = {
   primary: "from-primary/80 to-transparent",
   secondary: "from-secondary/80 to-transparent",
+  secondarySoft: "from-secondary/60 to-transparent",
   "primary-container": "from-primary-container/80 to-transparent",
 };
 
@@ -40,7 +41,7 @@ export function HeroSection({
         />
         <div className={`absolute inset-0 bg-gradient-to-r ${gradientMap[gradient]}`} />
       </div>
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
+      <div className="container mx-auto px-6 md:px-12 relative z-10 pt-16">
         <div className="max-w-2xl">
           {badge && (
             <span className="inline-block py-1 px-3 bg-mountain-orange text-white text-xs font-bold tracking-widest uppercase mb-4 rounded-sm">

@@ -1,44 +1,68 @@
-import { HeroSection } from "@/components/ui/HeroSection";
-import { cursos } from "@/data/cursos";
-import Image from "next/image";
-import Link from "next/link";
+import { CursoGrid } from "./CursoGrid";
 
 export const metadata = { title: "Cursos" };
+
+const HERO_BG =
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuDOYkar9uxeoGNMr8aOob_KBBKPLO4ydtdRZsoRfNktEZyp4VCQ1q84YmRqdwXeLzrycZApwkXWHqD6pUlLja83MwA-ieQbyuDNwOVZ6mjiLJF6By9HFxAMSq6JKyy0puzb34TXncSnJOVdp_8G67I4pG39qBcefwHdIymmtzH69ZXfKcAwQlU3xV4EXQt0hoPS52Zli15sFfn6cUDIChD-tPJLAVlrCZ3IakkhH3F2NrQN3DvYvI7WTiST7SbSTSn84DhRerHp";
 
 export default function CursosPage() {
   return (
     <>
-      <HeroSection
-        badge="Formación Continua"
-        title="Cursos"
-        subtitle="Capacitaciones cortas y workshops específicos para entusiastas y profesionales."
-        imageSrc="https://lh3.googleusercontent.com/aida-public/AB6AXuAjGCPV3OcuG633-8G9XHeXtlM8UIHwO7unbmflUh-ySLJxIN1QeJ6XbKv3mgCnaKpNlzlqMIFHseBKVJ2HPwzExs_UiwSqNC3FSivbDiteXH1ooTEF0Yk9DSk8HHRLO4lXbUSwj-U7yLhZilMn1867XN5BnphC6VjIx7IaM27EZ9xF5h3TllD81149Hd6nC5c_Mv3ZFBN15w-OXL4gbtyL5c0siStQSvBI2nNxdcp6YYyyMDx9j3GLTy_-w4N7LfbCFIxOOQXQ"
-        imageAlt="Aula de montaña con estudiantes"
-      />
-      <section className="container mx-auto px-6 md:px-12 py-24 -mt-20 relative z-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {cursos.map((curso) => (
-            <div key={curso.slug} className="bg-surface-container-lowest rounded-xl overflow-hidden group hover:shadow-2xl transition-all duration-500">
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <Image src={curso.imageSrc} alt={curso.imageAlt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 33vw" />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-xs font-bold">{curso.category}</span>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-[family-name:var(--font-headline)] font-bold text-on-surface mb-2">{curso.title}</h3>
-                <p className="text-on-surface-variant text-sm mb-6 line-clamp-2">{curso.description}</p>
-                <div className="flex items-center gap-4 text-xs font-bold text-secondary uppercase tracking-widest mb-6">
-                  <span className="flex items-center gap-1"><span className="material-symbols-outlined text-sm">schedule</span> {curso.duration}</span>
-                  <span className="flex items-center gap-1"><span className="material-symbols-outlined text-sm">location_on</span> {curso.modality}</span>
-                </div>
-                <div className="flex gap-3">
-                  <Link href={`/cursos/${curso.slug}`} className="flex-1 py-2.5 px-4 rounded-lg border-2 border-secondary/20 text-secondary font-bold text-sm text-center hover:bg-secondary hover:text-white transition-all">Más info</Link>
-                  <Link href="#" className="flex-1 py-2.5 px-4 rounded-lg bg-mountain-orange text-white font-bold text-sm text-center hover:shadow-lg transition-all">Consultar</Link>
-                </div>
-              </div>
-            </div>
-          ))}
+      {/* Hero */}
+      <section className="px-6 md:px-12 py-16 max-w-[1440px] mx-auto pt-28">
+        <div className="relative overflow-hidden rounded-2xl bg-primary-container p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
+          {/* Background texture */}
+          <div
+            className="absolute inset-0 opacity-10 pointer-events-none"
+            style={{ backgroundImage: `url('${HERO_BG}')`, backgroundSize: "cover", backgroundPosition: "center" }}
+          />
+          {/* Text */}
+          <div className="relative z-10 max-w-2xl">
+            <h1 className="text-white font-[family-name:var(--font-headline)] text-5xl md:text-7xl font-extrabold tracking-tighter mb-6">
+              Cursos
+            </h1>
+            <p className="text-orange-100/90 text-lg md:text-xl leading-relaxed max-w-xl font-light">
+              Capacitaciones en C.A.B.A. presenciales y semi-presenciales con salidas de aplicación
+              en distintos puntos del país.
+            </p>
+          </div>
+          {/* Watermark */}
+          <div className="relative z-10 flex flex-col items-end">
+            <span className="text-white/40 font-[family-name:var(--font-headline)] font-bold text-9xl leading-none select-none hidden md:block">
+              EAAM
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* Filters + Grid */}
+      <section className="px-6 md:px-12 max-w-[1440px] mx-auto mb-20">
+        <CursoGrid />
+      </section>
+
+      {/* CTA */}
+      <section className="mt-12 px-6 md:px-12 max-w-[1440px] mx-auto pb-24">
+        <div className="bg-secondary rounded-2xl p-12 md:p-20 text-center relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/3 h-full opacity-5 pointer-events-none">
+            <span className="material-symbols-outlined text-[300px] absolute -top-10 -right-20">
+              terrain
+            </span>
+          </div>
+          <h2 className="text-white font-[family-name:var(--font-headline)] text-3xl md:text-5xl font-extrabold mb-6 relative z-10">
+            ¿Listo para comenzar tu expedición?
+          </h2>
+          <p className="text-white/75 text-lg mb-10 max-w-2xl mx-auto font-light leading-relaxed relative z-10">
+            Nuestros coordinadores académicos están disponibles para asesorarte sobre el curso que
+            mejor se adapte a tu nivel de experiencia.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
+            <button className="bg-orange-500 text-white px-10 py-4 rounded-lg font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:bg-orange-400 transition-colors shadow-lg">
+              Contactar a Secretaría
+            </button>
+            <button className="bg-transparent border border-white/20 text-white px-10 py-4 rounded-lg font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:bg-white/5 transition-colors">
+              Ver Calendario 2024
+            </button>
+          </div>
         </div>
       </section>
     </>

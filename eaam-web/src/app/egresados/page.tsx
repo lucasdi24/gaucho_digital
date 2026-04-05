@@ -1,8 +1,12 @@
 import { HeroSection } from "@/components/ui/HeroSection";
+import { readEgresados } from "@/lib/egresadosData";
+import Image from "next/image";
 
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Egresados" };
 
-export default function EgresadosPage() {
+export default async function EgresadosPage() {
+  const egresados = readEgresados();
   return (
     <>
       <HeroSection
@@ -14,7 +18,7 @@ export default function EgresadosPage() {
         gradient="secondary"
       />
       <section className="py-24 px-6 md:px-12">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center mb-16">
           <h2 className="font-[family-name:var(--font-headline)] text-4xl font-black text-secondary mb-8">+500 graduados activos</h2>
           <p className="text-on-surface-variant text-lg leading-relaxed mb-12">
             Nuestros egresados trabajan como guías profesionales en los principales destinos de montaña de Argentina, Chile, Perú, Nepal y Europa. La red de egresados EAAM es una de las comunidades profesionales más activas del sector.
@@ -32,6 +36,29 @@ export default function EgresadosPage() {
             ))}
           </div>
         </div>
+
+        {egresados.length > 0 ? (
+          <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+            {egresados.map((egresado) => (
+              <div key={egresado.id} className="flex flex-col items-center group">
+                <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-surface-container-high group-hover:border-on-primary-container transition-colors mb-6 bg-surface-container-lowest flex items-center justify-center">
+                  {egresado.imageSrc ? (
+                    <Image src={egresado.imageSrc} alt={egresado.name} width={160} height={160} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-4xl font-black text-on-surface-variant">{egresado.name.charAt(0)}</span>
+                  )}
+                </div>
+                <h4 className="font-[family-name:var(--font-headline)] font-bold text-primary text-xl text-center">{egresado.name}</h4>
+                <p className="text-sm text-on-surface-variant font-bold uppercase tracking-widest mt-1 text-center">{egresado.career}</p>
+                {egresado.year && <p className="text-xs text-on-surface-variant/60 mt-0.5 text-center">{egresado.year}</p>}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-on-surface-variant/50 text-lg">Los perfiles de egresados estarán disponibles próximamente.</p>
+          </div>
+        )}
       </section>
     </>
   );

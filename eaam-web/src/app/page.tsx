@@ -1,7 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
+import { readImageConfig } from "@/lib/imageConfig";
 
-export default function HomePage() {
+export const dynamic = "force-dynamic";
+
+const DEFAULTS = {
+  heroHome:
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuDrxzorrMmrPnZemIBB63uT5Af2dP8cIqzwra5swuTAMaxJ-FvRrMRfR6EE6y91IWbsg99-Tf1UEqAU152DZ-e152nfzQ7xi7XelpBKQsCEKRTd3kEBhar5Unbri-UK5JqP2Rs-fnr0DX2PUcV9UfdxncBsUFmRMhgQkpJklk_NPOZfxANwF0xK49maqDom8YsxcOoAKmyArShtq2UpifLVomHmC0UNJTC1J5BdYtaWlJxC_PRMEu6Qg1jzjsR8r8tA3EbiB3-i",
+  claimHome:
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuBoIKdf9RxQJz8XwwhPiaSqY12GYqvKR1x4J2ERLX6Nidi4brk13nZYVHf4eYFQuQ6IxyegNYUahZynh1U1YMZid8LrgisFCgatrSqDXBOfa5xz1qwFCIEIByLvIPdpUq6w6PiQsaLG6N46Y77cgHBxvZfWQkTNPZ5kJ-3o6fS_QWVw5oQ67H0i0dBK-kT_RuUx4DlfPu9FHFgGcsPJD3rMflHoPIqu-uDH_dIi4m940UYo2OFPPTErO0dy2xq-xekJTGbAfeKF",
+  colCarreras:
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuCSt2zzwYrLmBayq_aTjFT8_oUUUHacJvZ84j8LoMvCweF0p30bQzO26i1F4H4YaXxsyhOVnXcn4jlgdUE33DWW27rs6qvHz9XEfOeSJmMgr2kxzy52ocQhfgyhv_t4zEoyMbZD77CawYNgxozKC1SgLwiMGRZh8bDr0KC6gV9oIA2oX54YVr2XagNYWZLQw8vBwSqNIXetK4em_HlUKbVPDkmSRhKzZBVeDEPpeMbKroJbhLWaX1EEMazeIO8eqvu8kWOculHH",
+  colPostitulos:
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuBtQAEAeKwSfIZjA8ukYft5HsqD9Rrd2h0vowjvst8Okkb3ZzX6icB6eL_FZj7VGDHPvuH3naqRr4Zd_ba_FCwNkla0PdkyG1JZmu0PcDZRvTzsQQANtqDCxzytuWF9UD4g1uKuXFcwtTqvlr-BY3B8Q4s1PkunkKrbLuekx_LmLWGYMROQOA3HA6zEeKwzbIw1DVxrBgMTgwVoGf6qr5-csNJLGX_hKCC8wtl_q1IwLIazApUP9a_sfhDoXPq1IKtLZFLYpDFS",
+  colCursos:
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuAjGCPV3OcuG633-8G9XHeXtlM8UIHwO7unbmflUh-ySLJxIN1QeJ6XbKv3mgCnaKpNlzlqMIFHseBKVJ2HPwzExs_UiwSqNC3FSivbDiteXH1ooTEF0Yk9DSk8HHRLO4lXbUSwj-U7yLhZilMn1867XN5BnphC6VjIx7IaM27EZ9xF5h3TllD81149Hd6nC5c_Mv3ZFBN15w-OXL4gbtyL5c0siStQSvBI2nNxdcp6YYyyMDx9j3GLTy_-w4N7LfbCFIxOOQXQ",
+};
+
+export default async function HomePage() {
+  const cfg = readImageConfig();
+  const heroSrc = cfg["hero-home"] ?? DEFAULTS.heroHome;
+  const claimSrc = cfg["claim-home"] ?? DEFAULTS.claimHome;
+  const colCarrerasSrc = cfg["col-carreras"] ?? DEFAULTS.colCarreras;
+  const colPostitutosSrc = cfg["col-postitulos"] ?? DEFAULTS.colPostitulos;
+  const colCursosSrc = cfg["col-cursos"] ?? DEFAULTS.colCursos;
+  const profImgs = {
+    "Pablo González": cfg["prof-pablo-gonzalez"] ?? "https://lh3.googleusercontent.com/aida-public/AB6AXuDhhWEVSgqqajymG73-7cJarTmA1jlAureYX1doCltXLQubxP0XGix-bfEW0do1kOieYa-xRtH3RJ_A0ZpcGMSU7WyIGQPOieYqD62JjhDkTmQkuIwO69jgA7-KT0-WiUg5tHTivRB0dxVtMUrw9WZtJCsuSy0ySRfcvqxm6F8x3YPDOYHmRPLILGCNWjyl5xlIgFCMtI8ZPSoxWVC_xuKqHoXAhr8yRgZo2HZnvkvoFDz2b8ZLOw2piW8V2zT8170bkB8-Tzrm",
+    "Lucía Martínez": cfg["prof-lucia-martinez"] ?? "https://lh3.googleusercontent.com/aida-public/AB6AXuC77W3u6fJgGU_9l29x4Rv22HCDIwh00_5lCEoOCUTVGrYorDhnbuUY81YMGGIE-b6lY8KZfIO7nAfzzySfqRbQHYMinnYwarYDyIHpKtX5-CA0kwyrUefQOmvhMlgaPqWFE8xm_FT-93WkfXrtbzGGSZ6lz2n07eBl-G5FDbScC6zi1swAYTwdznfzd_vWkIqBZ_ti_ZdDp1eoI5EVusyoYfIAsWjfn9sbzzoTGgwsu1yleBswYK-b4Xc2Sk8KA2QP3LFEh0qt",
+    "Andrés Riva": cfg["prof-andres-riva"] ?? "https://lh3.googleusercontent.com/aida-public/AB6AXuAJw7eqAf3cPF7k7YyB5qoQFQf4s79SaWtRSeY29SPvlBI8c0FKxMr5zSjEXbVjEVw84-GAlIf2NN3Jyh8IlZFSRJrYOFmHhVzi11G1HD_AnCyVi5b3d7caSyU--hP3tXggOPVsWuUgYCGhLLF6m-OpnPR3xO-tDrsLBiQ7Abm2TXm7KInI8FojXB9ohcEc0FKsqQQAv2fO-BZdrc-TzM5tXMlt_-HQA2sx4DCUHRCjxDzqSbRoFHaQEOlMdX_nfwbp",
+    "Martín Castro": cfg["prof-martin-castro"] ?? "https://lh3.googleusercontent.com/aida-public/AB6AXuCjb6SFR8yw9rZiaFKB1H58CwUMes-zeJ3SU_biLxnfblLcG5tUZF2G50JQCYqDGvNvrJLT3o5buEyuhrJq_VYUP-1gz7WZwlPbpSQ25VXzQ7MHLUZpR7Zod4H3g4q1mB3NepawNG5RRwx1XvjLWFbPoK3wkFkhF_pxXAzAc_tCTGqXSMwWJ1VWuCzbacyLuGbhXJxWJbxLHRbXxkdVcRPOKvWxV58NSS8Puxo_-3WGL22JWbEjawuO_8taisGaWQDAoyO773SXK",
+  };
   return (
     <>
       {/* Hero */}
@@ -9,8 +37,7 @@ export default function HomePage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDrxzorrMmrPnZemIBB63uT5Af2dP8cIqzwra5swuTAMaxJ-FvRrMRfR6EE6y91IWbsg99-Tf1UEqAU152DZ-e152nfzQ7xi7XelpBKQsCEKRTd3kEBhar5Unbri-UK5JqP2Rs-fnr0DX2PUcV9UfdxncBsUFmRMhgQkpJklk_NPOZfxANwF0xK49maqDom8YsxcOoAKmyArShtq2UpifLVomHmC0UNJTC1J5BdYtaWlJxC_PRMEu6Qg1jzjsR8r8tA3EbiB3-i')",
+            backgroundImage: `url('${heroSrc}')`,
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container/80 to-transparent" />
@@ -136,8 +163,7 @@ export default function HomePage() {
         <div
           className="absolute inset-0 bg-fixed bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBoIKdf9RxQJz8XwwhPiaSqY12GYqvKR1x4J2ERLX6Nidi4brk13nZYVHf4eYFQuQ6IxyegNYUahZynh1U1YMZid8LrgisFCgatrSqDXBOfa5xz1qwFCIEIByLvIPdpUq6w6PiQsaLG6N46Y77cgHBxvZfWQkTNPZ5kJ-3o6fS_QWVw5oQ67H0i0dBK-kT_RuUx4DlfPu9FHFgGcsPJD3rMflHoPIqu-uDH_dIi4m940UYo2OFPPTErO0dy2xq-xekJTGbAfeKF')",
+            backgroundImage: `url('${claimSrc}')`,
           }}
         >
           <div className="absolute inset-0 bg-secondary/70 backdrop-blur-sm" />
@@ -156,9 +182,9 @@ export default function HomePage() {
       <section className="py-32 px-6 md:px-12 bg-surface-container-low">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
-            { title: "Carreras", desc: "Títulos oficiales de validez nacional con la mayor carga horaria del país.", href: "/carreras", gradient: "from-primary via-primary/40 to-transparent", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCSt2zzwYrLmBayq_aTjFT8_oUUUHacJvZ84j8LoMvCweF0p30bQzO26i1F4H4YaXxsyhOVnXcn4jlgdUE33DWW27rs6qvHz9XEfOeSJmMgr2kxzy52ocQhfgyhv_t4zEoyMbZD77CawYNgxozKC1SgLwiMGRZh8bDr0KC6gV9oIA2oX54YVr2XagNYWZLQw8vBwSqNIXetK4em_HlUKbVPDkmSRhKzZBVeDEPpeMbKroJbhLWaX1EEMazeIO8eqvu8kWOculHH" },
-            { title: "Postítulos", desc: "Especializaciones técnicas para guías graduados que buscan el siguiente nivel.", href: "/postitulos", gradient: "from-secondary via-secondary/40 to-transparent", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBtQAEAeKwSfIZjA8ukYft5HsqD9Rrd2h0vowjvst8Okkb3ZzX6icB6eL_FZj7VGDHPvuH3naqRr4Zd_ba_FCwNkla0PdkyG1JZmu0PcDZRvTzsQQANtqDCxzytuWF9UD4g1uKuXFcwtTqvlr-BY3B8Q4s1PkunkKrbLuekx_LmLWGYMROQOA3HA6zEeKwzbIw1DVxrBgMTgwVoGf6qr5-csNJLGX_hKCC8wtl_q1IwLIazApUP9a_sfhDoXPq1IKtLZFLYpDFS" },
-            { title: "Cursos", desc: "Capacitaciones cortas y workshops específicos para entusiastas y profesionales.", href: "/cursos", gradient: "from-primary-container via-primary-container/40 to-transparent", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAjGCPV3OcuG633-8G9XHeXtlM8UIHwO7unbmflUh-ySLJxIN1QeJ6XbKv3mgCnaKpNlzlqMIFHseBKVJ2HPwzExs_UiwSqNC3FSivbDiteXH1ooTEF0Yk9DSk8HHRLO4lXbUSwj-U7yLhZilMn1867XN5BnphC6VjIx7IaM27EZ9xF5h3TllD81149Hd6nC5c_Mv3ZFBN15w-OXL4gbtyL5c0siStQSvBI2nNxdcp6YYyyMDx9j3GLTy_-w4N7LfbCFIxOOQXQ" },
+            { title: "Carreras", desc: "Títulos oficiales de validez nacional con la mayor carga horaria del país.", href: "/carreras", gradient: "from-primary via-primary/40 to-transparent", image: colCarrerasSrc },
+            { title: "Postítulos", desc: "Especializaciones técnicas para guías graduados que buscan el siguiente nivel.", href: "/postitulos", gradient: "from-secondary via-secondary/40 to-transparent", image: colPostitutosSrc },
+            { title: "Cursos", desc: "Capacitaciones cortas y workshops específicos para entusiastas y profesionales.", href: "/cursos", gradient: "from-primary-container via-primary-container/40 to-transparent", image: colCursosSrc },
           ].map((col) => (
             <div key={col.title} className={`group relative h-[600px] rounded-2xl overflow-hidden shadow-xl ${col.title === "Postítulos" ? "md:translate-y-12" : ""}`}>
               <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: `url('${col.image}')` }} />
@@ -206,10 +232,10 @@ export default function HomePage() {
         </div>
         <div className="max-w-[1440px] mx-auto flex flex-wrap justify-center gap-12">
           {[
-            { name: "Pablo González", role: "Guía UIAGM", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDhhWEVSgqqajymG73-7cJarTmA1jlAureYX1doCltXLQubxP0XGix-bfEW0do1kOieYa-xRtH3RJ_A0ZpcGMSU7WyIGQPOieYqD62JjhDkTmQkuIwO69jgA7-KT0-WiUg5tHTivRB0dxVtMUrw9WZtJCsuSy0ySRfcvqxm6F8x3YPDOYHmRPLILGCNWjyl5xlIgFCMtI8ZPSoxWVC_xuKqHoXAhr8yRgZo2HZnvkvoFDz2b8ZLOw2piW8V2zT8170bkB8-Tzrm" },
-            { name: "Lucía Martínez", role: "Especialista en Rescate", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuC77W3u6fJgGU_9l29x4Rv22HCDIwh00_5lCEoOCUTVGrYorDhnbuUY81YMGGIE-b6lY8KZfIO7nAfzzySfqRbQHYMinnYwarYDyIHpKtX5-CA0kwyrUefQOmvhMlgaPqWFE8xm_FT-93WkfXrtbzGGSZ6lz2n07eBl-G5FDbScC6zi1swAYTwdznfzd_vWkIqBZ_ti_ZdDp1eoI5EVusyoYfIAsWjfn9sbzzoTGgwsu1yleBswYK-b4Xc2Sk8KA2QP3LFEh0qt" },
-            { name: "Andrés Riva", role: "Medicina de Montaña", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAJw7eqAf3cPF7k7YyB5qoQFQf4s79SaWtRSeY29SPvlBI8c0FKXFLRXxMr5zSjEXbVjEVw84-GAlIf2NN3Jyh8IlZFSRJrYOFmHlMGhVzi11G1HD_AnCyVi5b3d7caSyU--hP3tXggOPVsWuUgYCGhLLF6m-OpnPR3xO-tDrsLBiQ7Abm2TXm7KInI8FojXB9ohcEc0FKsqQQAv2fO-BZdrc-TzM5tXMlt_-HQA2sx4DCUHRCjxDzqSbRoFHaQEOlMdX_nfwbp" },
-            { name: "Martín Castro", role: "Cartografía Avanzada", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCjb6SFR8yw9rZiaFKB1H58CwUMes-zeJ3SU_biLxnfblLcG5tUZF2G50JQCYqDGvNvrJLT3o5buEyuhrJq_VYUP-1gz7WZwlPbpSQ25VXzQ7MHLUZpR7Zod4H3g4q1mB3NepawNG5RRwx1XvjLWFbPoK3wkFkhF_pxXAzAc_tCTGqXSMwWJ1VWuCzbacyLuGbhXJxWJwLHRbXxkdVcRPOKvWxV58NSS8Puxo_-3WGL22JWbEjawuO_8taisGaWQDAoyO773SXK" },
+            { name: "Pablo González", role: "Guía UIAGM", img: profImgs["Pablo González"] },
+            { name: "Lucía Martínez", role: "Especialista en Rescate", img: profImgs["Lucía Martínez"] },
+            { name: "Andrés Riva", role: "Medicina de Montaña", img: profImgs["Andrés Riva"] },
+            { name: "Martín Castro", role: "Cartografía Avanzada", img: profImgs["Martín Castro"] },
           ].map((prof) => (
             <div key={prof.name} className="flex flex-col items-center group">
               <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-surface-container-high group-hover:border-on-primary-container transition-colors mb-6">
