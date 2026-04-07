@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lodge Rates & Details — Rio Manso Lodge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0D1F3C;
+      --blue:   #054D8B;
+      --gold:   #C4973A;
+      --gold-lt:#F0D9A8;
+      --sand:   #F7F2EA;
+      --light:  #F4F8FC;
+      --white:  #FFFFFF;
+      --text:   #1A2A3A;
+      --muted:  #6B7A8D;
+      --border: rgba(5,77,139,0.10);
+    }
+
+    body {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 52vh;
+      background:
+        linear-gradient(160deg, rgba(13,31,60,0.97) 0%, rgba(5,77,139,0.88) 60%, rgba(13,31,60,0.97) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(ellipse at 30% 50%, rgba(196,151,58,0.12) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      position: relative;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+    .hero-rule {
+      width: 48px;
+      height: 1.5px;
+      background: var(--gold);
+      margin: 28px auto 0;
+      position: relative;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 24px; }
+    .container { max-width: 1080px; margin: 0 auto; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 40px;
+    }
+    .section-title.center { text-align: center; }
+    .section-title.white { color: #fff; }
+
+    /* ── TWO COL ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    @media (max-width: 760px) {
+      .two-col { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── LISTS ── */
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .feature-list li::before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 3px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size: 11px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .feature-list.cross li::before {
+      background-color: rgba(5,77,139,0.15);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 3l6 6M9 3l-6 6' stroke='%23054D8B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+    .feature-note {
+      margin-top: 20px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* ── PRICE CARDS ── */
+    .price-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 48px rgba(13,31,60,0.12);
+    }
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s ease;
+    }
+    .price-row:last-child { border-bottom: none; }
+    .price-row:hover { background: var(--light); }
+    .price-row-label {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .price-row-sub {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .price-row-dots {
+      flex: 1;
+      height: 1px;
+      border-bottom: 1.5px dashed rgba(5,77,139,0.15);
+      margin: 0 16px;
+    }
+    .price-row-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--blue);
+      white-space: nowrap;
+    }
+    .price-stack.featured .price-row:first-child {
+      background: var(--navy);
+    }
+    .price-stack.featured .price-row:first-child .price-row-label,
+    .price-stack.featured .price-row:first-child .price-row-amount {
+      color: #fff;
+    }
+    .price-stack.featured .price-row:first-child .price-row-dots {
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* ── BG VARIANTS ── */
+    .bg-white  { background: var(--white); }
+    .bg-sand   { background: var(--sand); }
+    .bg-light  { background: var(--light); }
+    .bg-navy   { background: var(--navy); }
+
+    /* ── POLICY ── */
+    .policy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    @media (max-width: 680px) {
+      .policy-grid { grid-template-columns: 1fr; }
+    }
+    .policy-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(13,31,60,0.05);
+    }
+    .policy-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(196,151,58,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .policy-card-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--gold);
+      fill: none;
+    }
+    .policy-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .policy-card p {
+      font-size: 0.84rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+    .policy-note {
+      margin-top: 32px;
+      padding: 20px 28px;
+      background: rgba(196,151,58,0.08);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 12px 12px 0;
+      font-size: 0.84rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── HOSTED ── */
+    .hosted-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 52px;
+      box-shadow: 0 8px 60px rgba(13,31,60,0.10);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 680px) {
+      .hosted-card { grid-template-columns: 1fr; padding: 32px; }
+    }
+    .hosted-card p {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .hosted-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      min-width: 200px;
+    }
+    .hosted-cta-dates {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hosted-cta-tbd {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-style: italic;
+      color: var(--navy);
+      opacity: 0.25;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-gold:hover { background: #b8892e; color: #fff; }
+    .btn-outline-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: #fff;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      background: #fff;
+      color: var(--navy);
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-white:hover { background: var(--gold-lt); }
+
+    /* ── GETTING THERE ── */
+    .lodge-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    .lodge-tab {
+      padding: 9px 20px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: none;
+      font-family: 'Bricolage Grotesque', sans-serif;
+    }
+    .lodge-tab.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: #fff;
+    }
+    .lodge-panel { display: none; }
+    .lodge-panel.active { display: block; }
+    .lodge-panel p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .airport-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: rgba(5,77,139,0.07);
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--blue);
+      margin: 0 4px 8px 0;
+      letter-spacing: 0.04em;
+    }
+    .note-box {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-top: 32px;
+    }
+    .note-box h5 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+    .note-box p {
+      font-size: 0.84rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .note-box p:last-child { margin-bottom: 0; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer-section {
+      padding: 80px 24px;
+      background: var(--navy);
+      text-align: center;
+    }
+    .disclaimer-section p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.55);
+      max-width: 600px;
+      margin: 0 auto 36px;
+    }
+    .btn-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── DIVIDER ── */
+    .gold-rule {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 32px;
+    }
+    .gold-rule.center { margin-left: auto; margin-right: auto; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">Fly Fishing · Patagonia</span>
+  <h1>Lodge Rates<br><em>&amp; Details</em></h1>
+  <div class="hero-rule"></div>
+</section>
+
+<!-- INCLUDED -->
+<section class="bg-white">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <span class="section-label">What's covered</span>
+        <h2 class="section-title">Included<span style="color:var(--gold)">*</span></h2>
+        <ul class="feature-list">
+          <li>Guided fishing</li>
+          <li>Transfer to and from the Bariloche area</li>
+          <li>Lodging</li>
+          <li>Meals and snacks</li>
+          <li>All beverages including alcohol, wine and soft drinks</li>
+          <li>Internet</li>
+          <li>Laundry (1–2x per week)</li>
+          <li>Fishing licenses</li>
+          <li>Non-fishing guided activities: hiking, lake &amp; river kayaking, horseback riding, boat rides, rafting, shopping trips to Bariloche, cooking lessons &amp; sauna sessions</li>
+        </ul>
+        <p class="feature-note">*Pricing applies to ALL Rio Manso Operations.<br>*All prices based on double occupancy.</p>
+      </div>
+      <div>
+        <div class="price-stack featured">
+          <div class="price-row">
+            <div>
+              <div class="price-row-label">Fishing Per Night</div>
+            </div>
+            <div class="price-row-dots"></div>
+            <div class="price-row-amount">$1,050</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row-label">Fishing Per Week</div>
+            </div>
+            <div class="price-row-dots"></div>
+            <div class="price-row-amount">$7,000</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row-label">Non-Fishing Per Night</div>
+            </div>
+            <div class="price-row-dots"></div>
+            <div class="price-row-amount">$800</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row-label">Non-Fishing Per Week</div>
+            </div>
+            <div class="price-row-dots"></div>
+            <div class="price-row-amount">$5,400</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOT INCLUDED -->
+<section class="bg-sand">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <span class="section-label">Extras</span>
+        <h2 class="section-title">Not Included<span style="color:var(--gold)">*</span></h2>
+        <ul class="feature-list cross">
+          <li>Personal fishing gear</li>
+          <li>Gratuities</li>
+          <li>Non-angling activities: massages, bird watching, wine tasting and high difficulty hiking</li>
+        </ul>
+        <p class="feature-note">*Gear rental can be waived depending on length of stay.</p>
+      </div>
+      <div>
+        <div class="price-stack">
+          <div class="price-row">
+            <div>
+              <div class="price-row-label">Single Guide Supplement</div>
+              <div class="price-row-sub">Per Day</div>
+            </div>
+            <div class="price-row-dots"></div>
+            <div class="price-row-amount">$250</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row-label">Non-Fishing — Add a Fishing Trip</div>
+              <div class="price-row-sub">Per Day</div>
+            </div>
+            <div class="price-row-dots"></div>
+            <div class="price-row-amount">$250</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row-label">Full Fishing Gear Rental</div>
+              <div class="price-row-sub">Per Day</div>
+            </div>
+            <div class="price-row-dots"></div>
+            <div class="price-row-amount">$80</div>
+          </div>
+          <div class="price-row">
+            <div>
+              <div class="price-row-label">Reel/Rod or Boots/Wader</div>
+              <div class="price-row-sub">Per Day</div>
+            </div>
+            <div class="price-row-dots"></div>
+            <div class="price-row-amount">$40</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section class="bg-white">
+  <div class="container">
+    <span class="section-label">Before you book</span>
+    <h2 class="section-title">Reservation &amp; Policies</h2>
+    <div class="policy-grid">
+      <div class="policy-card">
+        <div class="policy-card-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h4>Deposit &amp; Confirmation</h4>
+        <p>A non-refundable deposit of 50% is required at booking. Without it, your reservation is not held. Contact us in advance if you anticipate payment delays — we may offer a short extension at our discretion.</p>
+      </div>
+      <div class="policy-card">
+        <div class="policy-card-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h4>Final Payment</h4>
+        <p>The remaining balance must be paid no later than 90 days before your scheduled arrival. This final payment, like the deposit, is non-refundable.</p>
+      </div>
+      <div class="policy-card">
+        <div class="policy-card-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+        </div>
+        <h4>Date Changes</h4>
+        <p>Date changes within the same season are allowed, subject to availability. Transfers to a different season require forfeiting your deposit and placing a new one. All changes must be coordinated in advance.</p>
+      </div>
+      <div class="policy-card">
+        <div class="policy-card-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Travel Insurance</h4>
+        <p>We strongly recommend purchasing travel insurance. Since deposits and final payments are non-refundable, insurance protects you against illness, weather disruptions, or other unforeseen circumstances.</p>
+      </div>
+    </div>
+    <div class="policy-note">
+      Rio Manso Lodge welcomes children <strong>ages 12 and over</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- HOSTED TRIPS -->
+<section class="bg-light">
+  <div class="container">
+    <span class="section-label">For guides &amp; outfitters</span>
+    <h2 class="section-title">Hosted Trips</h2>
+    <div class="hosted-card">
+      <div>
+        <p>If you're an outfitter or fishing guide, you have the opportunity to create your own hosted trips with us at Rio Manso Lodge. Bring your clients to experience world-class Patagonian fishing while enjoying the comfort and convenience of a fully personalized trip.</p>
+        <p>Our team will assist you with everything from planning the itinerary to selecting the right gear and flies. Each trip is tailored to your needs, with a <strong>maximum of 8 anglers per group</strong>.</p>
+        <a href="mailto:paula@riomansolodge.com" class="btn-gold">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email Paula to plan your trip
+        </a>
+      </div>
+      <div class="hosted-cta">
+        <span class="hosted-cta-dates">Available dates</span>
+        <span class="hosted-cta-tbd">TBD</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GETTING THERE -->
+<section class="bg-white">
+  <div class="container">
+    <span class="section-label">Travel information</span>
+    <h2 class="section-title">Getting to Rio Manso's Operations</h2>
+
+    <div class="lodge-tabs">
+      <button class="lodge-tab active" onclick="switchTab(this, 'rml')">Rio Manso Lodge</button>
+      <button class="lodge-tab" onclick="switchTab(this, 'ela')">El Atravesado Lodge</button>
+      <button class="lodge-tab" onclick="switchTab(this, 'float')">Float Trips</button>
+    </div>
+
+    <div id="rml" class="lodge-panel active">
+      <div style="margin-bottom:16px;">
+        <span class="airport-chip">EZE — Ezeiza International</span>
+        <span class="airport-chip">AEP — Aeroparque Jorge Newbery</span>
+        <span class="airport-chip">BRC — Bariloche Airport</span>
+      </div>
+      <p>The nearest airport to Rio Manso Lodge is in San Carlos de Bariloche. Flights connect via Buenos Aires — if you have time, we recommend spending a couple of days in the city.</p>
+      <p>International flights arrive at Ezeiza (EZE); most domestic flights depart from Aeroparque (AEP). Check if a direct EZE→BRC flight is available — Aerolineas Argentinas often operates this route. New connections from Santiago, Chile are also being added. Allow <strong>at least 4–5 hours</strong> between your EZE arrival and AEP departure.</p>
+      <div class="note-box">
+        <h5>Transfer tip</h5>
+        <p>Use a reputable transfer service between Ezeiza and Aeroparque — we recommend <strong>Manuel Tienda León</strong> (counter after baggage claim). A private car costs ~$60 for the one-hour ride, no reservation needed.</p>
+        <p>The transfer from Rio Manso Lodge to El Atravesado Lodge is a scenic <strong>5-hour drive</strong>. Let us know if you'd like to combine both lodges.</p>
+      </div>
+    </div>
+
+    <div id="ela" class="lodge-panel">
+      <div style="margin-bottom:16px;">
+        <span class="airport-chip">EZE — Ezeiza International</span>
+        <span class="airport-chip">AEP — Aeroparque Jorge Newbery</span>
+        <span class="airport-chip">EQS — Esquel Airport</span>
+      </div>
+      <p>The nearest airport to El Atravesado Lodge is in Esquel (EQS), with regular flights from Buenos Aires. Note: there are currently <strong>no flights to Esquel on Tuesdays</strong>, so plan accordingly.</p>
+      <p>International flights arrive at Ezeiza (EZE); domestic flights to Esquel depart from Aeroparque (AEP). Allow <strong>at least 4–5 hours</strong> between connections. Once in Esquel, we'll arrange your transfer to the lodge — approximately <strong>2 hours</strong> through beautiful Patagonian scenery.</p>
+      <div class="note-box">
+        <h5>Need to arrive early?</h5>
+        <p>If flight schedules require an overnight in Esquel, we're happy to recommend hotels in the area. Just let us know — we'll be glad to help.</p>
+      </div>
+    </div>
+
+    <div id="float" class="lodge-panel">
+      <p>If you are joining us exclusively for Float Trips, let us know and we will provide all trip details and logistics for your reservations.</p>
+      <p>Contact us directly and we'll take care of the rest.</p>
+      <a href="mailto:paula@riomansolodge.com" class="btn-gold" style="margin-top:8px;">
+        Get in touch
+      </a>
+    </div>
+
+    <div style="margin-top:48px; text-align:center;">
+      <a href="#" class="btn-gold">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Pre-Trip Info
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="disclaimer-section">
+  <div class="gold-rule center"></div>
+  <h2 class="section-title center white" style="margin-bottom:20px; font-size:1.8rem;">Disclaimer</h2>
+  <p>By booking, arriving at, or staying at any of our operations, you acknowledge that you have read, understood, and agreed to the terms outlined in our liability waiver.</p>
+  <div class="btn-group">
+    <a href="#" class="btn-outline-white">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Our Waiver
+    </a>
+    <a href="/contact-us/" class="btn-gold">Book Now</a>
+  </div>
+</section>
+
+<script>
+  function switchTab(btn, id) {
+    document.querySelectorAll('.lodge-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.lodge-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  }
+</script>
+
+</body>
+</html>

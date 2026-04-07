@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fly Fishing Information — Rio Manso Lodge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #07274A;
+      --blue:  #054D8B;
+      --light: #F0F7FF;
+      --sand:  #F3FAFB;
+      --text:  #07274A;
+      --muted: #5A7A9A;
+      --border: rgba(5,77,139,0.10);
+    }
+
+    body {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      color: var(--text);
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 48vh;
+      background: linear-gradient(160deg, #07274A 0%, #054D8B 60%, #07274A 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 110px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 25% 60%, rgba(5,77,139,0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 30%, rgba(255,255,255,0.03) 0%, transparent 50%);
+    }
+    .hero-eyebrow {
+      font-size: .63rem;
+      font-weight: 600;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.6rem);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: .02em;
+      position: relative;
+    }
+    .hero h1 em { font-style: italic; color: rgba(255,255,255,0.55); }
+    .hero-rule {
+      width: 40px;
+      height: 2px;
+      background: rgba(255,255,255,0.25);
+      margin: 28px auto 0;
+      position: relative;
+    }
+
+    /* LAYOUT */
+    .section { padding: 80px 24px; }
+    .container { max-width: 1080px; margin: 0 auto; }
+    .bg-white { background: #fff; }
+    .bg-light  { background: var(--light); }
+    .bg-sand   { background: var(--sand); }
+    .bg-navy   { background: var(--navy); }
+
+    /* EYEBROW */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 22px;
+      height: 1.5px;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 40px;
+    }
+
+    /* CARD GRID — topics */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    @media (max-width: 580px) {
+      .topics-grid { grid-template-columns: 1fr; }
+    }
+    .topic-card {
+      background: #fff;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      box-shadow: 0 2px 20px rgba(7,39,74,0.06);
+      transition: box-shadow .25s ease, transform .25s ease;
+    }
+    .topic-card:hover {
+      box-shadow: 0 8px 40px rgba(7,39,74,0.12);
+      transform: translateY(-2px);
+    }
+    .topic-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .topic-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--blue);
+      fill: none;
+    }
+    .topic-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .topic-card p {
+      font-size: .84rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+    .topic-card p strong { color: var(--navy); font-weight: 600; }
+
+    /* DETAIL BLOCKS — full width rich content */
+    .detail-block {
+      padding: 48px 52px;
+      border-radius: 24px;
+      margin-bottom: 24px;
+    }
+    .detail-block.light  { background: var(--light); }
+    .detail-block.sand   { background: var(--sand); }
+    .detail-block.white  { background: #fff; border: 1px solid var(--border); }
+    .detail-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .detail-block h3 svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--blue);
+      fill: none;
+      flex-shrink: 0;
+    }
+    .detail-block p {
+      font-size: .88rem;
+      line-height: 1.85;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .detail-block p:last-child { margin-bottom: 0; }
+    .detail-block p strong { color: var(--navy); }
+    @media (max-width: 680px) {
+      .detail-block { padding: 32px 24px; }
+    }
+
+    /* GEAR CHIPS */
+    .gear-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      font-family: 'Bricolage Grotesque', sans-serif;
+    }
+    .chip-navy { background: var(--navy); color: #fff; }
+    .chip-blue { background: var(--blue); color: #fff; }
+    .chip-light { background: var(--light); color: var(--blue); }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 20px 0;
+    }
+    .highlight-box p {
+      color: rgba(255,255,255,0.7) !important;
+      font-size: .84rem !important;
+      line-height: 1.75 !important;
+    }
+    .highlight-box p strong { color: #fff !important; }
+
+    /* TIP BOX */
+    .tip-box {
+      border-left: 3px solid var(--blue);
+      background: var(--light);
+      border-radius: 0 14px 14px 0;
+      padding: 18px 24px;
+      margin: 20px 0;
+    }
+    .tip-label {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .tip-box p {
+      font-size: .84rem !important;
+      line-height: 1.7 !important;
+      color: var(--muted) !important;
+      margin: 0 !important;
+    }
+    .tip-box p strong { color: var(--navy) !important; }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: var(--navy);
+      border-radius: 24px;
+      padding: 52px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cta-banner h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .cta-banner p {
+      font-size: .88rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+    }
+    .cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-solid {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 100px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all .3s;
+    }
+    .btn-solid:hover { background: #03386a; }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border: 1.5px solid rgba(255,255,255,.3);
+      color: #fff;
+      border-radius: 100px;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all .3s;
+    }
+    .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">Rio Manso Lodge</span>
+  <h1>Fly Fishing<br><em>Information</em></h1>
+  <div class="hero-rule"></div>
+</section>
+
+<!-- OVERVIEW CARDS -->
+<section class="section bg-white">
+  <div class="container">
+    <span class="eyebrow">On the water</span>
+    <h2 class="section-title">What to expect</h2>
+    <div class="topics-grid">
+
+      <div class="topic-card">
+        <div class="topic-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s4-4 9-4 9 4 9 4-4 4-9 4-9-4-9-4z"/><path d="M7 18c1.5-1 3.5-2 5-2s3.5 1 5 2"/></svg>
+        </div>
+        <h3>Watercraft</h3>
+        <p>NRS self-bailing rafts comfortably fitted for two anglers, plus <strong>Carolina skiffs</strong> on the lakes — wide, stable, with Honda outboards to reach the remotest spots.</p>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Rods &amp; Reels</h3>
+        <p><strong>5 to 7 weights</strong> are your best all-round choice. A 4 wt is perfect for smaller waters. Reels should have smooth drags and adequate backing.</p>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3>Flies</h3>
+        <p>Big <strong>dry flies</strong> early season, heavy streamers when spring is late. Olive, black, brown — and white near Lago Fonck for the puyen baitfish.</p>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </div>
+        <h3>Leaders &amp; Tippet</h3>
+        <p>Dry fly leaders <strong>7½ to 9 ft</strong>, 2x–4x. Bring tippet from 0x to 5x. Fluorocarbon strongly recommended for streamers and nymphs.</p>
+      </div>
+
+    </div>
+
+    <!-- DETAIL: WATERCRAFT -->
+    <div class="detail-block light">
+      <h3>
+        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s4-4 9-4 9 4 9 4-4 4-9 4-9-4-9-4z"/></svg>
+        Watercraft &amp; Access
+      </h3>
+      <p>Our NRS self-bailing rafts are comfortably appointed with frames and seats, with plenty of room for two anglers. On two of the lakes we keep Carolina skiffs — great fishing platforms with wide, stable foredecks for standing and casting, equipped with Honda outboards to quickly access the remotest parts.</p>
+      <p>Once in position, guides will row you along the shoreline and you'll fish old-growth forest structure, often sight casting to fish. <strong>Almost all fishing locations are a 5 to 20 minute drive from the lodge.</strong> We fish a mix of drifting and wading — but early in the year (November and December) water levels usually prevent much wading.</p>
+      <div class="tip-box">
+        <div class="tip-label">Preference?</div>
+        <p>We have found fishing from rafts and boats to be by far the most productive, but we are considerate of our guests' wishes. <strong>Make your preference clear to your guide in the morning</strong> and we will do our best to accommodate you.</p>
+      </div>
+    </div>
+
+    <!-- DETAIL: RODS -->
+    <div class="detail-block sand">
+      <h3>
+        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        Tackle — Rods &amp; Reels
+      </h3>
+      <p>We recommend <strong>5 to 7 weights</strong> as your best all-round choices. The river is large in places and you may be throwing heavy streamers and nymphs. On the lakes, large dry flies are best handled with 6 wts and specialized floating lines.</p>
+      <div class="gear-chips">
+        <span class="chip chip-navy">5–7 wt all-round</span>
+        <span class="chip chip-blue">4 wt smaller waters</span>
+        <span class="chip chip-light">Floating line</span>
+        <span class="chip chip-light">24–30 ft sink tip 250gr</span>
+        <span class="chip chip-light">Full sink lake line</span>
+      </div>
+      <p>Bring both a floating and a 24–30-foot sink tip line in the 250-grain class, or a full sink lake line. Lines like the <strong>Orvis Depth Charge 250</strong>, <strong>Rio Intouch 24ft Sink 250</strong> or <strong>Cortland 555 Quick Descent 250</strong> will address most needs.</p>
+      <div class="highlight-box">
+        <p><strong>Pro tip:</strong> If you have never used sinking lines, go outside and practice casting before you arrive — they are handled quite differently from a floating line. Orvis's BankShot floating lines are outstanding for casting large dries and are strongly recommended.</p>
+      </div>
+    </div>
+
+    <!-- DETAIL: FLIES -->
+    <div class="detail-block white">
+      <h3>
+        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Flies
+      </h3>
+      <p>Early in the year (December through January), if conditions cooperate, you'll spend most of your time fishing <strong>big dry flies on heavy 2–3x leaders</strong>. If spring is late or cold, most of your fishing will be with streamers.</p>
+      <div class="gear-chips">
+        <span class="chip chip-navy">Size 4–10 streamers</span>
+        <span class="chip chip-blue">Olive &amp; Black</span>
+        <span class="chip chip-blue">Brown &amp; Yellow</span>
+        <span class="chip chip-light">White (Lago Fonck)</span>
+        <span class="chip chip-light">Emergers &amp; cripples</span>
+        <span class="chip chip-light">Large attractor patterns</span>
+      </div>
+      <p>We fish medium-sized (size 4–10) heavy, ugly stuff like <strong>conehead and beadhead wooly buggers</strong>. In Lago Fonck, white can work well because of the small baitfish (puyen) the trout love. Don't forget your emergers and cripples — like fish everywhere, these fish will key into a particular stage of a hatch and ignore everything else.</p>
+      <div class="tip-box">
+        <div class="tip-label">Cold or wet weather?</div>
+        <p>Your dry fly fishing will be mostly limited to evenings near the lodge, but there can be some caddis and nymphing on the river. <strong>Bring your streamer and nymph boxes and any favourite patterns you have.</strong></p>
+      </div>
+    </div>
+
+    <!-- DETAIL: LEADERS -->
+    <div class="detail-block light">
+      <h3>
+        <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        Leaders &amp; Tippet
+      </h3>
+      <p>Dry fly leaders should be <strong>7½ to 9 feet, in 2x to 4x</strong>, with 2x–3x the most common. Bring tippet from 0x to 5x and you'll be prepared for nearly all fishing situations. Many anglers prefer fluorocarbon for the tippet.</p>
+      <p>For streamers and nymphs, we recommend <strong>fluorocarbon leaders</strong> for their abrasion resistance and low underwater visibility. Be especially careful with knots and inspect your tackle after each fish.</p>
+      <div class="highlight-box">
+        <p><strong>There are very large trout in these waters.</strong> You do not want to lose the fish of a lifetime to a bad knot or a nick in your leader. When in doubt, have the guide tie on your flies or add tippet to your leader.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="cta-banner">
+      <div>
+        <h3>Combine our three<br>signature programs</h3>
+        <p>In all of our operations you will be provided with exceptional Rio Manso service. Our commitment to human values and the high-quality experience ensures that every visit is memorable and fulfilling.</p>
+      </div>
+      <div class="cta-buttons">
+        <a href="/contact-us/" class="btn-solid">Book Now</a>
+        <a href="/lodge-rates-details/" class="btn-ghost">Rates &amp; Details</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

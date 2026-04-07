@@ -1,0 +1,212 @@
+{
+  "version": "0.4",
+  "title": "Lodge Rates & Details",
+  "type": "page",
+  "content": [
+
+    {
+      "id": "css00001",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+        "margin": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true }
+      },
+      "elements": [
+        {
+          "id": "css00002",
+          "elType": "widget",
+          "isInner": false,
+          "widgetType": "html",
+          "settings": {
+            "html": "<style>\n:root{\n  --rml-navy:#0D1F3C;\n  --rml-blue:#054D8B;\n  --rml-gold:#C4973A;\n  --rml-gold-lt:#F0D9A8;\n  --rml-sand:#F7F2EA;\n  --rml-light:#F4F8FC;\n  --rml-text:#1A2A3A;\n  --rml-muted:#6B7A8D;\n  --rml-border:rgba(5,77,139,0.10);\n}\n.rml-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.62rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--rml-gold);margin-bottom:14px}\n.rml-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--rml-gold)}\n.rml-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:var(--rml-navy);line-height:1.15;margin-bottom:36px}\n.rml-title.center{text-align:center}\n.rml-title.white{color:#fff}\n.rml-gold-rule{width:40px;height:2px;background:var(--rml-gold);margin-bottom:28px}\n.rml-gold-rule.center{margin-left:auto;margin-right:auto}\n\n.rml-two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}\n@media(max-width:760px){.rml-two-col{grid-template-columns:1fr;gap:36px}}\n\n.rml-feature-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin:0;padding:0}\n.rml-feature-list li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;line-height:1.55;color:var(--rml-text);font-family:'Bricolage Grotesque',sans-serif}\n.rml-feature-list li::before{content:'';width:18px;height:18px;border-radius:50%;background:var(--rml-gold);flex-shrink:0;margin-top:2px;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='white' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\");background-size:11px;background-position:center;background-repeat:no-repeat}\n.rml-feature-list.cross li::before{background-color:rgba(5,77,139,0.12);background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 3l6 6M9 3l-6 6' stroke='%23054D8B' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E\")}\n.rml-feature-note{margin-top:20px;font-size:.78rem;color:var(--rml-muted);font-style:italic;line-height:1.65;font-family:'Bricolage Grotesque',sans-serif}\n\n.rml-price-stack{display:flex;flex-direction:column;border-radius:20px;overflow:hidden;box-shadow:0 8px 48px rgba(13,31,60,.12)}\n.rml-price-row{display:flex;align-items:center;padding:20px 28px;background:#fff;border-bottom:1px solid var(--rml-border);transition:background .2s}\n.rml-price-row:last-child{border-bottom:none}\n.rml-price-row:hover{background:var(--rml-light)}\n.rml-price-row.featured-row{background:var(--rml-navy)}\n.rml-price-row.featured-row .rml-price-label{color:#fff}\n.rml-price-row.featured-row .rml-price-amount{color:#fff}\n.rml-price-row.featured-row .rml-price-dots{border-color:rgba(255,255,255,.2)}\n.rml-price-label{font-size:.88rem;font-weight:500;color:var(--rml-navy);font-family:'Bricolage Grotesque',sans-serif}\n.rml-price-sub{font-size:.7rem;color:var(--rml-muted);margin-top:2px;font-family:'Bricolage Grotesque',sans-serif}\n.rml-price-dots{flex:1;height:0;border-bottom:1.5px dashed rgba(5,77,139,.15);margin:0 16px}\n.rml-price-amount{font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:600;color:var(--rml-blue);white-space:nowrap}\n\n.rml-policy-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}\n@media(max-width:680px){.rml-policy-grid{grid-template-columns:1fr}}\n.rml-policy-card{background:#fff;border-radius:18px;padding:32px;border:1px solid var(--rml-border);box-shadow:0 2px 16px rgba(13,31,60,.05)}\n.rml-policy-icon{width:42px;height:42px;border-radius:12px;background:rgba(196,151,58,.12);display:flex;align-items:center;justify-content:center;margin-bottom:16px}\n.rml-policy-icon svg{width:20px;height:20px;stroke:var(--rml-gold);fill:none}\n.rml-policy-card h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--rml-navy);margin-bottom:10px}\n.rml-policy-card p{font-size:.84rem;line-height:1.7;color:var(--rml-muted);font-family:'Bricolage Grotesque',sans-serif}\n.rml-policy-note{margin-top:28px;padding:20px 28px;background:rgba(196,151,58,.08);border-left:3px solid var(--rml-gold);border-radius:0 12px 12px 0;font-size:.84rem;color:var(--rml-text);line-height:1.65;font-family:'Bricolage Grotesque',sans-serif}\n\n.rml-hosted-card{background:#fff;border-radius:24px;padding:52px;box-shadow:0 8px 60px rgba(13,31,60,.10);display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}\n@media(max-width:680px){.rml-hosted-card{grid-template-columns:1fr;padding:32px;gap:28px}}\n.rml-hosted-card p{font-size:.9rem;line-height:1.8;color:var(--rml-muted);margin-bottom:18px;font-family:'Bricolage Grotesque',sans-serif}\n.rml-hosted-cta{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;min-width:180px}\n.rml-cta-dates{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rml-muted);font-family:'Bricolage Grotesque',sans-serif}\n.rml-cta-tbd{font-family:'Playfair Display',serif;font-size:2.4rem;font-style:italic;color:var(--rml-navy);opacity:.2;line-height:1}\n\n.rml-tabs{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap}\n.rml-tab{padding:9px 20px;border-radius:100px;border:1.5px solid var(--rml-border);font-size:.78rem;font-weight:600;color:var(--rml-muted);cursor:pointer;transition:all .25s;background:none;font-family:'Bricolage Grotesque',sans-serif}\n.rml-tab.active{background:var(--rml-navy);border-color:var(--rml-navy);color:#fff}\n.rml-panel{display:none}.rml-panel.active{display:block}\n.rml-panel p{font-size:.9rem;line-height:1.8;color:var(--rml-muted);margin-bottom:14px;font-family:'Bricolage Grotesque',sans-serif}\n.rml-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(5,77,139,.07);border-radius:100px;font-size:.72rem;font-weight:600;color:var(--rml-blue);margin:0 4px 8px 0;letter-spacing:.04em;font-family:'Bricolage Grotesque',sans-serif}\n.rml-note-box{background:var(--rml-light);border-radius:16px;padding:28px 32px;margin-top:28px}\n.rml-note-box h5{font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--rml-blue);margin-bottom:12px;font-family:'Bricolage Grotesque',sans-serif}\n.rml-note-box p{font-size:.84rem;line-height:1.7;color:var(--rml-muted);margin-bottom:8px;font-family:'Bricolage Grotesque',sans-serif}\n.rml-note-box p:last-child{margin-bottom:0}\n\n.rml-btn-gold{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;background:var(--rml-gold);color:var(--rml-navy);border-radius:100px;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;font-family:'Bricolage Grotesque',sans-serif}\n.rml-btn-gold:hover{background:#b8892e;color:#fff}\n.rml-btn-outline{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border:1.5px solid rgba(255,255,255,.4);color:#fff;border-radius:100px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;font-family:'Bricolage Grotesque',sans-serif}\n.rml-btn-outline:hover{background:rgba(255,255,255,.1);border-color:#fff}\n.rml-btn-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px}\n</style>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "hero0001",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "align_items": "center",
+        "justify_content": "center",
+        "min_height": { "unit": "vh", "size": 50, "sizes": [] },
+        "padding": { "unit": "px", "top": "120", "right": "24", "bottom": "90", "left": "24", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#0D1F3C"
+      },
+      "elements": [
+        {
+          "id": "hero0002",
+          "elType": "widget",
+          "isInner": false,
+          "widgetType": "html",
+          "settings": {
+            "html": "<div style=\"text-align:center;\">\n  <span class=\"rml-eyebrow\" style=\"justify-content:center;\">Fly Fishing &middot; Patagonia</span>\n  <h1 style=\"font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6vw,4.8rem);font-weight:400;color:#fff;letter-spacing:.02em;line-height:1.1;margin:16px 0 28px;\">Lodge Rates<br><em style=\"color:#F0D9A8;\">&#38; Details</em></h1>\n  <div style=\"width:48px;height:2px;background:#C4973A;margin:0 auto;\"></div>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "inc00001",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "column",
+        "padding": { "unit": "px", "top": "80", "right": "24", "bottom": "80", "left": "24", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#FFFFFF"
+      },
+      "elements": [
+        {
+          "id": "inc00002",
+          "elType": "widget",
+          "isInner": false,
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"rml-two-col\">\n  <div>\n    <span class=\"rml-eyebrow\">What's covered</span>\n    <h2 class=\"rml-title\">Included<span style=\"color:#C4973A\">*</span></h2>\n    <ul class=\"rml-feature-list\">\n      <li>Guided fishing</li>\n      <li>Transfer to and from the Bariloche area</li>\n      <li>Lodging</li>\n      <li>Meals and snacks</li>\n      <li>All beverages including alcohol, wine and soft drinks</li>\n      <li>Internet</li>\n      <li>Laundry (1&ndash;2x per week)</li>\n      <li>Fishing licenses</li>\n      <li>Non-fishing guided activities: hiking, lake &amp; river kayaking, horseback riding, boat rides, rafting, shopping trips to Bariloche, cooking lessons &amp; sauna sessions</li>\n    </ul>\n    <p class=\"rml-feature-note\">*Pricing applies to ALL Rio Manso Operations.<br>*All prices based on double occupancy.</p>\n  </div>\n  <div>\n    <div class=\"rml-price-stack\">\n      <div class=\"rml-price-row featured-row\">\n        <div><div class=\"rml-price-label\">Fishing Per Night</div></div>\n        <div class=\"rml-price-dots\"></div>\n        <div class=\"rml-price-amount\">$1,050</div>\n      </div>\n      <div class=\"rml-price-row\">\n        <div><div class=\"rml-price-label\">Fishing Per Week</div></div>\n        <div class=\"rml-price-dots\"></div>\n        <div class=\"rml-price-amount\">$7,000</div>\n      </div>\n      <div class=\"rml-price-row\">\n        <div><div class=\"rml-price-label\">Non-Fishing Per Night</div></div>\n        <div class=\"rml-price-dots\"></div>\n        <div class=\"rml-price-amount\">$800</div>\n      </div>\n      <div class=\"rml-price-row\">\n        <div><div class=\"rml-price-label\">Non-Fishing Per Week</div></div>\n        <div class=\"rml-price-dots\"></div>\n        <div class=\"rml-price-amount\">$5,400</div>\n      </div>\n    </div>\n  </div>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "not00001",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "column",
+        "padding": { "unit": "px", "top": "80", "right": "24", "bottom": "80", "left": "24", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#F7F2EA"
+      },
+      "elements": [
+        {
+          "id": "not00002",
+          "elType": "widget",
+          "isInner": false,
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"rml-two-col\">\n  <div>\n    <span class=\"rml-eyebrow\">Extras</span>\n    <h2 class=\"rml-title\">Not Included<span style=\"color:#C4973A\">*</span></h2>\n    <ul class=\"rml-feature-list cross\">\n      <li>Personal fishing gear</li>\n      <li>Gratuities</li>\n      <li>Non-angling activities: massages, bird watching, wine tasting and high difficulty hiking</li>\n    </ul>\n    <p class=\"rml-feature-note\">*Gear rental can be waived depending on length of stay.</p>\n  </div>\n  <div>\n    <div class=\"rml-price-stack\">\n      <div class=\"rml-price-row\">\n        <div><div class=\"rml-price-label\">Single Guide Supplement</div><div class=\"rml-price-sub\">Per Day</div></div>\n        <div class=\"rml-price-dots\"></div>\n        <div class=\"rml-price-amount\">$250</div>\n      </div>\n      <div class=\"rml-price-row\">\n        <div><div class=\"rml-price-label\">Non-Fishing &mdash; Add a Fishing Trip</div><div class=\"rml-price-sub\">Per Day</div></div>\n        <div class=\"rml-price-dots\"></div>\n        <div class=\"rml-price-amount\">$250</div>\n      </div>\n      <div class=\"rml-price-row\">\n        <div><div class=\"rml-price-label\">Full Fishing Gear Rental</div><div class=\"rml-price-sub\">Per Day</div></div>\n        <div class=\"rml-price-dots\"></div>\n        <div class=\"rml-price-amount\">$80</div>\n      </div>\n      <div class=\"rml-price-row\">\n        <div><div class=\"rml-price-label\">Reel/Rod or Boots/Wader</div><div class=\"rml-price-sub\">Per Day</div></div>\n        <div class=\"rml-price-dots\"></div>\n        <div class=\"rml-price-amount\">$40</div>\n      </div>\n    </div>\n  </div>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "pol00001",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "column",
+        "padding": { "unit": "px", "top": "80", "right": "24", "bottom": "80", "left": "24", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#FFFFFF"
+      },
+      "elements": [
+        {
+          "id": "pol00002",
+          "elType": "widget",
+          "isInner": false,
+          "widgetType": "html",
+          "settings": {
+            "html": "<span class=\"rml-eyebrow\">Before you book</span>\n<h2 class=\"rml-title\">Reservation &amp; Policies</h2>\n<div class=\"rml-policy-grid\">\n  <div class=\"rml-policy-card\">\n    <div class=\"rml-policy-icon\"><svg viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"/><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"/><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"/></svg></div>\n    <h4>Deposit &amp; Confirmation</h4>\n    <p>A non-refundable deposit of 50% is required at booking. Without it, your reservation is not held. Contact us in advance if you anticipate payment delays &mdash; we may offer a short extension at our discretion.</p>\n  </div>\n  <div class=\"rml-policy-card\">\n    <div class=\"rml-policy-icon\"><svg viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg></div>\n    <h4>Final Payment</h4>\n    <p>The remaining balance must be paid no later than 90 days before your scheduled arrival. This final payment, like the deposit, is non-refundable.</p>\n  </div>\n  <div class=\"rml-policy-card\">\n    <div class=\"rml-policy-icon\"><svg viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z\"/></svg></div>\n    <h4>Date Changes</h4>\n    <p>Date changes within the same season are allowed, subject to availability. Transfers to a different season require forfeiting your deposit. All changes must be coordinated in advance.</p>\n  </div>\n  <div class=\"rml-policy-card\">\n    <div class=\"rml-policy-icon\"><svg viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/></svg></div>\n    <h4>Travel Insurance</h4>\n    <p>We strongly recommend purchasing travel insurance. Since deposits and final payments are non-refundable, insurance protects you against illness, weather disruptions, or other unforeseen circumstances.</p>\n  </div>\n</div>\n<div class=\"rml-policy-note\">Rio Manso Lodge welcomes children <strong>ages 12 and over</strong>.</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "hos00001",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "column",
+        "padding": { "unit": "px", "top": "80", "right": "24", "bottom": "80", "left": "24", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#F4F8FC"
+      },
+      "elements": [
+        {
+          "id": "hos00002",
+          "elType": "widget",
+          "isInner": false,
+          "widgetType": "html",
+          "settings": {
+            "html": "<span class=\"rml-eyebrow\">For guides &amp; outfitters</span>\n<h2 class=\"rml-title\">Hosted Trips</h2>\n<div class=\"rml-hosted-card\">\n  <div>\n    <p>If you&rsquo;re an outfitter or fishing guide, you have the opportunity to create your own hosted trips with us at Rio Manso Lodge. Bring your clients to experience world-class Patagonian fishing while enjoying the comfort and convenience of a fully personalized trip.</p>\n    <p>Our team will assist you with everything from planning the itinerary to selecting the right gear and flies. Each trip is tailored to your needs, with a <strong>maximum of 8 anglers per group</strong>.</p>\n    <a href=\"mailto:paula@riomansolodge.com\" class=\"rml-btn-gold\">\n      <svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"/><polyline points=\"22,6 12,13 2,6\"/></svg>\n      Email Paula to plan your trip\n    </a>\n  </div>\n  <div class=\"rml-hosted-cta\">\n    <span class=\"rml-cta-dates\">Available dates</span>\n    <span class=\"rml-cta-tbd\">TBD</span>\n  </div>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "get00001",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "column",
+        "padding": { "unit": "px", "top": "80", "right": "24", "bottom": "80", "left": "24", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#FFFFFF"
+      },
+      "elements": [
+        {
+          "id": "get00002",
+          "elType": "widget",
+          "isInner": false,
+          "widgetType": "html",
+          "settings": {
+            "html": "<span class=\"rml-eyebrow\">Travel information</span>\n<h2 class=\"rml-title\">Getting to Rio Manso&rsquo;s Operations</h2>\n\n<div class=\"rml-tabs\">\n  <button class=\"rml-tab active\" onclick=\"rmlTab(this,'rml')\">Rio Manso Lodge</button>\n  <button class=\"rml-tab\" onclick=\"rmlTab(this,'ela')\">El Atravesado Lodge</button>\n  <button class=\"rml-tab\" onclick=\"rmlTab(this,'float')\">Float Trips</button>\n</div>\n\n<div id=\"rml-panel-rml\" class=\"rml-panel active\">\n  <div style=\"margin-bottom:14px\">\n    <span class=\"rml-chip\">EZE &mdash; Ezeiza International</span>\n    <span class=\"rml-chip\">AEP &mdash; Aeroparque Jorge Newbery</span>\n    <span class=\"rml-chip\">BRC &mdash; Bariloche Airport</span>\n  </div>\n  <p>The nearest airport to Rio Manso Lodge is in San Carlos de Bariloche. Flights connect via Buenos Aires &mdash; if you have time, we recommend spending a couple of days in the city.</p>\n  <p>International flights arrive at Ezeiza (EZE); most domestic flights depart from Aeroparque (AEP). Check if a direct EZE&rarr;BRC flight is available &mdash; Aerolineas Argentinas often operates this route. Allow <strong>at least 4&ndash;5 hours</strong> between your EZE arrival and AEP departure.</p>\n  <div class=\"rml-note-box\">\n    <h5>Transfer tip</h5>\n    <p>Use a reputable transfer between Ezeiza and Aeroparque &mdash; we recommend <strong>Manuel Tienda Le&oacute;n</strong> (counter after baggage claim). A private car costs ~$60 for the one-hour ride.</p>\n    <p>The transfer from Rio Manso Lodge to El Atravesado Lodge is a scenic <strong>5-hour drive</strong>. Let us know if you&rsquo;d like to combine both lodges.</p>\n  </div>\n</div>\n\n<div id=\"rml-panel-ela\" class=\"rml-panel\">\n  <div style=\"margin-bottom:14px\">\n    <span class=\"rml-chip\">EZE &mdash; Ezeiza International</span>\n    <span class=\"rml-chip\">AEP &mdash; Aeroparque Jorge Newbery</span>\n    <span class=\"rml-chip\">EQS &mdash; Esquel Airport</span>\n  </div>\n  <p>The nearest airport to El Atravesado Lodge is in Esquel (EQS), with regular flights from Buenos Aires. Note: there are currently <strong>no flights to Esquel on Tuesdays</strong>, so plan accordingly.</p>\n  <p>Allow <strong>at least 4&ndash;5 hours</strong> between connections in Buenos Aires. Once in Esquel, we&rsquo;ll arrange your transfer to the lodge &mdash; approximately <strong>2 hours</strong> through beautiful Patagonian scenery.</p>\n  <div class=\"rml-note-box\">\n    <h5>Need to arrive early?</h5>\n    <p>If flight schedules require an overnight in Esquel, we&rsquo;re happy to recommend hotels in the area. Just let us know.</p>\n  </div>\n</div>\n\n<div id=\"rml-panel-float\" class=\"rml-panel\">\n  <p>If you are joining us exclusively for Float Trips, let us know and we will provide all trip details and logistics for your reservations.</p>\n  <a href=\"mailto:paula@riomansolodge.com\" class=\"rml-btn-gold\" style=\"margin-top:8px\">Get in touch</a>\n</div>\n\n<div style=\"margin-top:48px;text-align:center\">\n  <a href=\"#\" class=\"rml-btn-gold\">\n    <svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" y1=\"15\" x2=\"12\" y2=\"3\"/></svg>\n    Download Pre-Trip Info\n  </a>\n</div>\n\n<script>\nfunction rmlTab(btn,id){\n  document.querySelectorAll('.rml-tab').forEach(function(t){t.classList.remove('active')});\n  document.querySelectorAll('.rml-panel').forEach(function(p){p.classList.remove('active')});\n  btn.classList.add('active');\n  document.getElementById('rml-panel-'+id).classList.add('active');\n}\n</script>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "dis00001",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "boxed",
+        "flex_direction": "column",
+        "align_items": "center",
+        "padding": { "unit": "px", "top": "80", "right": "24", "bottom": "80", "left": "24", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#0D1F3C"
+      },
+      "elements": [
+        {
+          "id": "dis00002",
+          "elType": "widget",
+          "isInner": false,
+          "widgetType": "html",
+          "settings": {
+            "html": "<div style=\"text-align:center\">\n  <div class=\"rml-gold-rule center\"></div>\n  <h2 style=\"font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;color:#fff;margin-bottom:20px;\">Disclaimer</h2>\n  <p style=\"font-size:.9rem;line-height:1.8;color:rgba(255,255,255,.55);max-width:600px;margin:0 auto 36px;font-family:'Bricolage Grotesque',sans-serif;\">By booking, arriving at, or staying at any of our operations, you acknowledge that you have read, understood, and agreed to the terms outlined in our liability waiver.</p>\n  <div class=\"rml-btn-group\">\n    <a href=\"#\" class=\"rml-btn-outline\">\n      <svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" y1=\"15\" x2=\"12\" y2=\"3\"/></svg>\n      Download Our Waiver\n    </a>\n    <a href=\"/contact-us/\" class=\"rml-btn-gold\">Book Now</a>\n  </div>\n</div>"
+          },
+          "elements": []
+        }
+      ]
+    }
+
+  ],
+  "page_settings": {}
+}

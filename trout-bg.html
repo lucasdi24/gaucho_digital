@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trout Background — Rio Manso Lodge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Bricolage+Grotesque:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#010f1a; overflow:hidden; }
+    #c { position:fixed; inset:0; width:100%; height:100%; }
+
+    .hero {
+      position:fixed; inset:0;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      gap:14px; pointer-events:none;
+    }
+    .hero-eye {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-size:.68rem; font-weight:500;
+      letter-spacing:.35em; text-transform:uppercase;
+      color:rgba(255,255,255,.38);
+    }
+    .hero h1 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(3rem,8vw,7rem); font-weight:400;
+      color:#fff; letter-spacing:.02em;
+      line-height:1; text-align:center;
+    }
+    .hero p {
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-size:.72rem; letter-spacing:.3em;
+      text-transform:uppercase; color:rgba(255,255,255,.32);
+    }
+    .hint {
+      position:fixed; bottom:32px; left:50%; transform:translateX(-50%);
+      font-family:'Bricolage Grotesque',sans-serif;
+      font-size:.6rem; letter-spacing:.25em; text-transform:uppercase;
+      color:rgba(255,255,255,.2);
+      display:flex; flex-direction:column; align-items:center; gap:8px;
+    }
+    .hint::after {
+      content:''; width:1px; height:34px;
+      background:linear-gradient(to bottom,rgba(255,255,255,.2),transparent);
+      animation:dl 2.4s ease-in-out infinite;
+    }
+    @keyframes dl {
+      0%,100%{opacity:0;transform:scaleY(.2);transform-origin:top}
+      50%{opacity:1;transform:scaleY(1)}
+    }
+  </style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="hero">
+  <span class="hero-eye">Fly Fishing · Patagonia</span>
+  <h1>Rio Manso Lodge</h1>
+  <p>Argentina</p>
+</div>
+<div class="hint">Scroll</div>
+
+<script>
+const cv = document.getElementById('c');
+const cx = cv.getContext('2d');
+let W, H;
+const resize = () => { W = cv.width = innerWidth; H = cv.height = innerHeight; };
+resize(); addEventListener('resize', resize);
+
+/* ── PARTICLES (bubbles / debris) ────────────── */
+const PARTS = Array.from({length:40}, () => ({
+  x: Math.random()*1e4, y: Math.random()*1e4,
+  s: Math.random()*1.5+.5, sp: Math.random()*.15+.05,
+  op: Math.random()*.12+.03
+}));
+
+function drawParticles() {
+  PARTS.forEach(p => {
+    p.y -= p.sp;
+    if (p.y < -5) { p.y = H+5; p.x = Math.random()*W; }
+    cx.beginPath();
+    cx.arc(p.x % W, p.y % H, p.s, 0, Math.PI*2);
+    cx.fillStyle = `rgba(160,210,230,${p.op})`;
+    cx.fill();
+  });
+}
+
+/* ── CAUSTICS ─────────────────────────────────── */
+class Caustic {
+  constructor() { this.reset(true); }
+  reset(init) {
+    this.x = Math.random()*W; this.y = Math.random()*H;
+    this.r = Math.random()*100+40;
+    this.life = init ? Math.random()*200 : 0;
+    this.maxLife = Math.random()*220+140;
+  }
+  draw() {
+    const p = this.life/this.maxLife;
+    const a = Math.sin(p*Math.PI)*0.035;
+    const g = cx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r*(0.5+p*.5));
+    g.addColorStop(0, `rgba(140,220,240,${a})`);
+    g.addColorStop(.6,`rgba(80,170,200,${a*.3})`);
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    cx.beginPath(); cx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    cx.fillStyle=g; cx.fill();
+    if (++this.life > this.maxLife) this.reset();
+  }
+}
+const caustics = Array.from({length:14}, () => new Caustic());
+
+/* ══════════════════════════════════════════════════
+   TROUT — spine-based with traveling wave
+══════════════════════════════════════════════════ */
+const N_SEG = 24; // spine segments
+
+class Trout {
+  constructor(init) {
+    this.variant = Math.random() > .45 ? 'rainbow' : 'brown';
+    this.reset(init);
+    // Pre-generate spot positions (in body-space 0..1)
+    this.spots = this._genSpots();
+  }
+
+  reset(init) {
+    this.dir    = Math.random() > .5 ? 1 : -1;   // 1 = swim left, -1 = swim right
+    this.L      = Math.random()*90+55;             // body length px
+    this.depth  = Math.random();
+    this.speed  = (Math.random()*.7+.45) * (1-this.depth*.45);
+    this.baseY  = Math.random()*H;
+    this.y      = this.baseY;
+    this.yDrift = (Math.random()-.5)*.28;
+    this.wFreq  = Math.random()*.028+.022;         // temporal wiggle speed
+    this.wK     = 1.8 + Math.random()*.6;          // spatial wave number
+    this.wAmp   = this.L*.072;                      // tail amplitude
+    this.wPh    = Math.random()*Math.PI*2;
+    this.op     = 0.22 + (1-this.depth)*.52;
+    this.x      = init ? Math.random()*W :
+                  (this.dir>0 ? -this.L*1.8 : W+this.L*1.8);
+    this.spine  = [];
+  }
+
+  _genSpots() {
+    const arr = [];
+    const count = this.variant==='rainbow' ? 22 : 18;
+    for (let i=0;i<count;i++) {
+      arr.push({
+        s: .08+Math.random()*.72,      // position along body
+        side: (Math.random()-.5)*.55,  // lateral offset (fraction of width)
+        r: (.012+Math.random()*.016),  // radius fraction of L
+        hasStar: this.variant==='brown' && Math.random()>.5
+      });
+    }
+    return arr;
+  }
+
+  /* Width profile — fusiform with pinched caudal peduncle */
+  _w(s) {
+    if (s < .04) return s/.04 * .036;
+    if (s < .28) return .036 + (s-.04)/.24 * .106;   // head → widest
+    if (s < .62) return .142 - (s-.28)/.34 * .062;   // main body taper
+    if (s < .84) return .080 - (s-.62)/.22 * .056;   // caudal peduncle
+    return .024;                                       // tail junction
+  }
+
+  _buildSpine(t) {
+    this.spine.length = 0;
+    for (let i=0;i<N_SEG;i++) {
+      const s   = i/(N_SEG-1);
+      const amp = this.wAmp * s*s;                          // amplitude ∝ s²
+      const ph  = this.wK*s*Math.PI - t*this.wFreq + this.wPh;
+      const yOff= amp * Math.sin(ph);
+      this.spine.push({
+        x: this.x - this.dir * s * this.L,
+        y: this.y + yOff,
+        s
+      });
+    }
+  }
+
+  /* Left & right outline from spine */
+  _outline() {
+    const L=[],R=[];
+    for (let i=0;i<N_SEG;i++) {
+      const p = this.spine[i];
+      const w = this._w(p.s) * this.L;
+      // tangent
+      let tx,ty;
+      if (i===0)       { tx=this.spine[1].x-p.x;        ty=this.spine[1].y-p.y; }
+      else if (i===N_SEG-1) { tx=p.x-this.spine[i-1].x; ty=p.y-this.spine[i-1].y; }
+      else              { tx=this.spine[i+1].x-this.spine[i-1].x;
+                          ty=this.spine[i+1].y-this.spine[i-1].y; }
+      const len=Math.sqrt(tx*tx+ty*ty)||1;
+      const nx=-ty/len, ny=tx/len;
+      L.push({x:p.x+nx*w, y:p.y+ny*w});
+      R.push({x:p.x-nx*w, y:p.y-ny*w});
+    }
+    return {L,R};
+  }
+
+  _smoothPath(pts) {
+    if (!pts.length) return;
+    cx.moveTo(pts[0].x, pts[0].y);
+    for (let i=1;i<pts.length-1;i++) {
+      const mx=(pts[i].x+pts[i+1].x)/2, my=(pts[i].y+pts[i+1].y)/2;
+      cx.quadraticCurveTo(pts[i].x, pts[i].y, mx, my);
+    }
+    cx.lineTo(pts[pts.length-1].x, pts[pts.length-1].y);
+  }
+
+  draw(t) {
+    this._buildSpine(t);
+    const {L,R} = this._outline();
+    const head  = this.spine[0];
+    const tail  = this.spine[N_SEG-1];
+
+    cx.save();
+    cx.globalAlpha = this.op;
+
+    /* ── PALETTE ── */
+    let backColor, midColor, bellyColor, spotCol, haloCol, stripeCol;
+    if (this.variant==='rainbow') {
+      backColor  = [45,  105, 130];
+      midColor   = [160, 210, 195];
+      bellyColor = [220, 235, 230];
+      spotCol    = 'rgba(20,50,80,.65)';
+      haloCol    = null;
+      stripeCol  = 'rgba(210,90,130,.42)';
+    } else { // brown
+      backColor  = [65,  85,  45];
+      midColor   = [185, 155, 80];
+      bellyColor = [220, 200, 140];
+      spotCol    = 'rgba(170,55,25,.7)';
+      haloCol    = 'rgba(160,195,210,.45)';
+      stripeCol  = null;
+    }
+    const rgb = (c,a=1) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+
+    /* ── CAUDAL (TAIL) FIN ── */
+    const tailBase = this.spine[N_SEG-1];
+    const tailPrev = this.spine[N_SEG-4];
+    const tw  = this._w(.98)*this.L;
+    const tl  = this.L*.30;
+    const tflex = (tailBase.y - this.spine[N_SEG-3].y)*1.6;
+    // top lobe
+    cx.beginPath();
+    cx.moveTo(tailBase.x,tailBase.y);
+    cx.bezierCurveTo(
+      tailBase.x-this.dir*tl*.4, tailBase.y+tflex*.5,
+      tailBase.x-this.dir*tl*.8, tailBase.y+tflex-this.L*.16,
+      tailBase.x-this.dir*tl,    tailBase.y+tflex-this.L*.20
+    );
+    cx.bezierCurveTo(
+      tailBase.x-this.dir*tl*.7, tailBase.y+tflex-this.L*.04,
+      tailBase.x-this.dir*tl*.3, tailBase.y+tflex*.3,
+      tailBase.x, tailBase.y
+    );
+    // bottom lobe
+    cx.moveTo(tailBase.x,tailBase.y);
+    cx.bezierCurveTo(
+      tailBase.x-this.dir*tl*.4, tailBase.y+tflex*.5,
+      tailBase.x-this.dir*tl*.8, tailBase.y+tflex+this.L*.16,
+      tailBase.x-this.dir*tl,    tailBase.y+tflex+this.L*.20
+    );
+    cx.bezierCurveTo(
+      tailBase.x-this.dir*tl*.7, tailBase.y+tflex+this.L*.04,
+      tailBase.x-this.dir*tl*.3, tailBase.y+tflex*.3,
+      tailBase.x, tailBase.y
+    );
+    const tailG = cx.createLinearGradient(tailPrev.x,0,tailBase.x-this.dir*tl,0);
+    tailG.addColorStop(0, rgb(backColor,.9));
+    tailG.addColorStop(1, rgb(backColor,.3));
+    cx.fillStyle=tailG; cx.fill();
+
+    /* ── MAIN BODY ── */
+    // Vertical gradient (back → belly)
+    const bodyGx = cx.createLinearGradient(0,head.y-this.L*.16,0,head.y+this.L*.14);
+    bodyGx.addColorStop(0,   rgb(backColor));
+    bodyGx.addColorStop(.35, rgb(midColor));
+    bodyGx.addColorStop(.75, rgb(midColor,.8));
+    bodyGx.addColorStop(1,   rgb(bellyColor));
+
+    cx.beginPath();
+    this._smoothPath(L);
+    this._smoothPath([...R].reverse());
+    cx.closePath();
+    cx.fillStyle = bodyGx;
+    cx.fill();
+
+    /* ── IRIDESCENT SHEEN (light catch) ── */
+    const shineY = head.y - this.L*.04;
+    const shineG = cx.createLinearGradient(0,shineY-this.L*.08,0,shineY+this.L*.06);
+    shineG.addColorStop(0,   'rgba(255,255,255,0)');
+    shineG.addColorStop(.4,  'rgba(255,255,255,.10)');
+    shineG.addColorStop(.7,  'rgba(255,255,255,.06)');
+    shineG.addColorStop(1,   'rgba(255,255,255,0)');
+    cx.beginPath();
+    this._smoothPath(L);
+    this._smoothPath([...R].reverse());
+    cx.closePath();
+    cx.fillStyle=shineG; cx.fill();
+
+    /* ── RAINBOW / PINK STRIPE ── */
+    if (stripeCol) {
+      // midline from behind head to tail base
+      const m1 = this.spine[3], m2 = this.spine[N_SEG-2];
+      const lw = this._w(.4)*this.L*.6;
+      cx.beginPath();
+      for (let i=3;i<N_SEG-1;i++) {
+        const p=this.spine[i];
+        if(i===3) cx.moveTo(p.x,p.y); else cx.lineTo(p.x,p.y);
+      }
+      cx.strokeStyle=stripeCol;
+      cx.lineWidth=lw;
+      cx.lineCap='round';
+      cx.stroke();
+    }
+
+    /* ── LATERAL LINE ── */
+    cx.beginPath();
+    for (let i=2;i<N_SEG-2;i++) {
+      const p=this.spine[i];
+      const nx=-(L[i].y-p.y), ny=(L[i].x-p.x);
+      const len=Math.sqrt(nx*nx+ny*ny)||1;
+      const lx=p.x+(nx/len)*this._w(p.s)*this.L*.18;
+      const ly=p.y+(ny/len)*this._w(p.s)*this.L*.18;
+      if(i===2) cx.moveTo(lx,ly); else cx.lineTo(lx,ly);
+    }
+    cx.strokeStyle='rgba(255,255,255,.15)';
+    cx.lineWidth=this.L*.012;
+    cx.stroke();
+
+    /* ── SPOTS ── */
+    this.spots.forEach(sp => {
+      const idx = Math.floor(sp.s*(N_SEG-1));
+      const pt  = this.spine[Math.min(idx,N_SEG-1)];
+      const lpt = L[Math.min(idx,N_SEG-1)];
+      const rpt = R[Math.min(idx,N_SEG-1)];
+      const halfW = this._w(sp.s)*this.L;
+      const sx = pt.x + (lpt.x-pt.x)*Math.abs(sp.side)*Math.sign(sp.side+.001);
+      const sy = pt.y + (lpt.y-pt.y)*sp.side;
+      const sr = sp.r * this.L;
+      // halo for brown trout
+      if (haloCol) {
+        cx.beginPath(); cx.arc(sx,sy,sr*2.2,0,Math.PI*2);
+        cx.fillStyle=haloCol; cx.fill();
+      }
+      cx.beginPath(); cx.arc(sx,sy,sr,0,Math.PI*2);
+      cx.fillStyle=spotCol; cx.fill();
+    });
+
+    /* ── DORSAL FIN ── */
+    const d0=this.spine[4], d1=this.spine[10];
+    const dl=L[4], dl1=L[10];
+    const dh=this.L*.26;
+    cx.beginPath();
+    cx.moveTo(dl.x,dl.y);
+    cx.bezierCurveTo(
+      dl.x+this.dir*this.L*.02, dl.y-dh*.7,
+      dl1.x-this.dir*this.L*.02, dl1.y-dh,
+      dl1.x, dl1.y
+    );
+    cx.bezierCurveTo(dl1.x,dl1.y, dl.x+this.dir*this.L*.03, dl.y-dh*.2, dl.x,dl.y);
+    const dfg=cx.createLinearGradient(0,dl.y,0,dl.y-dh);
+    dfg.addColorStop(0,rgb(backColor,.85)); dfg.addColorStop(1,rgb(backColor,.25));
+    cx.fillStyle=dfg; cx.globalAlpha=this.op*.8; cx.fill();
+    cx.globalAlpha=this.op;
+
+    /* ── ADIPOSE FIN (small bump between dorsal and tail) ── */
+    const af=this.spine[16], afl=L[16];
+    cx.beginPath();
+    cx.moveTo(afl.x,afl.y);
+    cx.bezierCurveTo(afl.x+this.dir*this.L*.04,afl.y-this.L*.08,
+                     afl.x-this.dir*this.L*.02,afl.y-this.L*.07, afl.x-this.dir*this.L*.05,afl.y);
+    cx.fillStyle=rgb(backColor,.6); cx.globalAlpha=this.op*.55; cx.fill();
+    cx.globalAlpha=this.op;
+
+    /* ── PECTORAL FIN ── */
+    const pf=this.spine[3], pfl=L[3];
+    cx.beginPath();
+    cx.moveTo(pfl.x,pfl.y);
+    cx.bezierCurveTo(
+      pfl.x-this.dir*this.L*.04, pfl.y+this.L*.18,
+      pfl.x+this.dir*this.L*.06, pfl.y+this.L*.22,
+      pfl.x+this.dir*this.L*.10, pfl.y+this.L*.12
+    );
+    cx.bezierCurveTo(pfl.x+this.dir*.08,pfl.y+this.L*.06, pfl.x,pfl.y+this.L*.02, pfl.x,pfl.y);
+    const pfg=cx.createLinearGradient(0,pfl.y,0,pfl.y+this.L*.22);
+    pfg.addColorStop(0,rgb(midColor,.7)); pfg.addColorStop(1,rgb(midColor,.1));
+    cx.fillStyle=pfg; cx.globalAlpha=this.op*.55; cx.fill();
+    cx.globalAlpha=this.op;
+
+    /* ── HEAD DETAIL ── */
+    const hp=this.spine[0];
+    const lp=L[0], rp=R[0];
+    // Gill cover arc
+    const gc=this.spine[2];
+    cx.beginPath();
+    cx.moveTo(L[2].x,L[2].y);
+    cx.bezierCurveTo(gc.x+this.dir*this.L*.03,gc.y-this.L*.06,
+                     gc.x+this.dir*this.L*.01,gc.y+this.L*.06, R[2].x,R[2].y);
+    cx.strokeStyle='rgba(0,0,0,.25)'; cx.lineWidth=this.L*.012; cx.stroke();
+
+    // Eye
+    const ei=2;
+    const eyePt=this.spine[ei];
+    const eyeL=L[ei];
+    const ex=eyePt.x+(eyeL.x-eyePt.x)*.55;
+    const ey=eyePt.y+(eyeL.y-eyePt.y)*.55;
+    const er=this.L*.034;
+    // Sclera
+    cx.beginPath(); cx.arc(ex,ey,er*1.25,0,Math.PI*2);
+    cx.fillStyle='rgba(180,220,210,.7)'; cx.fill();
+    // Iris
+    cx.beginPath(); cx.arc(ex,ey,er,0,Math.PI*2);
+    cx.fillStyle='rgba(15,30,40,.9)'; cx.fill();
+    // Pupil gleam
+    cx.beginPath(); cx.arc(ex-er*.25,ey-er*.3,er*.28,0,Math.PI*2);
+    cx.fillStyle='rgba(255,255,255,.75)'; cx.fill();
+
+    cx.restore();
+  }
+
+  update() {
+    this.x += -this.dir * this.speed;
+    this.y += this.yDrift;
+    if (this.y<20)  this.yDrift= Math.abs(this.yDrift);
+    if (this.y>H-20)this.yDrift=-Math.abs(this.yDrift);
+    const gone = this.dir>0 ? this.x < -this.L*2 : this.x > W+this.L*2;
+    if (gone) this.reset(false);
+  }
+}
+
+/* ── INIT ─────────────────────────────────── */
+const fish = Array.from({length:16}, (_,i) => new Trout(true));
+fish.sort((a,b)=>b.depth-a.depth);
+
+let t=0;
+function frame() {
+  /* background */
+  const bg=cx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,  '#010e1a');
+  bg.addColorStop(.45,'#011825');
+  bg.addColorStop(1,  '#01121e');
+  cx.fillStyle=bg; cx.fillRect(0,0,W,H);
+
+  /* surface light ripple at top */
+  const surf=cx.createLinearGradient(0,0,0,H*.18);
+  surf.addColorStop(0,'rgba(60,130,160,.06)');
+  surf.addColorStop(1,'rgba(0,0,0,0)');
+  cx.fillStyle=surf; cx.fillRect(0,0,W,H*.18);
+
+  caustics.forEach(c=>c.draw());
+  drawParticles();
+
+  fish.forEach(f=>{ f.update(); f.draw(t); });
+
+  t++; requestAnimationFrame(frame);
+}
+frame();
+</script>
+</body>
+</html>

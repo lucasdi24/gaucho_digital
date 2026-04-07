@@ -1,0 +1,448 @@
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ══════════════════════════════════════
+     NAVBAR
+  ══════════════════════════════════════ */
+  .rmn-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    padding: 18px 4%;
+    transition: padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+
+  .rmn-nav-inner {
+    max-width: 1260px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 28px;
+    border-radius: 100px;
+    position: relative;
+    transition:
+      background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .rmn-nav.scrolled { padding: 8px 4%; }
+  .rmn-nav.scrolled .rmn-nav-inner {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+      0 1px 0 rgba(5,77,139,0.06),
+      0 8px 40px rgba(5,77,139,0.10);
+    padding: 10px 22px;
+  }
+
+  /* ── LOGO ── */
+  .rmn-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 100px;
+    padding: 6px 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    transition: box-shadow 1s ease, padding 1s ease;
+  }
+  .rmn-logo img {
+    height: 38px;
+    width: auto;
+    display: block;
+    transition: height 1s ease;
+  }
+  .rmn-nav.scrolled .rmn-logo {
+    box-shadow: none;
+    padding: 4px 14px;
+  }
+  .rmn-nav.scrolled .rmn-logo img {
+    height: 24px;
+  }
+
+  /* ── HAMBURGER ── */
+  .rmn-burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    color: transparent;
+  }
+  .rmn-burger:focus,
+  .rmn-burger:active,
+  .rmn-burger:focus-visible,
+  .rmn-burger:hover {
+    background: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
+    color: transparent !important;
+  }
+  .rmn-burger span {
+    display: block;
+    height: 1.5px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
+  }
+  .rmn-burger span:nth-child(1) { width: 22px; }
+  .rmn-burger span:nth-child(2) { width: 14px; }
+  .rmn-burger span:nth-child(3) { width: 22px; }
+
+  .rmn-nav.scrolled .rmn-burger span { background: #054D8B; }
+
+  .rmn-burger.open span:nth-child(1) { width: 22px; transform: rotate(45deg); }
+  .rmn-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .rmn-burger.open span:nth-child(3) { width: 22px; transform: rotate(-45deg); }
+
+  /* ── BOOK NOW ── */
+  .rmn-book {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px 9px 15px;
+    border: 1px solid rgba(255,255,255,0.55);
+    border-radius: 100px;
+    color: rgba(255,255,255,0.95);
+    background: transparent;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .rmn-book svg {
+    width: 12px;
+    height: 12px;
+    fill: rgba(255,255,255,0.8);
+    transition: fill 0.3s ease;
+  }
+  .rmn-book:hover {
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.8);
+  }
+  .rmn-nav.scrolled .rmn-book { border-color: #054D8B; color: #054D8B; }
+  .rmn-nav.scrolled .rmn-book svg { fill: #054D8B; }
+  .rmn-nav.scrolled .rmn-book:hover { background: #054D8B; color: #fff; }
+  .rmn-nav.scrolled .rmn-book:hover svg { fill: #fff; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .rmn-nav { padding: 12px 4%; }
+    .rmn-nav.scrolled { padding: 6px 4%; }
+    .rmn-nav-inner { padding: 10px 16px; }
+    .rmn-nav.scrolled .rmn-nav-inner { padding: 8px 14px; }
+    .rmn-logo { padding: 4px 10px; }
+    .rmn-logo img { height: 26px; }
+    .rmn-nav.scrolled .rmn-logo { padding: 3px 8px; }
+    .rmn-book { padding: 9px 11px; gap: 0; }
+    .rmn-book-text { display: none; }
+    .rmn-book svg { width: 15px; height: 15px; }
+  }
+
+  /* ══════════════════════════════════════
+     MENU OVERLAY
+  ══════════════════════════════════════ */
+  .rmn-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 16px 32px;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  .rmn-menu-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 14, 28, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .rmn-menu-card {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(5,77,139,0.06),
+      0 32px 80px rgba(5,77,139,0.22);
+    transform: translateY(32px);
+    opacity: 0;
+    transition:
+      transform 0.5s cubic-bezier(0.34, 1.3, 0.64, 1),
+      opacity 0.3s ease;
+  }
+
+  .rmn-menu.open { pointer-events: all; visibility: visible; }
+  .rmn-menu.open .rmn-menu-backdrop { opacity: 1; }
+  .rmn-menu.open .rmn-menu-card { transform: translateY(0); opacity: 1; }
+
+  /* Links */
+  .rmn-menu-links {
+    list-style: none;
+    padding: 8px 0 4px;
+  }
+  .rmn-menu-links li { border-bottom: 1px solid rgba(5,77,139,0.07); }
+  .rmn-menu-links li:last-child { border-bottom: none; }
+  .rmn-menu-links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    color: #054D8B;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.2s ease, opacity 0.2s ease;
+  }
+  .rmn-menu-links a:hover { background: rgba(5,77,139,0.03); opacity: 0.7; }
+  .rmn-menu-links a::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-right: 1.5px solid rgba(5,77,139,0.3);
+    border-top: 1.5px solid rgba(5,77,139,0.3);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .rmn-menu-links a:hover::after {
+    border-color: rgba(5,77,139,0.6);
+    transform: rotate(45deg) translate(2px, -2px);
+  }
+
+  /* Book Now card */
+  .rmn-menu-book { padding: 12px 16px 18px; }
+  .rmn-menu-book a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    background: #054D8B;
+    color: white;
+    border-radius: 18px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .rmn-menu-book a:hover { opacity: 0.88; transform: translateY(-1px); }
+  .rmn-menu-book svg { width: 14px; height: 14px; fill: white; }
+
+  /* ── SUBMENU ── */
+  .rmn-has-sub { position: relative; }
+  .rmn-menu-row { display: flex; align-items: stretch; }
+  .rmn-menu-row > a { flex: 1; }
+  .rmn-menu-row > a::after { display: none; }
+  .rmn-sub-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    flex-shrink: 0;
+    background: none !important;
+    border: none !important;
+    border-left: 1px solid rgba(5,77,139,0.07) !important;
+    cursor: pointer;
+    padding: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .rmn-sub-toggle:focus,
+  .rmn-sub-toggle:active,
+  .rmn-sub-toggle:hover {
+    background: rgba(5,77,139,0.03) !important;
+    outline: none !important;
+  }
+  .rmn-sub-toggle svg {
+    width: 14px;
+    height: 14px;
+    stroke: rgba(5,77,139,0.4);
+    fill: none;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), stroke 0.2s ease;
+  }
+  .rmn-sub-toggle:hover svg { stroke: rgba(5,77,139,0.7); }
+  .rmn-has-sub.open .rmn-sub-toggle svg { transform: rotate(180deg); }
+
+  .rmn-submenu {
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
+    background: rgba(5,77,139,0.025);
+  }
+  .rmn-has-sub.open .rmn-submenu { max-height: 200px; }
+  .rmn-submenu li { border-bottom: none !important; border-top: 1px solid rgba(5,77,139,0.06); }
+  .rmn-submenu a {
+    padding: 13px 24px 13px 32px !important;
+    font-size: 0.88rem !important;
+    font-weight: 400 !important;
+    color: rgba(5,77,139,0.75) !important;
+    justify-content: flex-start !important;
+    gap: 8px;
+  }
+  .rmn-submenu a::before {
+    content: '–';
+    font-size: 0.75rem;
+    opacity: 0.35;
+    flex-shrink: 0;
+  }
+  .rmn-submenu a::after { display: none !important; }
+  .rmn-submenu a:hover { color: #054D8B !important; opacity: 1 !important; }
+
+  .rmn-menu-close-hint {
+    text-align: center;
+    padding: 0 0 14px;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(5,77,139,0.25);
+  }
+</style>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="rmn-nav" id="rmnNav">
+  <div class="rmn-nav-inner">
+    <button class="rmn-burger" id="rmnBurger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="/" class="rmn-logo">
+      <img src="https://honeydew-shrew-299191.hostingersite.com/wp-content/uploads/2026/03/d6f41821-a56d-4496-89f1-b93f8ed422ae.svg" alt="Rio Manso Lodge">
+    </a>
+    <a href="/contact-us/" class="rmn-book">
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 1v1H2.5A1.5 1.5 0 0 0 1 3.5v9A1.5 1.5 0 0 0 2.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 13.5 2H12V1h-1v1H5V1H4zm-1.5 2H4v1h1V3h6v1h1V3h1.5a.5.5 0 0 1 .5.5V5H2V3.5a.5.5 0 0 1 .5-.5zM2 6h12v6.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V6zm2 2v1h1V8H4zm3 0v1h1V8H7zm3 0v1h1V8h-1zM4 11v1h1v-1H4zm3 0v1h1v-1H7z"/>
+      </svg>
+      <span class="rmn-book-text">Book Now</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ═══ MENU OVERLAY ═══ -->
+<div class="rmn-menu" id="rmnMenu">
+  <div class="rmn-menu-backdrop" id="rmnBackdrop"></div>
+  <div class="rmn-menu-card">
+    <ul class="rmn-menu-links">
+      <li><a href="/the-main-lodge/">The Main Lodge</a></li>
+      <li><a href="/the-dragonfly-hatch-2/">The Dragonfly Hatch</a></li>
+      <li class="rmn-has-sub" id="rmnAtravesado">
+        <div class="rmn-menu-row">
+          <a href="/the-dragonfly-hatch/">El Atravesado Lodge</a>
+          <button class="rmn-sub-toggle" aria-label="Expandir submenu" aria-expanded="false">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+        </div>
+        <ul class="rmn-submenu">
+          <li><a href="/river-camps/">River Camps</a></li>
+        </ul>
+      </li>
+      <li><a href="/beyond-angling/">Beyond Angling</a></li>
+      <li><a href="/fishing-gallery/">Fishing Gallery</a></li>
+      <li><a href="/lodge-rates-details/">Rates &amp; Details</a></li>
+      <li><a href="/faqs/">FAQs</a></li>
+    </ul>
+    <div class="rmn-menu-book">
+      <a href="/contact-us/">
+        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 1v1H2.5A1.5 1.5 0 0 0 1 3.5v9A1.5 1.5 0 0 0 2.5 14h11a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 13.5 2H12V1h-1v1H5V1H4zm-1.5 2H4v1h1V3h6v1h1V3h1.5a.5.5 0 0 1 .5.5V5H2V3.5a.5.5 0 0 1 .5-.5zM2 6h12v6.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V6zm2 2v1h1V8H4zm3 0v1h1V8H7zm3 0v1h1V8h-1zM4 11v1h1v-1H4zm3 0v1h1v-1H7z"/>
+        </svg>
+        Book Now
+      </a>
+    </div>
+    <p class="rmn-menu-close-hint">Tap outside to close</p>
+  </div>
+</div>
+
+<script>
+(function() {
+  if (window._rmnNavInit) return;
+  window._rmnNavInit = true;
+
+  const nav      = document.getElementById('rmnNav');
+  const burger   = document.getElementById('rmnBurger');
+  const menu     = document.getElementById('rmnMenu');
+  const backdrop = document.getElementById('rmnBackdrop');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  const close = () => {
+    burger.classList.remove('open');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  const open = () => {
+    burger.classList.add('open');
+    menu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  burger.addEventListener('click', () => menu.classList.contains('open') ? close() : open());
+  backdrop.addEventListener('click', close);
+
+  menu.querySelectorAll('a').forEach(function(a) {
+    if (!a.closest('.rmn-menu-row') || a.closest('.rmn-submenu')) {
+      a.addEventListener('click', close);
+    }
+  });
+
+  var subToggle = document.querySelector('.rmn-sub-toggle');
+  var subParent = document.getElementById('rmnAtravesado');
+  if (subToggle && subParent) {
+    subToggle.addEventListener('click', function() {
+      var isOpen = subParent.classList.toggle('open');
+      subToggle.setAttribute('aria-expanded', isOpen);
+    });
+  }
+})();
+</script>
