@@ -45,13 +45,13 @@ export default async function HomePage() {
         <div className="relative z-10 max-w-[1440px] w-full px-6 md:px-12">
           <div className="max-w-3xl">
             <span className="inline-block px-4 py-1 bg-on-primary-container text-white text-xs font-bold tracking-widest uppercase rounded-full mb-6">
-              Inscripciones abiertas
+              Becas
             </span>
             <h1 className="font-[family-name:var(--font-headline)] text-5xl md:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-6 text-shadow-md">
-              Sumate a la EAAM y capacitate con calidad, experiencia y compromiso.
+              Becas Para Estudiantes
             </h1>
             <p className="text-xl text-white/90 font-light mb-10 max-w-xl leading-relaxed">
-              Formando profesionales con los estándares más altos en guías de montaña y rescate técnico.
+              Nuestra aula es la montaña. Formando profesionales con los estándares más altos.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -75,9 +75,9 @@ export default async function HomePage() {
       <section className="relative -mt-16 z-20 px-6 md:px-12">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { icon: "school", title: "Becas Académicas", desc: "Oportunidades de financiamiento para alumnos destacados y proyectos sociales.", bg: "bg-secondary" },
-            { icon: "public", title: "Estudiá desde cualquier parte", desc: "Plataforma virtual híbrida con prácticas intensivas presenciales en terreno.", bg: "bg-primary" },
-            { icon: "sell", title: "Descuentos Exclusivos", desc: "Beneficios por pago anticipado y convenios con federaciones de montaña.", bg: "bg-secondary" },
+            { icon: "school", title: "Becas Para Estudiantes", desc: "Oportunidades de financiamiento para alumnos destacados y proyectos sociales.", bg: "bg-secondary" },
+            { icon: "public", title: "Estudiá desde cualquier parte del país", desc: "Plataforma virtual híbrida con prácticas intensivas presenciales en terreno.", bg: "bg-primary" },
+            { icon: "sell", title: "Descuentos y beneficios", desc: "En casas de montaña para nuestros estudiantes.", bg: "bg-secondary" },
           ].map((card) => (
             <div
               key={card.title}
@@ -120,16 +120,17 @@ export default async function HomePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { type: "Carrera", title: "Guía de Trekking en Cordillera", duration: "2 Años", modality: "Presencial" },
-              { type: "Postítulo", title: "Rescate Técnico con Cuerdas", duration: "6 Meses", modality: "Híbrido" },
-              { type: "Curso", title: "Primeros Auxilios WFA", duration: "80 Horas", modality: "Intensivo" },
-              { type: "Carrera", title: "Guía de Alta Montaña", duration: "3 Años", modality: "Presencial" },
-              { type: "Postítulo", title: "Gestión del Riesgo en Nieve", duration: "4 Meses", modality: "Virtual" },
-              { type: "Curso", title: "Orientación y Cartografía", duration: "40 Horas", modality: "Híbrido" },
+              { type: "Carrera", title: "Guía de Montaña – Mixto (Todo el país)", duration: "3 Años", modality: "Mixto", href: "/carreras" },
+              { type: "Postítulo", title: "Postítulo en Actividades y Deportes en la Naturaleza – Mixto (Todo el País)", duration: "6 Meses", modality: "Mixto", href: "/postitulos" },
+              { type: "Curso", title: "Curso Integral de Montañismo y Trekking SEMI-PRESENCIAL (todo el país)", duration: "80 Hs", modality: "Semi-Presencial", href: "/cursos" },
+              { type: "Curso", title: "Curso Integral de Montañismo y Trekking PRESENCIAL", duration: "80 Hs", modality: "Presencial", href: "/cursos" },
+              { type: "Curso", title: "Iniciación al Montañismo PRESENCIAL", duration: "40 Hs", modality: "Presencial", href: "/cursos" },
+              { type: "Curso", title: "Iniciación al Montañismo SEMI-PRESENCIAL", duration: "40 Hs", modality: "Semi-Presencial", href: "/cursos" },
             ].map((item) => (
-              <div
+              <Link
                 key={item.title}
-                className="bg-surface-container-lowest p-8 rounded-xl group hover:shadow-2xl transition-all duration-500 flex flex-col justify-between"
+                href={item.href}
+                className="bg-surface-container-lowest p-8 rounded-xl group hover:shadow-2xl transition-all duration-500 flex flex-col justify-between cursor-pointer"
               >
                 <div>
                   <div className="flex justify-between items-start mb-6">
@@ -152,7 +153,7 @@ export default async function HomePage() {
                     <span className="material-symbols-outlined text-sm">location_on</span> {item.modality}
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -169,11 +170,14 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-secondary/70 backdrop-blur-sm" />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
-          <h2 className="font-[family-name:var(--font-headline)] text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
+          <h2 className="font-[family-name:var(--font-headline)] text-5xl md:text-6xl font-black text-white mb-4 leading-tight">
             EAAM – Donde tu sueño de ser guía se hace carrera.
           </h2>
-          <p className="text-2xl text-white/90 font-light leading-relaxed">
-            Excelencia, práctica real en terreno y proyección laboral inmediata con el respaldo del Ministerio de Educación.
+          <p className="text-2xl text-white/80 font-light mb-4">
+            Tu futuro como guía empieza hoy
+          </p>
+          <p className="text-xl text-white/70 font-light leading-relaxed">
+            Excelencia, práctica real en terreno y proyección laboral inmediata.
           </p>
         </div>
       </section>
@@ -182,9 +186,9 @@ export default async function HomePage() {
       <section className="py-32 px-6 md:px-12 bg-surface-container-low">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
-            { title: "Carreras", desc: "Títulos oficiales de validez nacional con la mayor carga horaria del país.", href: "/carreras", gradient: "from-primary via-primary/40 to-transparent", image: colCarrerasSrc },
-            { title: "Postítulos", desc: "Especializaciones técnicas para guías graduados que buscan el siguiente nivel.", href: "/postitulos", gradient: "from-secondary via-secondary/40 to-transparent", image: colPostitutosSrc },
-            { title: "Cursos", desc: "Capacitaciones cortas y workshops específicos para entusiastas y profesionales.", href: "/cursos", gradient: "from-primary-container via-primary-container/40 to-transparent", image: colCursosSrc },
+            { title: "Carreras de guía", desc: "Modalidad Presencial y Mixto para todo el país", href: "/carreras", gradient: "from-primary via-primary/40 to-transparent", image: colCarrerasSrc },
+            { title: "Postítulos Docentes", desc: "Modalidad Presencial", href: "/postitulos", gradient: "from-secondary via-secondary/40 to-transparent", image: colPostitutosSrc },
+            { title: "Cursos", desc: "Modalidad Presencial y Semi-Presencial", href: "/cursos", gradient: "from-primary-container via-primary-container/40 to-transparent", image: colCursosSrc },
           ].map((col) => (
             <div key={col.title} className={`group relative h-[600px] rounded-2xl overflow-hidden shadow-xl ${col.title === "Postítulos" ? "md:translate-y-12" : ""}`}>
               <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: `url('${col.image}')` }} />
@@ -204,22 +208,25 @@ export default async function HomePage() {
       {/* Why Choose Us */}
       <section className="py-32 bg-secondary text-white px-6 md:px-12 relative overflow-hidden">
         <div className="max-w-[1440px] mx-auto relative z-10">
-          <div className="max-w-2xl mb-24">
-            <h2 className="font-[family-name:var(--font-headline)] text-4xl md:text-5xl font-black mb-8 leading-tight">Por qué elegir EAAM</h2>
-            <p className="text-xl text-white/70">Lideramos la educación de montaña en Argentina con un enfoque basado en la seguridad y la pedagogía moderna.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            {[
-              { stat: "+1300hs", title: "Formación Integral", desc: "La mayor carga horaria académica del país, garantizando profesionales listos para el campo." },
-              { stat: "Expertos", title: "Entrenamiento Real", desc: "Prácticas intensivas en los cordones montañosos más emblemáticos de Sudamérica." },
-              { stat: "Propios", title: "Contenidos Exclusivos", desc: "Material de estudio desarrollado por nuestros instructores basado en años de expedición." },
-            ].map((item) => (
-              <div key={item.title} className="border-l border-white/20 pl-8">
-                <div className="text-6xl font-[family-name:var(--font-headline)] font-black text-on-primary-container mb-6">{item.stat}</div>
-                <h4 className="text-2xl font-bold mb-4">{item.title}</h4>
-                <p className="text-white/60">{item.desc}</p>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div
+              className="rounded-2xl overflow-hidden h-[400px] bg-cover bg-center"
+              style={{ backgroundImage: `url('${claimSrc}')` }}
+            />
+            <ul className="space-y-6">
+              {[
+                "+1300hs de formación en la montaña",
+                "+ Beneficios en casas de venta, renta y alojamiento en todo el país",
+                "+ Entrenamiento",
+                "+ Contenidos propios (apuntes, videos y mas)",
+                "+ Equipo Técnico para alumnos",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-4 text-xl text-white/90 font-light">
+                  <span className="text-on-primary-container font-bold text-2xl leading-none mt-0.5">•</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -227,7 +234,7 @@ export default async function HomePage() {
       {/* Professors Preview */}
       <section className="py-32 px-6 md:px-12 bg-white">
         <div className="max-w-[1440px] mx-auto text-center mb-20">
-          <h2 className="font-[family-name:var(--font-headline)] text-4xl font-black text-secondary mb-4">Nuestro Cuerpo Docente</h2>
+          <h2 className="font-[family-name:var(--font-headline)] text-4xl font-black text-secondary mb-4">Conocé a nuestro staff de profesores</h2>
           <p className="text-on-surface-variant">Guías UIAGM y profesionales con décadas de experiencia internacional.</p>
         </div>
         <div className="max-w-[1440px] mx-auto flex flex-wrap justify-center gap-12">
@@ -247,7 +254,27 @@ export default async function HomePage() {
           ))}
         </div>
         <div className="mt-16 text-center">
-          <Link href="/profesores" className="bg-surface-container-high text-secondary px-8 py-3 rounded-lg font-bold hover:bg-secondary hover:text-white transition-all">Ver staff completo</Link>
+          <Link href="/profesores" className="bg-surface-container-high text-secondary px-8 py-3 rounded-lg font-bold hover:bg-secondary hover:text-white transition-all">Ver más</Link>
+        </div>
+      </section>
+
+      {/* YouTube */}
+      <section className="py-20 px-6 md:px-12 bg-surface-container-low">
+        <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+            <h2 className="font-[family-name:var(--font-headline)] text-3xl md:text-4xl font-black text-secondary mb-2 leading-tight">
+              Nuestro canal<br />de Youtube
+            </h2>
+          </div>
+          <Link
+            href="https://www.youtube.com/@eaam"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-all shadow-lg"
+          >
+            <span className="material-symbols-outlined">play_circle</span>
+            Visitar
+          </Link>
         </div>
       </section>
     </>
