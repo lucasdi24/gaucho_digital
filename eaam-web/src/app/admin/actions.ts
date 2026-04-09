@@ -2,11 +2,13 @@
 
 import { cookies } from "next/headers";
 import { writeFile, mkdir } from "fs/promises";
+import fs from "fs";
 import path from "path";
 import { readImageConfig, writeImageConfig } from "@/lib/imageConfig";
 import { revalidatePath } from "next/cache";
 import { readProfesores, writeProfesores } from "@/lib/profesoresData";
 import { readEgresados, writeEgresados } from "@/lib/egresadosData";
+import { readCursos, writeCursos, type CursoData } from "@/lib/cursosData";
 
 async function isAuthed(): Promise<boolean> {
   const cookieStore = await cookies();
@@ -162,4 +164,103 @@ export async function deleteEgresado(id: string): Promise<void> {
   writeEgresados(list);
   revalidatePath("/egresados");
   revalidatePath("/admin/egresados");
+}
+
+// --- Cursos CRUD ---
+
+function slugify(str: string): string {
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export async function saveCurso(
+  formData: FormData
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+
+  const cursos = readCursos();
+  const rawId = (formData.get("id") as string) || "";
+  const rawTitle = (formData.get("title") as string) || "";
+  const id = rawId.trim() || slugify(rawTitle);
+  const rawSlug = (formData.get("slug") as string) || "";
+  const slug = rawSlug.trim() || slugify(rawTitle);
+
+  // Handle image upload
+  let imageSrc = (formData.get("imageSrc") as string) || "";
+  const file = formData.get("imageFile") as File | null;
+  if (file && file.size > 0) {
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const ext = file.name.split(".").pop();
+    const filename = `${id}.${ext}`;
+    const uploadDir = path.join(process.cwd(), "public", "uploads", "cursos");
+    fs.mkdirSync(uploadDir, { recursive: true });
+    fs.writeFileSync(path.join(uploadDir, filename), buffer);
+    imageSrc = `/uploads/cursos/${filename}`;
+  }
+
+  const updated: CursoData = {
+    id,
+    slug,
+    title: (formData.get("title") as string) || "",
+    badge: (formData.get("badge") as string) || "",
+    visible: formData.get("visible") === "true",
+    icon: (formData.get("icon") as string) || "terrain",
+    modalidad: (formData.get("modalidad") as string) || "",
+    duracion: (formData.get("duracion") as string) || "",
+    diasCursada: (formData.get("diasCursada") as string) || "",
+    horarios: (formData.get("horarios") as string) || "",
+    comienzo: (formData.get("comienzo") as string) || "",
+    coordinador: (formData.get("coordinador") as string) || "",
+    imageSrc,
+    descripcion: (formData.get("descripcion") as string) || "",
+    salidaTitulo: (formData.get("salidaTitulo") as string) || "",
+    salidaIntro: (formData.get("salidaIntro") as string) || "",
+    salidaDuracion: (formData.get("salidaDuracion") as string) || "",
+    salidaTipos: (formData.get("salidaTipos") as string) || "",
+    salidaDestinos: (formData.get("salidaDestinos") as string) || "",
+    salidaActividades: (formData.get("salidaActividades") as string) || "",
+    salidaIncluye: (formData.get("salidaIncluye") as string) || "",
+    salidaNoIncluye: (formData.get("salidaNoIncluye") as string) || "",
+    salidaNotaFormativa: (formData.get("salidaNotaFormativa") as string) || "",
+    salidaFecha: (formData.get("salidaFecha") as string) || "",
+    salidaDestino: (formData.get("salidaDestino") as string) || "",
+  };
+
+  const idx = cursos.findIndex((c) => c.id === id);
+  if (idx >= 0) cursos[idx] = updated;
+  else cursos.push(updated);
+  writeCursos(cursos);
+  revalidatePath("/cursos");
+  revalidatePath(`/cursos/${slug}`);
+  revalidatePath("/admin/cursos");
+  return { ok: true };
+}
+
+export async function deleteCurso(
+  id: string
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+  const cursos = readCursos().filter((c) => c.id !== id);
+  writeCursos(cursos);
+  revalidatePath("/cursos");
+  revalidatePath("/admin/cursos");
+  return { ok: true };
+}
+
+export async function toggleCursoVisible(
+  id: string
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+  const cursos = readCursos();
+  const idx = cursos.findIndex((c) => c.id === id);
+  if (idx >= 0) cursos[idx].visible = !cursos[idx].visible;
+  writeCursos(cursos);
+  revalidatePath("/cursos");
+  revalidatePath("/admin/cursos");
+  return { ok: true };
 }
