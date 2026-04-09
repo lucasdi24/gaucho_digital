@@ -102,3 +102,30 @@ h1, h2, h3, h4, h5, h6 {
 .text-shadow-md {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
+
+@keyframes kenburns {
+  0%   { transform: scale(1)    translateX(0)    translateY(0); }
+  100% { transform: scale(1.12) translateX(-1%)  translateY(-1%); }
+}
+
+@keyframes slideup {
+  0%   { opacity: 0; transform: translateY(28px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes progress-bar {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+
+.animate-kenburns {
+  animation: kenburns 7s ease-out forwards;
+}
+
+.animate-slideup {
+  animation: slideup 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-progress-bar {
+  animation: progress-bar linear forwards;
+}
