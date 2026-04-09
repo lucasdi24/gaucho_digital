@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { readImageConfig } from "@/lib/imageConfig";
+import HeroCarousel from "./HeroCarousel";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +20,6 @@ const DEFAULTS = {
 
 export default async function HomePage() {
   const cfg = readImageConfig();
-  const heroSrc = cfg["hero-home"] ?? DEFAULTS.heroHome;
   const claimSrc = cfg["claim-home"] ?? DEFAULTS.claimHome;
   const colCarrerasSrc = cfg["col-carreras"] ?? DEFAULTS.colCarreras;
   const colPostitutosSrc = cfg["col-postitulos"] ?? DEFAULTS.colPostitulos;
@@ -32,64 +32,7 @@ export default async function HomePage() {
   };
   return (
     <>
-      {/* Hero */}
-      <section className="relative h-[921px] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('${heroSrc}')`,
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-container/80 to-transparent" />
-        </div>
-        <div className="relative z-10 max-w-[1440px] w-full px-6 md:px-12">
-          <div className="max-w-3xl">
-            <span className="inline-block px-4 py-1 bg-on-primary-container text-white text-xs font-bold tracking-widest uppercase rounded-full mb-6">
-              Becas
-            </span>
-            <h1 className="font-[family-name:var(--font-headline)] text-5xl md:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-6 text-shadow-md">
-              Becas Para Estudiantes
-            </h1>
-            <p className="text-xl text-white/90 font-light mb-10 max-w-xl leading-relaxed">
-              Nuestra aula es la montaña. Formando profesionales con los estándares más altos.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="#"
-                className="bg-on-primary-container text-white px-8 py-4 rounded-lg font-[family-name:var(--font-headline)] font-bold text-lg hover:brightness-110 transition-all shadow-xl text-center"
-              >
-                Inscribite ahora
-              </Link>
-              <Link
-                href="/carreras"
-                className="border-2 border-white/40 text-white backdrop-blur-sm px-8 py-4 rounded-lg font-[family-name:var(--font-headline)] font-bold text-lg hover:bg-white/10 transition-all text-center"
-              >
-                Conocé nuestras carreras
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Cards */}
-      <section className="relative -mt-16 z-20 px-6 md:px-12">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { icon: "school", title: "Becas Para Estudiantes", desc: "Oportunidades de financiamiento para alumnos destacados y proyectos sociales.", bg: "bg-secondary" },
-            { icon: "public", title: "Estudiá desde cualquier parte del país", desc: "Plataforma virtual híbrida con prácticas intensivas presenciales en terreno.", bg: "bg-primary" },
-            { icon: "sell", title: "Descuentos y beneficios", desc: "En casas de montaña para nuestros estudiantes.", bg: "bg-secondary" },
-          ].map((card) => (
-            <div
-              key={card.title}
-              className={`${card.bg} p-8 rounded-xl text-white flex flex-col justify-between h-64 hover:translate-y-[-8px] transition-transform duration-300 shadow-xl`}
-            >
-              <span className="material-symbols-outlined text-4xl text-on-primary-container">{card.icon}</span>
-              <h3 className="text-2xl font-[family-name:var(--font-headline)] font-bold">{card.title}</h3>
-              <p className="text-white/80">{card.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <HeroCarousel />
 
       {/* Open Enrollment */}
       <section className="py-32 px-6 md:px-12 bg-surface">
