@@ -6,6 +6,7 @@ const TABS = [
   { href: "/admin", label: "Imágenes", icon: "image" },
   { href: "/admin/profesores", label: "Profesores", icon: "group" },
   { href: "/admin/egresados", label: "Egresados", icon: "school" },
+  { href: "/admin/carreras", label: "Carreras", icon: "landscape" },
   { href: "/admin/cursos", label: "Cursos", icon: "terrain" },
 ];
 

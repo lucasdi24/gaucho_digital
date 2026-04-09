@@ -1,12 +1,15 @@
 import { HeroSection } from "@/components/ui/HeroSection";
 import { ProgramCard } from "@/components/ui/ProgramCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { carreras } from "@/data/carreras";
+import { readCarreras } from "@/lib/carrerasData";
 import Image from "next/image";
 
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Carreras" };
 
 export default function CarrerasPage() {
+  const carreras = readCarreras().filter((c) => c.visible);
+
   return (
     <>
       <HeroSection
@@ -33,12 +36,12 @@ export default function CarrerasPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
           {carreras.map((carrera, i) => (
             <ProgramCard
-              key={carrera.slug}
+              key={carrera.id}
               title={carrera.title}
               imageSrc={carrera.imageSrc}
-              imageAlt={carrera.imageAlt}
-              duration={carrera.duration}
-              modality={`${carrera.modality} (${carrera.location})`}
+              imageAlt={`${carrera.title} — ${carrera.modalidad}`}
+              duration={carrera.duracion}
+              modality={`${carrera.modalidad} (${carrera.location})`}
               href={`/carreras/${carrera.slug}`}
               offset={i % 2 === 1}
             />
@@ -65,9 +68,7 @@ export default function CarrerasPage() {
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
                     <p className="text-4xl font-black text-mountain-orange">{stat.value}</p>
-                    <p className="text-xs font-bold uppercase tracking-widest text-secondary mt-2">
-                      {stat.label}
-                    </p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-secondary mt-2">{stat.label}</p>
                   </div>
                 ))}
               </div>
