@@ -35,9 +35,9 @@ export default async function HomePage() {
       <HeroCarousel />
 
       {/* Open Enrollment */}
-      <section className="py-32 px-6 md:px-12 bg-surface">
+      <section className="py-14 md:py-32 px-6 md:px-12 bg-surface">
         <div className="max-w-[1440px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+          <div className="flex flex-col md:flex-row justify-between md:items-end mb-8 md:mb-16 gap-5 md:gap-8">
             <div>
               <span className="font-[family-name:var(--font-headline)] font-bold text-on-primary-container tracking-widest uppercase text-sm block mb-2">
                 Oferta Académica
@@ -46,11 +46,11 @@ export default async function HomePage() {
                 Inscripciones abiertas
               </h2>
             </div>
-            <div className="flex gap-2 p-1 bg-surface-container rounded-full">
+            <div className="flex gap-1 p-1 bg-surface-container rounded-full overflow-x-auto scrollbar-none">
               {["Todos", "Carreras", "Cursos", "Postítulos"].map((tab, i) => (
                 <button
                   key={tab}
-                  className={`px-6 py-2 rounded-full font-[family-name:var(--font-headline)] font-semibold text-sm transition-colors ${
+                  className={`px-4 py-2 rounded-full font-[family-name:var(--font-headline)] font-semibold text-sm transition-colors whitespace-nowrap flex-shrink-0 ${
                     i === 0
                       ? "bg-white text-secondary shadow-sm font-bold"
                       : "text-on-surface-variant hover:text-secondary"
@@ -61,7 +61,7 @@ export default async function HomePage() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
             {[
               { type: "Carrera", title: "Guía de Montaña – Mixto (Todo el país)", duration: "3 Años", modality: "Mixto", href: "/carreras" },
               { type: "Postítulo", title: "Postítulo en Actividades y Deportes en la Naturaleza – Mixto (Todo el País)", duration: "6 Meses", modality: "Mixto", href: "/postitulos" },
@@ -73,7 +73,7 @@ export default async function HomePage() {
               <Link
                 key={item.title}
                 href={item.href}
-                className="bg-surface-container-lowest p-8 rounded-xl group hover:shadow-2xl transition-all duration-500 flex flex-col justify-between cursor-pointer"
+                className="bg-surface-container-lowest p-5 md:p-8 rounded-xl group hover:shadow-2xl transition-all duration-500 flex flex-col justify-between cursor-pointer"
               >
                 <div>
                   <div className="flex justify-between items-start mb-6">
@@ -103,7 +103,7 @@ export default async function HomePage() {
       </section>
 
       {/* Institutional Claim */}
-      <section className="relative py-48 overflow-hidden">
+      <section className="relative py-20 md:py-48 overflow-hidden">
         <div
           className="absolute inset-0 bg-fixed bg-cover bg-center"
           style={{
@@ -113,32 +113,32 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-secondary/70 backdrop-blur-sm" />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
-          <h2 className="font-[family-name:var(--font-headline)] text-5xl md:text-6xl font-black text-white mb-4 leading-tight">
+          <h2 className="font-[family-name:var(--font-headline)] text-3xl md:text-6xl font-black text-white mb-4 leading-tight">
             EAAM – Donde tu sueño de ser guía se hace carrera.
           </h2>
-          <p className="text-2xl text-white/80 font-light mb-4">
+          <p className="text-xl md:text-2xl text-white/80 font-light mb-4">
             Tu futuro como guía empieza hoy
           </p>
-          <p className="text-xl text-white/70 font-light leading-relaxed">
+          <p className="text-base md:text-xl text-white/70 font-light leading-relaxed">
             Excelencia, práctica real en terreno y proyección laboral inmediata.
           </p>
         </div>
       </section>
 
       {/* 3-Column Cards */}
-      <section className="py-32 px-6 md:px-12 bg-surface-container-low">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+      <section className="py-14 md:py-32 px-6 md:px-12 bg-surface-container-low">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
           {[
             { title: "Carreras de guía", desc: "Modalidad Presencial y Mixto para todo el país", href: "/carreras", gradient: "from-primary via-primary/40 to-transparent", image: colCarrerasSrc },
             { title: "Postítulos Docentes", desc: "Modalidad Presencial", href: "/postitulos", gradient: "from-secondary via-secondary/40 to-transparent", image: colPostitutosSrc },
             { title: "Cursos", desc: "Modalidad Presencial y Semi-Presencial", href: "/cursos", gradient: "from-primary-container via-primary-container/40 to-transparent", image: colCursosSrc },
           ].map((col) => (
-            <div key={col.title} className={`group relative h-[600px] rounded-2xl overflow-hidden shadow-xl ${col.title === "Postítulos" ? "md:translate-y-12" : ""}`}>
+            <div key={col.title} className={`group relative h-72 md:h-[600px] rounded-2xl overflow-hidden shadow-xl ${col.title === "Postítulos" ? "md:translate-y-12" : ""}`}>
               <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: `url('${col.image}')` }} />
               <div className={`absolute inset-0 bg-gradient-to-t ${col.gradient}`} />
-              <div className="absolute bottom-0 left-0 p-10 w-full">
-                <h3 className="text-white font-[family-name:var(--font-headline)] text-4xl font-black mb-4">{col.title}</h3>
-                <p className="text-white/80 mb-8 font-light">{col.desc}</p>
+              <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full">
+                <h3 className="text-white font-[family-name:var(--font-headline)] text-3xl md:text-4xl font-black mb-2 md:mb-4">{col.title}</h3>
+                <p className="text-white/80 mb-4 md:mb-8 font-light text-sm md:text-base">{col.desc}</p>
                 <Link href={col.href} className="block w-full py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold rounded-lg text-center hover:bg-white hover:text-primary transition-all">
                   Ver todas
                 </Link>
@@ -149,11 +149,11 @@ export default async function HomePage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-32 bg-secondary text-white px-6 md:px-12 relative overflow-hidden">
+      <section className="py-14 md:py-32 bg-secondary text-white px-6 md:px-12 relative overflow-hidden">
         <div className="max-w-[1440px] mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
             <div
-              className="rounded-2xl overflow-hidden h-[400px] bg-cover bg-center"
+              className="rounded-2xl overflow-hidden h-56 md:h-[400px] bg-cover bg-center"
               style={{ backgroundImage: `url('${claimSrc}')` }}
             />
             <ul className="space-y-6">
@@ -175,12 +175,12 @@ export default async function HomePage() {
       </section>
 
       {/* Professors Preview */}
-      <section className="py-32 px-6 md:px-12 bg-white">
-        <div className="max-w-[1440px] mx-auto text-center mb-20">
-          <h2 className="font-[family-name:var(--font-headline)] text-4xl font-black text-secondary mb-4">Conocé a nuestro staff de profesores</h2>
+      <section className="py-14 md:py-32 px-6 md:px-12 bg-white">
+        <div className="max-w-[1440px] mx-auto text-center mb-10 md:mb-20">
+          <h2 className="font-[family-name:var(--font-headline)] text-3xl md:text-4xl font-black text-secondary mb-4">Conocé a nuestro staff de profesores</h2>
           <p className="text-on-surface-variant">Guías UIAGM y profesionales con décadas de experiencia internacional.</p>
         </div>
-        <div className="max-w-[1440px] mx-auto flex flex-wrap justify-center gap-12">
+        <div className="max-w-[1440px] mx-auto flex flex-wrap justify-center gap-8 md:gap-12">
           {[
             { name: "Pablo González", role: "Guía UIAGM", img: profImgs["Pablo González"] },
             { name: "Lucía Martínez", role: "Especialista en Rescate", img: profImgs["Lucía Martínez"] },
@@ -188,21 +188,21 @@ export default async function HomePage() {
             { name: "Martín Castro", role: "Cartografía Avanzada", img: profImgs["Martín Castro"] },
           ].map((prof) => (
             <div key={prof.name} className="flex flex-col items-center group">
-              <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-surface-container-high group-hover:border-on-primary-container transition-colors mb-6">
+              <div className="w-28 h-28 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-surface-container-high group-hover:border-on-primary-container transition-colors mb-4 md:mb-6">
                 <Image src={prof.img} alt={prof.name} width={160} height={160} className="w-full h-full object-cover" />
               </div>
-              <h4 className="font-[family-name:var(--font-headline)] font-bold text-primary text-xl">{prof.name}</h4>
-              <p className="text-sm text-on-surface-variant font-bold uppercase tracking-widest mt-1">{prof.role}</p>
+              <h4 className="font-[family-name:var(--font-headline)] font-bold text-primary text-base md:text-xl text-center">{prof.name}</h4>
+              <p className="text-xs md:text-sm text-on-surface-variant font-bold uppercase tracking-widest mt-1 text-center">{prof.role}</p>
             </div>
           ))}
         </div>
-        <div className="mt-16 text-center">
+        <div className="mt-10 md:mt-16 text-center">
           <Link href="/profesores" className="bg-surface-container-high text-secondary px-8 py-3 rounded-lg font-bold hover:bg-secondary hover:text-white transition-all">Ver más</Link>
         </div>
       </section>
 
       {/* YouTube */}
-      <section className="py-20 px-6 md:px-12 bg-surface-container-low">
+      <section className="py-10 md:py-20 px-6 md:px-12 bg-surface-container-low">
         <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h2 className="font-[family-name:var(--font-headline)] text-3xl md:text-4xl font-black text-secondary mb-2 leading-tight">

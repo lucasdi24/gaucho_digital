@@ -82,10 +82,10 @@ export default async function CarreraDetailPage({ params }: Props) {
       </section>
 
       {/* Main content */}
-      <section className="px-6 md:px-12 max-w-[1440px] mx-auto py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <section className="px-6 md:px-12 max-w-[1440px] mx-auto py-8 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
           {/* Left column */}
-          <div className="lg:col-span-2 space-y-14">
+          <div className="lg:col-span-2 space-y-10 md:space-y-14">
 
             {/* Descripcion */}
             {carrera.descripcion && (
@@ -99,7 +99,7 @@ export default async function CarreraDetailPage({ params }: Props) {
 
             {/* Sección secundaria */}
             {carrera.seccionTitulo && (
-              <div className="border-t border-outline-variant/20 pt-12">
+              <div className="border-t border-outline-variant/20 pt-8 md:pt-12">
                 <h2 className="font-[family-name:var(--font-headline)] font-extrabold text-2xl md:text-3xl text-on-background mb-6">
                   {carrera.seccionTitulo}
                 </h2>
@@ -134,7 +134,7 @@ export default async function CarreraDetailPage({ params }: Props) {
 
             {/* Plan de salidas */}
             {carrera.salidaTitulo && carrera.salidaCuerpo && (
-              <div className="border-t border-outline-variant/20 pt-12">
+              <div className="border-t border-outline-variant/20 pt-8 md:pt-12">
                 <div className="flex items-center gap-3 mb-6">
                   <span className="material-symbols-outlined text-on-primary-container text-2xl">explore</span>
                   <h2 className="font-[family-name:var(--font-headline)] font-extrabold text-2xl md:text-3xl text-on-background">

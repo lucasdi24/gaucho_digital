@@ -66,7 +66,7 @@ export default async function CursoDetailPage({ params }: Props) {
   return (
     <>
       {/* Hero */}
-      <section className="pt-24 pb-0">
+      <section className="pt-20 md:pt-24 pb-0">
         <div className="relative overflow-hidden">
           {curso.imageSrc ? (
             <div className="relative h-72 md:h-96">
@@ -92,10 +92,10 @@ export default async function CursoDetailPage({ params }: Props) {
       </section>
 
       {/* Main content */}
-      <section className="px-6 md:px-12 max-w-[1440px] mx-auto py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <section className="px-6 md:px-12 max-w-[1440px] mx-auto py-8 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
           {/* Left: content */}
-          <div className="lg:col-span-2 space-y-12">
+          <div className="lg:col-span-2 space-y-8 md:space-y-12">
             {/* Descripcion */}
             {curso.descripcion && (
               <div>
@@ -108,7 +108,7 @@ export default async function CursoDetailPage({ params }: Props) {
 
             {/* Salidas section */}
             {curso.salidaTitulo && (
-              <div className="border-t border-outline-variant/20 pt-12">
+              <div className="border-t border-outline-variant/20 pt-8 md:pt-12">
                 <div className="flex items-center gap-3 mb-6">
                   <span className="material-symbols-outlined text-on-primary-container text-2xl">
                     explore

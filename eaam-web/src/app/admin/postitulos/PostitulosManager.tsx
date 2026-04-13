@@ -129,13 +129,19 @@ export function PostitulosManager({ initialData }: { initialData: PostituloData[
           </div>
 
           <p className={SECTION}>Imagen</p>
-          <div className="mb-2 flex items-center gap-4">
-            {(previewUrl || form.imageSrc) && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={previewUrl ?? form.imageSrc} alt="" className="w-24 h-16 rounded object-cover border border-white/10" />
-            )}
-            <input ref={fileRef} type="file" accept="image/jpeg,image/png,image/webp" onChange={handleFileChange}
-              className="text-xs text-white/40 file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-white/10 file:text-white/60 file:text-xs file:cursor-pointer hover:file:bg-white/20" />
+          <div className="mb-2">
+            <div className="flex items-center gap-4 mb-3">
+              {(previewUrl || form.imageSrc) && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={previewUrl ?? form.imageSrc} alt="" className="w-24 h-16 rounded object-cover border border-white/10" />
+              )}
+              <input ref={fileRef} type="file" accept="image/jpeg,image/png,image/webp" onChange={handleFileChange}
+                className="text-xs text-white/40 file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-white/10 file:text-white/60 file:text-xs file:cursor-pointer hover:file:bg-white/20" />
+            </div>
+            <p className="text-[11px] text-white/30 leading-relaxed bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <span className="block font-bold text-white/40 mb-1">Directrices de la foto</span>
+              Dimensión recomendada: <strong className="text-white/50">1280 × 720 px</strong> (16:9) · Orientación horizontal · Peso máximo: <strong className="text-white/50">2 MB</strong> · Formatos: JPG, PNG, WebP · Usar paisaje de montaña o naturaleza que represente la especialización.
+            </p>
           </div>
 
           <p className={SECTION}>Contenido principal</p>

@@ -9,6 +9,7 @@ const TABS = [
   { href: "/admin/carreras", label: "Carreras", icon: "landscape" },
   { href: "/admin/postitulos", label: "Postítulos", icon: "forest" },
   { href: "/admin/cursos", label: "Cursos", icon: "terrain" },
+  { href: "/admin/beneficios", label: "Beneficios", icon: "card_giftcard" },
 ];
 
 export function AdminNav() {

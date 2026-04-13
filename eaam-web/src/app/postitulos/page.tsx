@@ -13,7 +13,7 @@ export default function PostitulosPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-secondary overflow-hidden py-24">
+      <section className="relative bg-secondary overflow-hidden py-16 md:py-24">
         <div className="absolute inset-0 z-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={HERO_IMG} alt="Montañas andinas" className="w-full h-full object-cover opacity-40 mix-blend-overlay" />
@@ -24,7 +24,7 @@ export default function PostitulosPage() {
             <span className="inline-block bg-primary-container text-on-primary-container text-xs font-bold tracking-[0.2em] uppercase px-3 py-1 mb-6 rounded-sm font-[family-name:var(--font-headline)]">
               Especialización Académica
             </span>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-white font-[family-name:var(--font-headline)] tracking-tighter mb-4">
+            <h1 className="text-4xl md:text-6xl font-extrabold text-white font-[family-name:var(--font-headline)] tracking-tighter mb-4">
               Postítulos
             </h1>
             <p className="text-xl text-secondary-fixed-dim font-light leading-relaxed max-w-lg">
@@ -35,11 +35,11 @@ export default function PostitulosPage() {
       </section>
 
       {/* Listing */}
-      <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-12 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12">
           {postitulos.map((p) => (
-            <article key={p.id} className="group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col md:flex-row shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(67,96,132,0.08)] transition-all duration-500 border border-outline-variant/10">
-              <div className="md:w-2/5 relative h-64 md:h-auto overflow-hidden flex-shrink-0">
+            <article key={p.id} className="group bg-surface-container-lowest rounded-xl overflow-hidden flex flex-col shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(67,96,132,0.08)] transition-all duration-500 border border-outline-variant/10">
+              <div className="relative h-52 md:h-64 overflow-hidden flex-shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={p.imageSrc} alt={p.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute top-4 left-4">
@@ -48,7 +48,7 @@ export default function PostitulosPage() {
                   </span>
                 </div>
               </div>
-              <div className="md:w-3/5 p-8 flex flex-col">
+              <div className="p-5 md:p-8 flex flex-col">
                 <div className="flex items-center gap-2 mb-4 text-primary font-bold text-xs font-[family-name:var(--font-headline)] tracking-wider uppercase">
                   <span className="material-symbols-outlined text-sm">timer</span>
                   <span>{p.duracion} de duración</span>
@@ -77,8 +77,8 @@ export default function PostitulosPage() {
       </section>
 
       {/* Reassurance */}
-      <section className="bg-surface-container-low py-24 mb-24">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-16">
+      <section className="bg-surface-container-low py-12 md:py-24 mb-12 md:mb-24">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
           {[
             { icon: "school", title: "Respaldo Ministerial", desc: "Nuestros postítulos cuentan con la certificación y supervisión del Ministerio de Educación, garantizando validez nacional y calidad académica institucional." },
             { icon: "verified", title: "Docentes Expertos", desc: "Cuerpo docente integrado por profesionales de montaña y académicos especializados en la didáctica de las actividades al aire libre." },

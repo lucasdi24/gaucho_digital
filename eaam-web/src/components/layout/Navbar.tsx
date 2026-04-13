@@ -77,7 +77,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-white border-t border-outline-variant/20 px-6 py-6 space-y-4">
+        <div className="md:hidden absolute left-4 right-4 top-full mt-1.5 bg-white/95 backdrop-blur-md border border-outline-variant/20 shadow-xl rounded-2xl px-5 py-4 space-y-1 z-50">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
             return (
@@ -85,14 +85,25 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`block text-lg font-[family-name:var(--font-headline)] font-semibold ${
-                  isActive ? "text-mountain-orange" : "text-secondary"
+                className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-base font-[family-name:var(--font-headline)] font-semibold transition-colors ${
+                  isActive
+                    ? "text-mountain-orange bg-surface-container"
+                    : "text-secondary hover:bg-surface-container"
                 }`}
               >
                 {link.label}
               </Link>
             );
           })}
+          <div className="pt-2 mt-1 border-t border-outline-variant/10">
+            <Link
+              href="#"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center justify-center w-full bg-primary-container text-on-primary-container px-4 py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm hover:brightness-110 transition-all"
+            >
+              Inscribite ahora
+            </Link>
+          </div>
         </div>
       )}
     </header>

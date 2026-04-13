@@ -11,6 +11,7 @@ import { readEgresados, writeEgresados } from "@/lib/egresadosData";
 import { readCursos, writeCursos, type CursoData } from "@/lib/cursosData";
 import { readCarreras, writeCarreras, type CarreraData } from "@/lib/carrerasData";
 import { readPostitulos, writePostitulos, type PostituloData } from "@/lib/postitulosData";
+import { readBeneficios, writeBeneficios, type BeneficioData } from "@/lib/beneficiosData";
 
 async function isAuthed(): Promise<boolean> {
   const cookieStore = await cookies();
@@ -437,5 +438,65 @@ export async function togglePostitutoVisible(
   writePostitulos(list);
   revalidatePath("/postitulos");
   revalidatePath("/admin/postitulos");
+  return { ok: true };
+}
+
+// ─── Beneficios ────────────────────────────────────────────────────────────
+
+export async function saveBeneficio(
+  data: BeneficioData,
+  imageFile?: FormData
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+
+  let imageSrc = data.imageSrc;
+
+  if (imageFile) {
+    const file = imageFile.get("file") as File | null;
+    if (file && file.size > 0) {
+      const uploadDir = path.join(process.cwd(), "public", "uploads", "beneficios");
+      await mkdir(uploadDir, { recursive: true });
+      const ext = file.name.split(".").pop() ?? "jpg";
+      const filename = `${data.id}-${Date.now()}.${ext}`;
+      const buffer = Buffer.from(await file.arrayBuffer());
+      await writeFile(path.join(uploadDir, filename), buffer);
+      imageSrc = `/uploads/beneficios/${filename}`;
+    }
+  }
+
+  const list = readBeneficios();
+  const idx = list.findIndex((b) => b.id === data.id);
+  const entry: BeneficioData = { ...data, imageSrc };
+  if (idx >= 0) {
+    list[idx] = entry;
+  } else {
+    list.push(entry);
+  }
+  writeBeneficios(list);
+  revalidatePath("/beneficios");
+  revalidatePath("/admin/beneficios");
+  return { ok: true };
+}
+
+export async function deleteBeneficio(
+  id: string
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+  writeBeneficios(readBeneficios().filter((b) => b.id !== id));
+  revalidatePath("/beneficios");
+  revalidatePath("/admin/beneficios");
+  return { ok: true };
+}
+
+export async function toggleBeneficioVisible(
+  id: string
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+  const list = readBeneficios();
+  const idx = list.findIndex((b) => b.id === id);
+  if (idx >= 0) list[idx].visible = !list[idx].visible;
+  writeBeneficios(list);
+  revalidatePath("/beneficios");
+  revalidatePath("/admin/beneficios");
   return { ok: true };
 }

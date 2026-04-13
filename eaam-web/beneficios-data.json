@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ferrino",
+    "title": "40% OFF — Ferrino",
+    "description": "Descuentos en equipamiento técnico de la marca Ferrino para alumnos activos de la EAAM.",
+    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuCVdJX_aUVxonzEmGlU9j1Vur7v2YIRZbz-pJE5cIofzorvFdo_hQahgBeSi645vf831SgAMBPp4bfLySSsmqkTtslIgmraxKuz5wqJiWZ4rQ4fz1hM14QBORyoVhjxEcsy6ToANn4qfXp0VhSGJaR-AHLGTcETnzWKaFq7q5wg2YwcPT3ohW5GlhwZYrQkLNqy67dwtE_GLAAF2cZSY949gLS4j9qh0p-F4-Qnd53Drs1Yki7LX3ZoFmaQiqXrJPUkXX0TM9L_",
+    "visible": true
+  },
+  {
+    "id": "seguros",
+    "title": "25% OFF — Seguros de Montaña",
+    "description": "Cobertura especializada para actividades de montaña y rescate con las mejores aseguradoras del país.",
+    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI1C_n29iqWIBT_b5_m3MQ6oBUhijuZ3K5hS0FflbIFX7_bpqFWPvBREn4jXvNDrLPm1gFe2kY3_GCqoEzMlLKIUhI4sRa-mB3y1_w3Q5pG-bRNkZADJV-CWWMzQFzYjOXiTzAi0P0MjhW4w9Y1e4GQv2GR-7h6sJhgvXJCb7RnBJ_",
+    "visible": true
+  },
+  {
+    "id": "salidas",
+    "title": "10% OFF — Salidas de Práctica",
+    "description": "Descuentos en excursiones y salidas de campo organizadas por la escuela a destinos de montaña.",
+    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuAKyVV0O2WXTL8i2p1wN8e_J9b3pYHQvJxC8mGvT8z3_Og5T1dBfVNnGvFT7Nj5MhXmzKjZhQCG3xyMmSuVAh8bXpuaAbzKuMeY3d_YJz1fF-cBuHtOsHqKJhqYHtf2p6OJC6K_J_",
+    "visible": true
+  },
+  {
+    "id": "cursos-comp",
+    "title": "20% OFF — Cursos Complementarios",
+    "description": "Precio especial en workshops y capacitaciones cortas para alumnos y egresados de la EAAM.",
+    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuDMH7oqCXs7OgJZsHcfBsGJ5cN0sFkHhUiGLUFm2u_bJmrUXFHN3Q5gT5rBjxkLb8ywW1u3zKpnAL_qFnzuX4F9vdkqGBFj7cTHyqyDCYdRv9vIPx5CkIKFqkn1_J_",
+    "visible": true
+  },
+  {
+    "id": "refugios",
+    "title": "15% OFF — Alojamiento en Refugios",
+    "description": "Convenios con refugios de montaña en las principales rutas del país para alumnos activos.",
+    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuBtjNl-xLelw5CbT-7HPIFfJc1Tk0OcbqZHlVmE44RV2CJuDgZ4eHWlzNsTTQlJJzGtZIrYkMI2yDh8vB2eoEJm0nUe2p6f9A01RO2zMfhJJrpuQCPuJgXt73rQf_J_",
+    "visible": true
+  },
+  {
+    "id": "bibliografia",
+    "title": "30% OFF — Bibliografía Técnica",
+    "description": "Descuentos en material de estudio y publicaciones especializadas en montañismo y actividades al aire libre.",
+    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuCVdJX_aUVxonzEmGlU9j1Vur7v2YIRZbz-pJE5cIofzorvFdo_hQahgBeSi645vf831SgAMBPp4bfLySSsmqkTtslIgmraxKuz5wqJiWZ4rQ4fz1hM14QBORyoVhjxEcsy6ToANn4qfXp0VhSGJaR-AHLGTcETnzWKaFq7q5wg2YwcPT3ohW5GlhwZYrQkLNqy67dwtE_GLAAF2cZSY949gLS4j9qh0p-F4-Qnd53Drs1Yki7LX3ZoFmaQiqXrJPUkXX0TM9L_",
+    "visible": true
+  }
+]
