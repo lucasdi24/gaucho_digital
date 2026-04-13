@@ -23,8 +23,8 @@ export default function CursosPage() {
   return (
     <>
       {/* Hero */}
-      <section className="px-6 md:px-12 py-16 max-w-[1440px] mx-auto pt-28">
-        <div className="relative overflow-hidden rounded-2xl bg-primary-container p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
+      <section className="px-6 md:px-12 pt-20 md:pt-28 pb-6 md:pb-16 max-w-[1440px] mx-auto">
+        <div className="relative overflow-hidden rounded-2xl bg-primary-container p-7 md:p-16 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
           <div
             className="absolute inset-0 opacity-10 pointer-events-none"
             style={{
@@ -34,7 +34,7 @@ export default function CursosPage() {
             }}
           />
           <div className="relative z-10 max-w-2xl">
-            <h1 className="text-white font-[family-name:var(--font-headline)] text-5xl md:text-7xl font-extrabold tracking-tighter mb-6">
+            <h1 className="text-white font-[family-name:var(--font-headline)] text-4xl md:text-7xl font-extrabold tracking-tighter mb-4 md:mb-6">
               Cursos
             </h1>
             <p className="text-orange-100/90 text-lg md:text-xl leading-relaxed max-w-xl font-light">
@@ -51,8 +51,8 @@ export default function CursosPage() {
       </section>
 
       {/* Grid */}
-      <section className="px-6 md:px-12 max-w-[1440px] mx-auto mb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+      <section className="px-6 md:px-12 max-w-[1440px] mx-auto mb-12 md:mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:gap-x-8 gap-y-6 md:gap-y-10">
           {cursos.map((curso, idx) => {
             const prox = isProximamente(curso.badge);
             const gradClass =
@@ -94,7 +94,7 @@ export default function CursosPage() {
                 </div>
 
                 {/* Content */}
-                <div className="p-8 flex flex-col flex-grow border-x border-b border-outline-variant/10 rounded-b-xl">
+                <div className="p-5 md:p-8 flex flex-col flex-grow border-x border-b border-outline-variant/10 rounded-b-xl">
                   <div className="flex items-center gap-2 mb-4">
                     <span className="material-symbols-outlined text-on-primary-container text-sm">
                       {curso.icon}
@@ -162,17 +162,17 @@ export default function CursosPage() {
       </section>
 
       {/* CTA */}
-      <section className="mt-12 px-6 md:px-12 max-w-[1440px] mx-auto pb-24">
-        <div className="bg-secondary rounded-2xl p-12 md:p-20 text-center relative overflow-hidden">
+      <section className="mt-6 md:mt-12 px-6 md:px-12 max-w-[1440px] mx-auto pb-12 md:pb-24">
+        <div className="bg-secondary rounded-2xl p-8 md:p-20 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-1/3 h-full opacity-5 pointer-events-none">
             <span className="material-symbols-outlined text-[300px] absolute -top-10 -right-20">
               terrain
             </span>
           </div>
-          <h2 className="text-white font-[family-name:var(--font-headline)] text-3xl md:text-5xl font-extrabold mb-6 relative z-10">
+          <h2 className="text-white font-[family-name:var(--font-headline)] text-2xl md:text-5xl font-extrabold mb-4 md:mb-6 relative z-10">
             ¿Listo para comenzar tu expedición?
           </h2>
-          <p className="text-white/75 text-lg mb-10 max-w-2xl mx-auto font-light leading-relaxed relative z-10">
+          <p className="text-white/75 text-base md:text-lg mb-7 md:mb-10 max-w-2xl mx-auto font-light leading-relaxed relative z-10">
             Nuestros coordinadores académicos están disponibles para asesorarte
             sobre el curso que mejor se adapte a tu nivel de experiencia.
           </p>

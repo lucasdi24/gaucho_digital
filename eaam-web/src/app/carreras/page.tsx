@@ -1,12 +1,15 @@
 import { HeroSection } from "@/components/ui/HeroSection";
 import { ProgramCard } from "@/components/ui/ProgramCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { carreras } from "@/data/carreras";
+import { readCarreras } from "@/lib/carrerasData";
 import Image from "next/image";
 
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Carreras" };
 
 export default function CarrerasPage() {
+  const carreras = readCarreras().filter((c) => c.visible);
+
   return (
     <>
       <HeroSection
@@ -17,8 +20,8 @@ export default function CarrerasPage() {
         imageAlt="Grupo de montañistas ascendiendo una ladera nevada en los Andes"
       />
 
-      <main className="container mx-auto px-6 md:px-12 py-24 -mt-20 relative z-20">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
+      <main className="container mx-auto px-6 md:px-12 py-10 md:py-24 -mt-10 md:-mt-20 relative z-20">
+        <div className="flex flex-col md:flex-row items-end justify-between mb-8 md:mb-16 gap-5 md:gap-8">
           <SectionHeading
             title="Nuestra Oferta Académica"
             subtitle="Programas diseñados para la excelencia técnica y la seguridad en terrenos agrestes. Convertí tu pasión en una carrera con validez nacional e internacional."
@@ -30,15 +33,15 @@ export default function CarrerasPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-12 gap-y-10 md:gap-y-20">
           {carreras.map((carrera, i) => (
             <ProgramCard
-              key={carrera.slug}
+              key={carrera.id}
               title={carrera.title}
               imageSrc={carrera.imageSrc}
-              imageAlt={carrera.imageAlt}
-              duration={carrera.duration}
-              modality={`${carrera.modality} (${carrera.location})`}
+              imageAlt={`${carrera.title} — ${carrera.modalidad}`}
+              duration={carrera.duracion}
+              modality={`${carrera.modalidad} (${carrera.location})`}
               href={`/carreras/${carrera.slug}`}
               offset={i % 2 === 1}
             />
@@ -47,17 +50,17 @@ export default function CarrerasPage() {
       </main>
 
       {/* Quality CTA */}
-      <section className="py-24 bg-surface-container-low overflow-hidden">
+      <section className="py-12 md:py-24 bg-surface-container-low overflow-hidden">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="bg-white p-12 md:p-20 rounded-3xl shadow-sm flex flex-col md:flex-row items-center gap-16 relative">
+          <div className="bg-white p-7 md:p-20 rounded-3xl shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-16 relative">
             <div className="flex-1">
-              <h2 className="text-4xl md:text-5xl font-black text-on-surface leading-tight mb-8 font-[family-name:var(--font-headline)]">
+              <h2 className="text-2xl md:text-5xl font-black text-on-surface leading-tight mb-5 md:mb-8 font-[family-name:var(--font-headline)]">
                 Nuestra excelencia académica en la cumbre
               </h2>
-              <p className="text-on-surface-variant text-lg leading-relaxed mb-8">
+              <p className="text-on-surface-variant text-base md:text-lg leading-relaxed mb-5 md:mb-8">
                 Contamos con un equipo de docentes certificados internacionalmente por UIAGM y UIMLA. No solo enseñamos técnica, formamos líderes capaces de gestionar riesgos en los entornos más desafiantes del planeta.
               </p>
-              <div className="flex items-center gap-12">
+              <div className="flex items-center gap-6 md:gap-12">
                 {[
                   { value: "15+", label: "Años de trayectoria" },
                   { value: "500+", label: "Graduados activos" },
@@ -65,9 +68,7 @@ export default function CarrerasPage() {
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
                     <p className="text-4xl font-black text-mountain-orange">{stat.value}</p>
-                    <p className="text-xs font-bold uppercase tracking-widest text-secondary mt-2">
-                      {stat.label}
-                    </p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-secondary mt-2">{stat.label}</p>
                   </div>
                 ))}
               </div>

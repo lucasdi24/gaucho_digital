@@ -17,15 +17,15 @@ export default async function ProfesoresPage() {
         imageAlt="Equipo docente EAAM"
         gradient="primary"
       />
-      <section className="py-24 px-6 md:px-12">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+      <section className="py-10 md:py-24 px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
           {profesores.map((prof) => (
             <div key={prof.id} className="flex flex-col items-center group">
-              <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-surface-container-high group-hover:border-on-primary-container transition-colors mb-6">
+              <div className="w-28 h-28 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-surface-container-high group-hover:border-on-primary-container transition-colors mb-4 md:mb-6">
                 <Image src={prof.imageSrc} alt={prof.name} width={160} height={160} className="w-full h-full object-cover" />
               </div>
-              <h4 className="font-[family-name:var(--font-headline)] font-bold text-primary text-xl text-center">{prof.name}</h4>
-              <p className="text-sm text-on-surface-variant font-bold uppercase tracking-widest mt-1 text-center">{prof.role}</p>
+              <h4 className="font-[family-name:var(--font-headline)] font-bold text-primary text-base md:text-xl text-center">{prof.name}</h4>
+              <p className="text-xs md:text-sm text-on-surface-variant font-bold uppercase tracking-widest mt-1 text-center">{prof.role}</p>
             </div>
           ))}
         </div>

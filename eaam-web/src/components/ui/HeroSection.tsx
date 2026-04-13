@@ -25,7 +25,7 @@ export function HeroSection({
   imageSrc,
   imageAlt,
   gradient = "secondary",
-  height = "h-[716px]",
+  height = "h-[480px] md:h-[716px]",
   children,
 }: HeroSectionProps) {
   return (

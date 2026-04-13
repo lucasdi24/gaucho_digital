@@ -9,6 +9,9 @@ import { revalidatePath } from "next/cache";
 import { readProfesores, writeProfesores } from "@/lib/profesoresData";
 import { readEgresados, writeEgresados } from "@/lib/egresadosData";
 import { readCursos, writeCursos, type CursoData } from "@/lib/cursosData";
+import { readCarreras, writeCarreras, type CarreraData } from "@/lib/carrerasData";
+import { readPostitulos, writePostitulos, type PostituloData } from "@/lib/postitulosData";
+import { readBeneficios, writeBeneficios, type BeneficioData } from "@/lib/beneficiosData";
 
 async function isAuthed(): Promise<boolean> {
   const cookieStore = await cookies();
@@ -262,5 +265,238 @@ export async function toggleCursoVisible(
   writeCursos(cursos);
   revalidatePath("/cursos");
   revalidatePath("/admin/cursos");
+  return { ok: true };
+}
+
+// --- Carreras CRUD ---
+
+export async function saveCarrera(
+  formData: FormData
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+
+  const carreras = readCarreras();
+  const rawId = (formData.get("id") as string) || "";
+  const rawTitle = (formData.get("title") as string) || "";
+  const id = rawId.trim() || slugify(rawTitle);
+  const rawSlug = (formData.get("slug") as string) || "";
+  const slug = rawSlug.trim() || slugify(rawTitle);
+
+  let imageSrc = (formData.get("imageSrc") as string) || "";
+  const file = formData.get("imageFile") as File | null;
+  if (file && file.size > 0) {
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const ext = file.name.split(".").pop();
+    const filename = `${id}.${ext}`;
+    const uploadDir = path.join(process.cwd(), "public", "uploads", "carreras");
+    fs.mkdirSync(uploadDir, { recursive: true });
+    fs.writeFileSync(path.join(uploadDir, filename), buffer);
+    imageSrc = `/uploads/carreras/${filename}`;
+  }
+
+  const getString = (key: string) => (formData.get(key) as string) || "";
+
+  const updated: CarreraData = {
+    id, slug,
+    title: getString("title"),
+    badge: getString("badge"),
+    visible: formData.get("visible") === "true",
+    icon: getString("icon") || "landscape",
+    modalidad: getString("modalidad"),
+    location: getString("location"),
+    duracion: getString("duracion"),
+    diasCursada: getString("diasCursada"),
+    horarios: getString("horarios"),
+    comienzo: getString("comienzo"),
+    coordinador: getString("coordinador"),
+    imageSrc,
+    subtitulo: getString("subtitulo"),
+    descripcion: getString("descripcion"),
+    seccionTitulo: getString("seccionTitulo"),
+    seccionCuerpo: getString("seccionCuerpo"),
+    alcanceCuerpo: getString("alcanceCuerpo"),
+    dirigidaItems: getString("dirigidaItems"),
+    requisito: getString("requisito"),
+    salidaTitulo: getString("salidaTitulo"),
+    salidaCuerpo: getString("salidaCuerpo"),
+  };
+
+  const idx = carreras.findIndex((c) => c.id === id);
+  if (idx >= 0) carreras[idx] = updated;
+  else carreras.push(updated);
+  writeCarreras(carreras);
+  revalidatePath("/carreras");
+  revalidatePath(`/carreras/${slug}`);
+  revalidatePath("/admin/carreras");
+  return { ok: true };
+}
+
+export async function deleteCarrera(
+  id: string
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+  writeCarreras(readCarreras().filter((c) => c.id !== id));
+  revalidatePath("/carreras");
+  revalidatePath("/admin/carreras");
+  return { ok: true };
+}
+
+export async function toggleCarreraVisible(
+  id: string
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+  const carreras = readCarreras();
+  const idx = carreras.findIndex((c) => c.id === id);
+  if (idx >= 0) carreras[idx].visible = !carreras[idx].visible;
+  writeCarreras(carreras);
+  revalidatePath("/carreras");
+  revalidatePath("/admin/carreras");
+  return { ok: true };
+}
+
+// --- Postítulos CRUD ---
+
+export async function savePostitulo(
+  formData: FormData
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+
+  const list = readPostitulos();
+  const rawId = (formData.get("id") as string) || "";
+  const rawTitle = (formData.get("title") as string) || "";
+  const id = rawId.trim() || slugify(rawTitle);
+  const rawSlug = (formData.get("slug") as string) || "";
+  const slug = rawSlug.trim() || slugify(rawTitle);
+
+  let imageSrc = (formData.get("imageSrc") as string) || "";
+  const file = formData.get("imageFile") as File | null;
+  if (file && file.size > 0) {
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const ext = file.name.split(".").pop();
+    const filename = `${id}.${ext}`;
+    const uploadDir = path.join(process.cwd(), "public", "uploads", "postitulos");
+    fs.mkdirSync(uploadDir, { recursive: true });
+    fs.writeFileSync(path.join(uploadDir, filename), buffer);
+    imageSrc = `/uploads/postitulos/${filename}`;
+  }
+
+  const getString = (key: string) => (formData.get(key) as string) || "";
+
+  const updated: PostituloData = {
+    id, slug,
+    title: getString("title"),
+    badge: getString("badge"),
+    visible: formData.get("visible") === "true",
+    icon: getString("icon") || "forest",
+    modalidad: getString("modalidad"),
+    location: getString("location"),
+    duracion: getString("duracion"),
+    diasCursada: getString("diasCursada"),
+    horarios: getString("horarios"),
+    comienzo: getString("comienzo"),
+    coordinador: getString("coordinador"),
+    puntajeDocente: getString("puntajeDocente"),
+    imageSrc,
+    quote: getString("quote"),
+    intro: getString("intro"),
+    seccionTitulo: getString("seccionTitulo"),
+    seccionCuerpo: getString("seccionCuerpo"),
+    perfilItems: getString("perfilItems"),
+    salidaTitulo: getString("salidaTitulo"),
+    salidaCuerpo: getString("salidaCuerpo"),
+  };
+
+  const idx = list.findIndex((p) => p.id === id);
+  if (idx >= 0) list[idx] = updated;
+  else list.push(updated);
+  writePostitulos(list);
+  revalidatePath("/postitulos");
+  revalidatePath(`/postitulos/${slug}`);
+  revalidatePath("/admin/postitulos");
+  return { ok: true };
+}
+
+export async function deletePostitulo(
+  id: string
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+  writePostitulos(readPostitulos().filter((p) => p.id !== id));
+  revalidatePath("/postitulos");
+  revalidatePath("/admin/postitulos");
+  return { ok: true };
+}
+
+export async function togglePostitutoVisible(
+  id: string
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+  const list = readPostitulos();
+  const idx = list.findIndex((p) => p.id === id);
+  if (idx >= 0) list[idx].visible = !list[idx].visible;
+  writePostitulos(list);
+  revalidatePath("/postitulos");
+  revalidatePath("/admin/postitulos");
+  return { ok: true };
+}
+
+// ─── Beneficios ────────────────────────────────────────────────────────────
+
+export async function saveBeneficio(
+  data: BeneficioData,
+  imageFile?: FormData
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+
+  let imageSrc = data.imageSrc;
+
+  if (imageFile) {
+    const file = imageFile.get("file") as File | null;
+    if (file && file.size > 0) {
+      const uploadDir = path.join(process.cwd(), "public", "uploads", "beneficios");
+      await mkdir(uploadDir, { recursive: true });
+      const ext = file.name.split(".").pop() ?? "jpg";
+      const filename = `${data.id}-${Date.now()}.${ext}`;
+      const buffer = Buffer.from(await file.arrayBuffer());
+      await writeFile(path.join(uploadDir, filename), buffer);
+      imageSrc = `/uploads/beneficios/${filename}`;
+    }
+  }
+
+  const list = readBeneficios();
+  const idx = list.findIndex((b) => b.id === data.id);
+  const entry: BeneficioData = { ...data, imageSrc };
+  if (idx >= 0) {
+    list[idx] = entry;
+  } else {
+    list.push(entry);
+  }
+  writeBeneficios(list);
+  revalidatePath("/beneficios");
+  revalidatePath("/admin/beneficios");
+  return { ok: true };
+}
+
+export async function deleteBeneficio(
+  id: string
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+  writeBeneficios(readBeneficios().filter((b) => b.id !== id));
+  revalidatePath("/beneficios");
+  revalidatePath("/admin/beneficios");
+  return { ok: true };
+}
+
+export async function toggleBeneficioVisible(
+  id: string
+): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthed())) return { ok: false, error: "No autorizado" };
+  const list = readBeneficios();
+  const idx = list.findIndex((b) => b.id === id);
+  if (idx >= 0) list[idx].visible = !list[idx].visible;
+  writeBeneficios(list);
+  revalidatePath("/beneficios");
+  revalidatePath("/admin/beneficios");
   return { ok: true };
 }

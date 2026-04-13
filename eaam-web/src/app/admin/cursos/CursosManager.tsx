@@ -352,7 +352,7 @@ export function CursosManager({ initialData }: { initialData: CursoData[] }) {
           {/* Image */}
           <p className={SECTION_TITLE_CLS}>Imagen</p>
           <div className="mb-4">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 mb-3">
               {(previewUrl || form.imageSrc) && (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
@@ -369,6 +369,10 @@ export function CursosManager({ initialData }: { initialData: CursoData[] }) {
                 className="text-xs text-slate-400 file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:bg-white/10 file:text-slate-300 file:text-xs file:cursor-pointer hover:file:bg-white/20"
               />
             </div>
+            <p className="text-[11px] text-slate-500 leading-relaxed bg-white/[0.03] border border-white/5 rounded-lg px-3 py-2.5">
+              <span className="block font-bold text-slate-400 mb-1">Directrices de la foto</span>
+              Dimensión recomendada: <strong className="text-slate-300">1280 × 720 px</strong> (16:9) · Orientación horizontal · Peso máximo: <strong className="text-slate-300">2 MB</strong> · Formatos: JPG, PNG, WebP · Usar paisaje de montaña o trekking que represente la actividad.
+            </p>
           </div>
 
           {/* Descripcion */}
