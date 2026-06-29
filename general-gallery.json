@@ -1,0 +1,407 @@
+{
+  "version": "0.4",
+  "title": "General Gallery",
+  "type": "page",
+  "content": [
+
+    {
+      "id": "gg_css",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true }
+      },
+      "elements": [
+        {
+          "id": "gg_css_w",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<style>\n/* ── SECTION SHOW/HIDE (tab nav) ── */\n.gal-section { display: none !important; }\n.gal-section.gal-section--active { display: flex !important; flex-direction: column; width: 100%; }\n\n/* ── NAV MOBILE: pills ── */\n.gal-nav-wrapper { width: 100%; }\n.gal-sidebar-title { display: none; }\n.gal-nav-bar {\n  display: flex; flex-direction: row; gap: 8px;\n  overflow-x: auto; padding-bottom: 2px;\n  scrollbar-width: none; -ms-overflow-style: none;\n}\n.gal-nav-bar::-webkit-scrollbar { display: none; }\n.gal-nav-item {\n  display: inline-flex; align-items: center; gap: 7px;\n  white-space: nowrap; flex-shrink: 0;\n  padding: 9px 18px; border-radius: 100px;\n  border: 1.5px solid rgba(5,77,139,0.18); background: #fff;\n  font-family: 'Bricolage Grotesque', sans-serif;\n  font-size: 0.84rem; font-weight: 500; color: rgba(5,77,139,0.55);\n  cursor: pointer; transition: all 0.22s ease;\n  -webkit-tap-highlight-color: transparent; outline: none;\n}\n.gal-nav-item:hover { border-color: #054D8B; color: #054D8B; }\n.gal-nav-item.active { background: #054D8B; border-color: #054D8B; color: #fff; }\n\n/* ── NAV DESKTOP: sidebar ── */\n@media (min-width: 900px) {\n  .gal-outer { flex-direction: row !important; align-items: flex-start !important; }\n  .gal-nav-wrapper { width: 210px; flex-shrink: 0; }\n  .gal-sidebar-title {\n    display: block;\n    font-family: 'Bricolage Grotesque', sans-serif;\n    font-size: 0.55rem; font-weight: 700;\n    letter-spacing: 0.25em; text-transform: uppercase;\n    color: rgba(5,77,139,0.3); padding: 10px 14px 6px; user-select: none;\n  }\n  .gal-sidebar-inner {\n    position: sticky; top: 110px; background: #fff;\n    border-radius: 20px; padding: 8px;\n    box-shadow: 0 2px 24px rgba(5,77,139,0.08), 0 0 0 1px rgba(5,77,139,0.05);\n  }\n  .gal-nav-bar { flex-direction: column; overflow-x: visible; gap: 2px; padding-bottom: 0; }\n  .gal-nav-item {\n    white-space: normal; flex-shrink: 1; width: 100%;\n    padding: 11px 14px; border-radius: 12px; border: none; background: none;\n    color: rgba(5,77,139,0.55); font-size: 0.88rem; text-align: left;\n  }\n  .gal-nav-item:hover { background: rgba(5,77,139,0.05); color: #054D8B; border: none; }\n  .gal-nav-item.active { background: #054D8B; color: #fff; border: none; }\n  .gal-content-area { flex: 1; min-width: 0; }\n}\n\n/* ── FILTER BAR (dentro de cada galería) ── */\n.gal-filter-bar {\n  display: flex; flex-direction: row; flex-wrap: wrap;\n  gap: 8px; margin-bottom: 20px;\n}\n.gal-filter-btn {\n  padding: 7px 16px; border-radius: 100px;\n  border: 1.5px solid rgba(5,77,139,0.15); background: #fff;\n  font-family: 'Bricolage Grotesque', sans-serif;\n  font-size: 0.78rem; font-weight: 500; color: rgba(5,77,139,0.5);\n  cursor: pointer; transition: all 0.18s ease;\n  -webkit-tap-highlight-color: transparent; outline: none;\n}\n.gal-filter-btn:hover { border-color: #054D8B; color: #054D8B; }\n.gal-filter-btn.active { background: #054D8B; border-color: #054D8B; color: #fff; }\n\n/* ── IMAGE GRID ── */\n.gal-grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 8px;\n}\n@media (min-width: 640px) {\n  .gal-grid { grid-template-columns: repeat(3, 1fr); }\n}\n.gal-item {\n  overflow: hidden; border-radius: 10px; cursor: pointer;\n  transition: opacity 0.25s ease, transform 0.25s ease;\n}\n.gal-item img {\n  width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;\n  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n}\n.gal-item:hover img { transform: scale(1.04); }\n.gal-item.gal-hidden {\n  display: none;\n}\n</style>\n\n<script>\n(function(){\n  function initTabs(){\n    var btns = document.querySelectorAll('.gal-nav-item');\n    var sections = document.querySelectorAll('.gal-section');\n    if(!btns.length || !sections.length) return;\n    btns.forEach(function(btn){\n      btn.addEventListener('click', function(){\n        var target = this.dataset.target;\n        btns.forEach(function(b){ b.classList.remove('active'); });\n        sections.forEach(function(s){ s.classList.remove('gal-section--active'); });\n        this.classList.add('active');\n        var el = document.getElementById(target);\n        if(el){\n          el.classList.add('gal-section--active');\n          setTimeout(function(){\n            var top = el.getBoundingClientRect().top + window.scrollY - 130;\n            window.scrollTo({top: top, behavior: 'smooth'});\n          }, 10);\n        }\n      });\n    });\n  }\n\n  function initFilters(){\n    document.querySelectorAll('.gal-filter-bar').forEach(function(bar){\n      bar.addEventListener('click', function(e){\n        var btn = e.target.closest('.gal-filter-btn');\n        if(!btn) return;\n        var filter = btn.dataset.filter;\n        var grid = bar.nextElementSibling;\n        if(!grid || !grid.classList.contains('gal-grid')) return;\n        bar.querySelectorAll('.gal-filter-btn').forEach(function(b){ b.classList.remove('active'); });\n        btn.classList.add('active');\n        grid.querySelectorAll('.gal-item[data-filter]').forEach(function(item){\n          if(filter === 'all' || item.dataset.filter === filter){\n            item.classList.remove('gal-hidden');\n          } else {\n            item.classList.add('gal-hidden');\n          }\n        });\n      });\n    });\n  }\n\n  function init(){\n    initTabs();\n    initFilters();\n  }\n\n  if(document.readyState === 'loading'){\n    document.addEventListener('DOMContentLoaded', init);\n  } else {\n    init();\n  }\n})();\n</script>"
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "gg_hero",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "align_items": "center",
+        "justify_content": "center",
+        "min_height": { "unit": "vh", "size": 45, "sizes": [] },
+        "padding": { "unit": "px", "top": "130", "right": "24", "bottom": "80", "left": "24", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#0D1F3C"
+      },
+      "elements": [
+        {
+          "id": "gg_hero_ey",
+          "elType": "widget",
+          "widgetType": "heading",
+          "settings": {
+            "title": "Rio Manso Lodge &middot; Patagonia",
+            "header_size": "h6",
+            "align": "center",
+            "title_color": "#C4973A",
+            "typography_typography": "custom",
+            "typography_font_family": "Bricolage Grotesque",
+            "typography_font_size": { "unit": "rem", "size": 0.62, "sizes": [] },
+            "typography_font_weight": "600",
+            "typography_letter_spacing": { "unit": "em", "size": 0.3, "sizes": [] },
+            "typography_text_transform": "uppercase",
+            "_margin": { "unit": "px", "top": "0", "right": "0", "bottom": "14", "left": "0", "isLinked": false }
+          },
+          "elements": []
+        },
+        {
+          "id": "gg_hero_ti",
+          "elType": "widget",
+          "widgetType": "heading",
+          "settings": {
+            "title": "Gallery",
+            "header_size": "h1",
+            "align": "center",
+            "title_color": "#FFFFFF",
+            "typography_typography": "custom",
+            "typography_font_family": "Playfair Display",
+            "typography_font_size": { "unit": "rem", "size": 4.2, "sizes": [] },
+            "typography_font_weight": "400",
+            "typography_line_height": { "unit": "em", "size": 1.05, "sizes": [] },
+            "_margin": { "unit": "px", "top": "0", "right": "0", "bottom": "24", "left": "0", "isLinked": false }
+          },
+          "elements": []
+        },
+        {
+          "id": "gg_hero_dv",
+          "elType": "widget",
+          "widgetType": "divider",
+          "settings": {
+            "style": "solid",
+            "weight": { "unit": "px", "size": 2, "sizes": [] },
+            "width": { "unit": "px", "size": 48, "sizes": [] },
+            "align": "center",
+            "color": "#C4973A",
+            "gap": { "unit": "px", "size": 0, "sizes": [] }
+          },
+          "elements": []
+        }
+      ]
+    },
+
+    {
+      "id": "gg_outer",
+      "elType": "container",
+      "isInner": false,
+      "settings": {
+        "_css_classes": "gal-outer",
+        "content_width": "boxed",
+        "flex_direction": "column",
+        "align_items": "flex-start",
+        "flex_gap": { "unit": "px", "size": 40, "isLinked": true },
+        "padding": { "unit": "px", "top": "48", "right": "24", "bottom": "90", "left": "24", "isLinked": false },
+        "background_background": "classic",
+        "background_color": "#F7F2EA"
+      },
+      "elements": [
+
+        {
+          "id": "gg_nav_w",
+          "elType": "widget",
+          "widgetType": "html",
+          "settings": {
+            "html": "<div class=\"gal-nav-wrapper\">\n  <div class=\"gal-sidebar-inner\">\n    <p class=\"gal-sidebar-title\">Browse</p>\n    <div class=\"gal-nav-bar\">\n      <button class=\"gal-nav-item active\" data-target=\"gal-lodge\">The Main Lodge</button>\n      <button class=\"gal-nav-item\" data-target=\"gal-atravesado\">El Atravesado Lodge</button>\n      <button class=\"gal-nav-item\" data-target=\"gal-camps\">River Camps</button>\n      <button class=\"gal-nav-item\" data-target=\"gal-food\">Food</button>\n      <button class=\"gal-nav-item\" data-target=\"gal-fishing\">Fishing Gallery</button>\n    </div>\n  </div>\n</div>"
+          },
+          "elements": []
+        },
+
+        {
+          "id": "gg_content",
+          "elType": "container",
+          "isInner": true,
+          "settings": {
+            "_css_classes": "gal-content-area",
+            "flex_direction": "column",
+            "width": { "unit": "%", "size": 100, "sizes": [] },
+            "flex_gap": { "unit": "px", "size": 0, "isLinked": true }
+          },
+          "elements": [
+
+            {
+              "id": "gg_lodge",
+              "elType": "container",
+              "isInner": true,
+              "settings": {
+                "_element_id": "gal-lodge",
+                "_css_classes": "gal-section gal-section--active",
+                "flex_direction": "column",
+                "width": { "unit": "%", "size": 100, "sizes": [] },
+                "flex_gap": { "unit": "px", "size": 16, "isLinked": true }
+              },
+              "elements": [
+                {
+                  "id": "gg_lodge_ti",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "The Main Lodge",
+                    "header_size": "h2",
+                    "title_color": "#0D1F3C",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Playfair Display",
+                    "typography_font_size": { "unit": "rem", "size": 1.9, "sizes": [] },
+                    "typography_font_weight": "400"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gg_lodge_tx",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "<p>Our flagship lodge on the banks of the Rio Manso, surrounded by Patagonia's most iconic landscapes.</p>",
+                    "text_color": "#6B7A8D",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Bricolage Grotesque",
+                    "typography_font_size": { "unit": "rem", "size": 0.9, "sizes": [] },
+                    "typography_line_height": { "unit": "em", "size": 1.7, "sizes": [] }
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gg_lodge_grid",
+                  "elType": "widget",
+                  "widgetType": "html",
+                  "settings": {
+                    "html": "<div class=\"gal-filter-bar\">\n  <button class=\"gal-filter-btn active\" data-filter=\"all\">All</button>\n  <button class=\"gal-filter-btn\" data-filter=\"themainlodge\">The Main Lodge</button>\n  <button class=\"gal-filter-btn\" data-filter=\"elatravesadolodge\">El Atravesado</button>\n  <button class=\"gal-filter-btn\" data-filter=\"rivercamps\">River Camps</button>\n</div>\n<div class=\"gal-grid\">\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/lodge01/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/lodge02/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/lodge03/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/atrav01/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/atrav02/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/atrav03/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/camp01/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/camp02/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/camp03/800/600\" alt=\"\" loading=\"lazy\"></div>\n</div>"
+                  },
+                  "elements": []
+                }
+              ]
+            },
+
+            {
+              "id": "gg_atrav",
+              "elType": "container",
+              "isInner": true,
+              "settings": {
+                "_element_id": "gal-atravesado",
+                "_css_classes": "gal-section",
+                "flex_direction": "column",
+                "width": { "unit": "%", "size": 100, "sizes": [] },
+                "flex_gap": { "unit": "px", "size": 16, "isLinked": true }
+              },
+              "elements": [
+                {
+                  "id": "gg_atrav_ti",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "El Atravesado Lodge",
+                    "header_size": "h2",
+                    "title_color": "#0D1F3C",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Playfair Display",
+                    "typography_font_size": { "unit": "rem", "size": 1.9, "sizes": [] },
+                    "typography_font_weight": "400"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gg_atrav_tx",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "<p>Intimate and remote — a true wilderness retreat deep in Patagonia, with exclusive access to ten miles of pristine private river.</p>",
+                    "text_color": "#6B7A8D",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Bricolage Grotesque",
+                    "typography_font_size": { "unit": "rem", "size": 0.9, "sizes": [] },
+                    "typography_line_height": { "unit": "em", "size": 1.7, "sizes": [] }
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gg_atrav_grid",
+                  "elType": "widget",
+                  "widgetType": "html",
+                  "settings": {
+                    "html": "<div class=\"gal-filter-bar\">\n  <button class=\"gal-filter-btn active\" data-filter=\"all\">All</button>\n  <button class=\"gal-filter-btn\" data-filter=\"themainlodge\">The Main Lodge</button>\n  <button class=\"gal-filter-btn\" data-filter=\"elatravesadolodge\">El Atravesado</button>\n  <button class=\"gal-filter-btn\" data-filter=\"rivercamps\">River Camps</button>\n</div>\n<div class=\"gal-grid\">\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/atrav11/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/atrav12/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/atrav13/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/lodge11/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/lodge12/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/camp11/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/camp12/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/camp13/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/atrav14/800/600\" alt=\"\" loading=\"lazy\"></div>\n</div>"
+                  },
+                  "elements": []
+                }
+              ]
+            },
+
+            {
+              "id": "gg_camps",
+              "elType": "container",
+              "isInner": true,
+              "settings": {
+                "_element_id": "gal-camps",
+                "_css_classes": "gal-section",
+                "flex_direction": "column",
+                "width": { "unit": "%", "size": 100, "sizes": [] },
+                "flex_gap": { "unit": "px", "size": 16, "isLinked": true }
+              },
+              "elements": [
+                {
+                  "id": "gg_camps_ti",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "River Camps",
+                    "header_size": "h2",
+                    "title_color": "#0D1F3C",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Playfair Display",
+                    "typography_font_size": { "unit": "rem", "size": 1.9, "sizes": [] },
+                    "typography_font_weight": "400"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gg_camps_tx",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "<p>Wild camps along untouched stretches of river, where the only sounds are the current and the wind through the lenga beech trees.</p>",
+                    "text_color": "#6B7A8D",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Bricolage Grotesque",
+                    "typography_font_size": { "unit": "rem", "size": 0.9, "sizes": [] },
+                    "typography_line_height": { "unit": "em", "size": 1.7, "sizes": [] }
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gg_camps_grid",
+                  "elType": "widget",
+                  "widgetType": "html",
+                  "settings": {
+                    "html": "<div class=\"gal-filter-bar\">\n  <button class=\"gal-filter-btn active\" data-filter=\"all\">All</button>\n  <button class=\"gal-filter-btn\" data-filter=\"themainlodge\">The Main Lodge</button>\n  <button class=\"gal-filter-btn\" data-filter=\"elatravesadolodge\">El Atravesado</button>\n  <button class=\"gal-filter-btn\" data-filter=\"rivercamps\">River Camps</button>\n</div>\n<div class=\"gal-grid\">\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/camp21/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/camp22/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/camp23/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/lodge21/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/lodge22/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/atrav21/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/atrav22/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/camp24/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/camp25/800/600\" alt=\"\" loading=\"lazy\"></div>\n</div>"
+                  },
+                  "elements": []
+                }
+              ]
+            },
+
+            {
+              "id": "gg_food",
+              "elType": "container",
+              "isInner": true,
+              "settings": {
+                "_element_id": "gal-food",
+                "_css_classes": "gal-section",
+                "flex_direction": "column",
+                "width": { "unit": "%", "size": 100, "sizes": [] },
+                "flex_gap": { "unit": "px", "size": 16, "isLinked": true }
+              },
+              "elements": [
+                {
+                  "id": "gg_food_ti",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Food",
+                    "header_size": "h2",
+                    "title_color": "#0D1F3C",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Playfair Display",
+                    "typography_font_size": { "unit": "rem", "size": 1.9, "sizes": [] },
+                    "typography_font_weight": "400"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gg_food_tx",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "<p>Argentine cuisine at its finest — asados by the river, Patagonian lamb, fine wines, and long evenings shared around the table.</p>",
+                    "text_color": "#6B7A8D",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Bricolage Grotesque",
+                    "typography_font_size": { "unit": "rem", "size": 0.9, "sizes": [] },
+                    "typography_line_height": { "unit": "em", "size": 1.7, "sizes": [] }
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gg_food_grid",
+                  "elType": "widget",
+                  "widgetType": "html",
+                  "settings": {
+                    "html": "<div class=\"gal-filter-bar\">\n  <button class=\"gal-filter-btn active\" data-filter=\"all\">All</button>\n  <button class=\"gal-filter-btn\" data-filter=\"themainlodge\">The Main Lodge</button>\n  <button class=\"gal-filter-btn\" data-filter=\"elatravesadolodge\">El Atravesado</button>\n  <button class=\"gal-filter-btn\" data-filter=\"rivercamps\">River Camps</button>\n</div>\n<div class=\"gal-grid\">\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/food01/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/food02/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/food03/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/food04/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/food05/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/food06/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/food07/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/food08/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/food09/800/600\" alt=\"\" loading=\"lazy\"></div>\n</div>"
+                  },
+                  "elements": []
+                }
+              ]
+            },
+
+            {
+              "id": "gg_fish",
+              "elType": "container",
+              "isInner": true,
+              "settings": {
+                "_element_id": "gal-fishing",
+                "_css_classes": "gal-section",
+                "flex_direction": "column",
+                "width": { "unit": "%", "size": 100, "sizes": [] },
+                "flex_gap": { "unit": "px", "size": 16, "isLinked": true }
+              },
+              "elements": [
+                {
+                  "id": "gg_fish_ti",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Fishing Gallery",
+                    "header_size": "h2",
+                    "title_color": "#0D1F3C",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Playfair Display",
+                    "typography_font_size": { "unit": "rem", "size": 1.9, "sizes": [] },
+                    "typography_font_weight": "400"
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gg_fish_tx",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "<p>Patagonia's wild brown and rainbow trout, captured in their natural habitat. These are the waters that define us.</p>",
+                    "text_color": "#6B7A8D",
+                    "typography_typography": "custom",
+                    "typography_font_family": "Bricolage Grotesque",
+                    "typography_font_size": { "unit": "rem", "size": 0.9, "sizes": [] },
+                    "typography_line_height": { "unit": "em", "size": 1.7, "sizes": [] }
+                  },
+                  "elements": []
+                },
+                {
+                  "id": "gg_fish_grid",
+                  "elType": "widget",
+                  "widgetType": "html",
+                  "settings": {
+                    "html": "<div class=\"gal-filter-bar\">\n  <button class=\"gal-filter-btn active\" data-filter=\"all\">All</button>\n  <button class=\"gal-filter-btn\" data-filter=\"themainlodge\">The Main Lodge</button>\n  <button class=\"gal-filter-btn\" data-filter=\"elatravesadolodge\">El Atravesado</button>\n  <button class=\"gal-filter-btn\" data-filter=\"rivercamps\">River Camps</button>\n</div>\n<div class=\"gal-grid\">\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/fish01/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/fish02/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/fish03/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/fish04/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/fish05/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/fish06/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"themainlodge\"><img src=\"https://picsum.photos/seed/fish07/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"elatravesadolodge\"><img src=\"https://picsum.photos/seed/fish08/800/600\" alt=\"\" loading=\"lazy\"></div>\n  <div class=\"gal-item\" data-filter=\"rivercamps\"><img src=\"https://picsum.photos/seed/fish09/800/600\" alt=\"\" loading=\"lazy\"></div>\n</div>"
+                  },
+                  "elements": []
+                }
+              ]
+            }
+
+          ]
+        }
+      ]
+    }
+
+  ],
+  "page_settings": {}
+}
