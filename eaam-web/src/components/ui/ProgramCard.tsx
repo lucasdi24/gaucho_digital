@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { InquiryButton } from "@/components/contact/InquiryButton";
 
 interface ProgramCardProps {
   title: string;
@@ -22,7 +23,7 @@ export function ProgramCard({
 }: ProgramCardProps) {
   return (
     <div className={`flex flex-col group ${offset ? "md:mt-12" : ""}`}>
-      <div className="relative rounded-xl overflow-hidden mb-8 aspect-[16/10] bg-surface-container-high shadow-lg transition-transform duration-500 group-hover:-translate-y-2">
+      <div className="relative rounded-xl overflow-hidden mb-5 md:mb-8 aspect-[16/10] bg-surface-container-high shadow-lg transition-transform duration-500 group-hover:-translate-y-2">
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -41,7 +42,7 @@ export function ProgramCard({
         </div>
       </div>
       <div className="px-2">
-        <h3 className="text-3xl font-extrabold text-on-surface mb-6 group-hover:text-mountain-orange transition-colors font-[family-name:var(--font-headline)]">
+        <h3 className="text-2xl md:text-3xl font-extrabold text-on-surface mb-4 md:mb-6 group-hover:text-mountain-orange transition-colors font-[family-name:var(--font-headline)]">
           {title}
         </h3>
         <div className="flex gap-4">
@@ -51,12 +52,13 @@ export function ProgramCard({
           >
             Más información
           </Link>
-          <Link
-            href="#"
-            className="flex-1 py-3 px-6 rounded-lg bg-mountain-orange text-white font-bold text-sm text-center shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+          <InquiryButton
+            intent="consulta"
+            subject={title}
+            className="flex-1 py-3 px-6 rounded-lg bg-mountain-orange text-white font-bold text-sm text-center shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer"
           >
             Consultar
-          </Link>
+          </InquiryButton>
         </div>
       </div>
     </div>

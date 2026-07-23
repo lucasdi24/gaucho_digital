@@ -4,16 +4,16 @@ import Link from "next/link";
 
 const SLIDES = [
   {
-    bg: "https://eeaam.gaucho.digital/wp-content/uploads/slider/cache/9f0162f421f8933a48685a467612f61c/IMG_2500.jpg",
+    bg: "/home/carousel-becas.jpg",
     heading: "Becas",
     subtext: "Becas Para Estudiantes",
     btn: { label: "Leer más", href: "/contacto" },
   },
   {
     bg: "https://eeaam.gaucho.digital/wp-content/uploads/slider/cache/f7e8688c5a32ec7c7634c32a38f39d75/IMG-20181201-WA0029.jpg",
-    heading: "Estudia",
+    heading: "Estudiá",
     subtext: "Desde cualquier parte del país",
-    btn: { label: "Contáctate con nosotros", href: "/contacto" },
+    btn: { label: "Contactate con nosotros", href: "/contacto" },
   },
   {
     bg: "https://eeaam.gaucho.digital/wp-content/uploads/slider/cache/99b7ffbce84f89b00d7ebcf94400f89c/FOT_8411-scaled.jpg",

@@ -1,18 +1,19 @@
 import Link from "next/link";
+import { InstitutionalLogos } from "@/components/layout/InstitutionalLogos";
+import { NewsletterForm } from "@/components/layout/NewsletterForm";
+import { FOOTER_SOCIAL_LINKS, WHATSAPP_DISPLAY } from "@/lib/siteLinks";
 
 export function Footer() {
   return (
     <footer className="relative w-full bg-institutional-blue text-white">
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-12 pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10">
           {/* Branding */}
           <div className="lg:col-span-4 space-y-8">
             <div className="space-y-4">
-              <h2 className="text-3xl font-black tracking-tighter font-[family-name:var(--font-headline)] flex items-center">
-                <span className="text-mountain-orange mr-2">▲</span>EAAM
-              </h2>
+              <InstitutionalLogos variant="footer" />
               <p className="text-slate-300 text-lg font-light leading-relaxed max-w-sm">
-                Escuela Argentina de Artes y Oficios de la Montaña.{" "}
+                Escuela Argentina de Actividades de Montaña.{" "}
                 <br />
                 <span className="font-semibold text-white">
                   Excelencia técnica en terrenos desafiantes.
@@ -24,10 +25,13 @@ export function Footer() {
                 Seguinos
               </span>
               <div className="flex space-x-5">
-                {["social_leaderboard", "photo_camera", "play_circle"].map((icon) => (
+                {FOOTER_SOCIAL_LINKS.map(({ id, icon, href, label }) => (
                   <a
-                    key={icon}
-                    href="#"
+                    key={id}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
                     className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-mountain-orange transition-all duration-300"
                   >
                     <span className="material-symbols-outlined text-xl">{icon}</span>
@@ -44,10 +48,12 @@ export function Footer() {
                 Institucional
               </h4>
               <nav className="flex flex-col space-y-3">
-                <Link href="/nosotros" className="text-slate-300 hover:text-white transition-colors">Sobre Nosotros</Link>
+                <Link href="/nosotros" className="text-slate-300 hover:text-white transition-colors">Nosotros</Link>
+                <Link href="/nosotros#vision-de-la-escuela" className="text-slate-300 hover:text-white transition-colors pl-3">La escuela</Link>
+                <Link href="/profesores" className="text-slate-300 hover:text-white transition-colors pl-3">Profesores</Link>
+                <Link href="/egresados" className="text-slate-300 hover:text-white transition-colors pl-3">Egresados</Link>
                 <Link href="/carreras" className="text-slate-300 hover:text-white transition-colors">Carreras</Link>
                 <Link href="/cursos" className="text-slate-300 hover:text-white transition-colors">Cursos</Link>
-                <Link href="/profesores" className="text-slate-300 hover:text-white transition-colors">Profesores</Link>
               </nav>
             </div>
             <div className="space-y-6">
@@ -55,10 +61,10 @@ export function Footer() {
                 Alumnos
               </h4>
               <nav className="flex flex-col space-y-3">
-                <Link href="/egresados" className="text-slate-300 hover:text-white transition-colors">Egresados</Link>
                 <Link href="/beneficios" className="text-slate-300 hover:text-white transition-colors">Beneficios</Link>
                 <Link href="#" className="text-slate-300 hover:text-white transition-colors">Reglamento</Link>
-                <Link href="#" className="text-slate-300 hover:text-white transition-colors">Contacto</Link>
+                <Link href="/contacto" className="text-slate-300 hover:text-white transition-colors">Contacto</Link>
+                <Link href="/faq" className="text-slate-300 hover:text-white transition-colors">Preguntas frecuentes</Link>
               </nav>
             </div>
           </div>
@@ -73,19 +79,7 @@ export function Footer() {
                 Recibí novedades sobre expediciones y nuevas cohortes.
               </p>
             </div>
-            <form className="flex flex-col space-y-3">
-              <input
-                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-mountain-orange focus:border-transparent outline-none transition-all placeholder:text-slate-500"
-                placeholder="Tu email"
-                type="email"
-              />
-              <button
-                type="submit"
-                className="w-full bg-mountain-orange hover:bg-[#d16c34] text-white font-bold py-3 rounded-lg transition-colors font-[family-name:var(--font-headline)] text-sm uppercase tracking-wider"
-              >
-                Suscribirse
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
 
@@ -95,7 +89,7 @@ export function Footer() {
             { icon: "location_on", label: "Ubicación", value: "Avda Olazábal 5151, CABA" },
             { icon: "call", label: "Llamanos", value: "011 5120-6883" },
             { icon: "mail", label: "Email", value: "info@eaam.com.ar" },
-            { icon: "chat", label: "Whatsapp", value: "011 5852-9787" },
+            { icon: "chat", label: "Whatsapp", value: WHATSAPP_DISPLAY },
           ].map((item) => (
             <div key={item.icon} className="flex items-center space-x-4 group">
               <div className="w-12 h-12 shrink-0 bg-white/5 rounded-lg flex items-center justify-center group-hover:bg-mountain-orange/20 transition-colors">
@@ -118,7 +112,7 @@ export function Footer() {
               Incorporada a la enseñanza oficial A-1530
             </div>
             <p className="text-slate-500 text-[11px]">
-              © 2024 Escuela Argentina de Artes y Oficios de la Montaña. Todos
+              © 2024 Escuela Argentina de Actividades de Montaña. Todos
               los derechos reservados.
             </p>
           </div>

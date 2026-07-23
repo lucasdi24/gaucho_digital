@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { INSTITUTIONAL_LOGO_PATHS, eaamLogoClass } from "@/lib/institutionalLogoSizes";
 import { login } from "../actions";
 
 const initialState = { ok: false, error: undefined as string | undefined };
@@ -18,10 +19,13 @@ export default function LoginPage() {
     <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <div className="text-3xl font-black text-white mb-1">
-            <span className="text-[#E87C3E]">▲</span> EAAM
-          </div>
-          <p className="text-slate-500 text-sm mt-2">Panel de administración</p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={INSTITUTIONAL_LOGO_PATHS.eaam}
+            alt="EAAM — Escuela Argentina de Actividades de Montaña"
+            className={`${eaamLogoClass("adminLogin")} mx-auto mb-3`}
+          />
+          <p className="text-slate-500 text-sm">Panel de administración</p>
         </div>
 
         <form action={formAction} className="space-y-4">

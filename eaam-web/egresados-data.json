@@ -1,37 +1,149 @@
 [
   {
-    "id": "sofia-herrera",
-    "name": "Sofía Herrera",
+    "id": "julieta-pickering",
+    "name": "Julieta Pickering",
     "career": "Guía de Montaña",
-    "year": "2021",
-    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuC77W3u6fJgGU_9l29x4Rv22HCDIwh00_5lCEoOCUTVGrYorDhnbuUY81YMGGIE-b6lY8KZfIO7nAfzzySfqRbQHYMinnYwarYDyIHpKtX5-CA0kwyrUefQOmvhMlgaPqWFE8xm_FT-93WkfXrtbzGGSZ6lz2n07eBl-G5FDbScC6zi1swAYTwdznfzd_vWkIqBZ_ti_ZdDp1eoI5EVusyoYfIAsWjfn9sbzzoTGgwsu1yleBswYK-b4Xc2Sk8KA2QP3LFEh0qt"
+    "year": "",
+    "imageSrc": "/egresados/julieta-pickering.webp"
   },
   {
-    "id": "julian-romero",
-    "name": "Julián Romero",
-    "career": "Guía de Trekking",
-    "year": "2022",
-    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuDhhWEVSgqqajymG73-7cJarTmA1jlAureYX1doCltXLQubxP0XGix-bfEW0do1kOieYa-xRtH3RJ_A0ZpcGMSU7WyIGQPOieYqD62JjhDkTmQkuIwO69jgA7-KT0-WiUg5tHTivRB0dxVtMUrw9WZtJCsuSy0ySRfcvqxm6F8x3YPDOYHmRPLILGCNWjyl5xlIgFCMtI8ZPSoxWVC_xuKqHoXAhr8yRgZo2HZnvkvoFDz2b8ZLOw2piW8V2zT8170bkB8-Tzrm"
-  },
-  {
-    "id": "valentina-diaz",
-    "name": "Valentina Díaz",
+    "id": "claudio-javier-erlich",
+    "name": "Claudio Javier Erlich",
     "career": "Guía de Montaña",
-    "year": "2020",
-    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuCjb6SFR8yw9rZiaFKB1H58CwUMes-zeJ3SU_biLxnfblLcG5tUZF2G50JQCYqDGvNvrJLT3o5buEyuhrJq_VYUP-1gz7WZwlPbpSQ25VXzQ7MHLUZpR7Zod4H3g4q1mB3NepawNG5RRwx1XvjLWFbPoK3wkFkhF_pxXAzAc_tCTGqXSMwWJ1VWuCzbacyLuGbhXJxWJbxLHRbXxkdVcRPOKvWxV58NSS8Puxo_-3WGL22JWbEjawuO_8taisGaWQDAoyO773SXK"
+    "year": "",
+    "imageSrc": "/egresados/claudio-javier-erlich.webp"
   },
   {
-    "id": "lucas-fernandez",
-    "name": "Lucas Fernández",
-    "career": "Guía de Trekking Presencial",
-    "year": "2023",
-    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuAJw7eqAf3cPF7k7YyB5qoQFQf4s79SaWtRSeY29SPvlBI8c0FKxMr5zSjEXbVjEVw84-GAlIf2NN3Jyh8IlZFSRJrYOFmHhVzi11G1HD_AnCyVi5b3d7caSyU--hP3tXggOPVsWuUgYCGhLLF6m-OpnPR3xO-tDrsLBiQ7Abm2TXm7KInI8FojXB9ohcEc0FKsqQQAv2fO-BZdrc-TzM5tXMlt_-HQA2sx4DCUHRCjxDzqSbRoFHaQEOlMdX_nfwbp"
+    "id": "silvana-celeste-lopez",
+    "name": "Silvana Celeste Lopez",
+    "career": "Guía de Trekking y Turismo Aventura",
+    "year": "",
+    "imageSrc": "/egresados/silvana-celeste-lopez.webp"
   },
   {
-    "id": "camila-torres",
-    "name": "Camila Torres",
-    "career": "Guía de Montaña en Altitud",
-    "year": "2019",
-    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuCSt2zzwYrLmBayq_aTjFT8_oUUUHacJvZ84j8LoMvCweF0p30bQzO26i1F4H4YaXxsyhOVnXcn4jlgdUE33DWW27rs6qvHz9XEfOeSJmMgr2kxzy52ocQhfgyhv_t4zEoyMbZD77CawYNgxozKC1SgLwiMGRZh8bDr0KC6gV9oIA2oX54YVr2XagNYWZLQw8vBwSqNIXetK4em_HlUKbVPDkmSRhKzZBVeDEPpeMbKroJbhLWaX1EEMazeIO8eqvu8kWOculHH"
+    "id": "juan-ponce-iturri",
+    "name": "Juan Ponce Iturri",
+    "career": "Guía de Montaña",
+    "year": "",
+    "imageSrc": "/egresados/juan-ponce-iturri.webp"
+  },
+  {
+    "id": "santiago-olmos",
+    "name": "Santiago Olmos",
+    "career": "Guía de Montaña",
+    "year": "",
+    "imageSrc": "/egresados/santiago-olmos.webp"
+  },
+  {
+    "id": "lucas-navarro",
+    "name": "Lucas Navarro",
+    "career": "Guía de Trekking y Turismo Aventura",
+    "year": "",
+    "imageSrc": "/egresados/lucas-navarro.webp"
+  },
+  {
+    "id": "ian-silberstein",
+    "name": "Ian Silberstein",
+    "career": "Guía de Montaña",
+    "year": "",
+    "imageSrc": "/egresados/ian-silberstein.webp"
+  },
+  {
+    "id": "muriel-mumi-ribeiro",
+    "name": "Muriel \"Mumi\" Ribeiro",
+    "career": "Guía de Montaña",
+    "year": "",
+    "imageSrc": "/egresados/muriel-mumi-ribeiro.webp"
+  },
+  {
+    "id": "juan-manuel-bachi-fabbri",
+    "name": "Juan Manuel \"Bachi\" Fabbri",
+    "career": "Guía de Montaña",
+    "year": "",
+    "imageSrc": "/egresados/juan-manuel-bachi-fabbri.webp"
+  },
+  {
+    "id": "claudio-rodriguez",
+    "name": "Claudio Rodríguez",
+    "career": "Guía de Trekking y Turismo Aventura",
+    "year": "",
+    "imageSrc": "/egresados/claudio-rodriguez.webp"
+  },
+  {
+    "id": "maximo-termeulen",
+    "name": "Máximo Termeulen",
+    "career": "Guía de Trekking y Turismo Aventura",
+    "year": "",
+    "imageSrc": "/egresados/maximo-termeulen.webp"
+  },
+  {
+    "id": "anibal-mendez",
+    "name": "Aníbal Méndez",
+    "career": "Guía de Trekking y Turismo Aventura",
+    "year": "",
+    "imageSrc": "/egresados/anibal-mendez.webp"
+  },
+  {
+    "id": "diego-dominguez",
+    "name": "Diego Domínguez",
+    "career": "Guía de Trekking y Turismo Aventura",
+    "year": "",
+    "imageSrc": "/egresados/diego-dominguez.webp"
+  },
+  {
+    "id": "maria-belen-anauati",
+    "name": "María Belén Anauati",
+    "career": "Guía de Trekking y Turismo Aventura",
+    "year": "",
+    "imageSrc": "/egresados/maria-belen-anauati.webp"
+  },
+  {
+    "id": "andres-gavilan",
+    "name": "Andres Gavilan",
+    "career": "Guía de Montaña y Guía de Turismo Aventura",
+    "year": "",
+    "imageSrc": "/egresados/andres-gavilan.webp"
+  },
+  {
+    "id": "lucas-llohis",
+    "name": "Lucas Llohis",
+    "career": "Guía de Montaña",
+    "year": "",
+    "imageSrc": "/egresados/lucas-llohis.webp"
+  },
+  {
+    "id": "luca-benini",
+    "name": "Luca Benini",
+    "career": "Guía de Montaña",
+    "year": "",
+    "imageSrc": "/egresados/luca-benini.webp"
+  },
+  {
+    "id": "andres-castro",
+    "name": "Andres Castro",
+    "career": "Guía de Trekking y Turismo Aventura",
+    "year": "",
+    "imageSrc": "/egresados/andres-castro.webp"
+  },
+  {
+    "id": "juan-marcelo-cucu-baiardi",
+    "name": "Juan Marcelo \"Cucu\" Baiardi",
+    "career": "Guía de Trekking y Turismo Aventura",
+    "year": "",
+    "imageSrc": "/egresados/juan-marcelo-cucu-baiardi.webp"
+  },
+  {
+    "id": "gabriel-tano-benenati",
+    "name": "Gabriel Tano Benenati",
+    "career": "Guía de Trekking y Turismo Aventura",
+    "year": "",
+    "imageSrc": "/egresados/gabriel-tano-benenati.webp"
+  },
+  {
+    "id": "pablo-bocciardo",
+    "name": "Pablo Bocciardo",
+    "career": "Guía de Montaña",
+    "year": "",
+    "imageSrc": "/egresados/pablo-bocciardo.webp"
   }
 ]
