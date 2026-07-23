@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { readPostitulos } from "@/lib/postitulosData";
+import { InquiryButton } from "@/components/contact/InquiryButton";
 
 export const dynamic = "force-dynamic";
 
@@ -151,34 +152,35 @@ export default async function PostituloDetailPage({ params }: Props) {
 
               {!isProximamente && (
                 <div className="pt-4 space-y-3 border-t border-outline-variant/20">
-                  <a
-                    href="mailto:secretaria@eaam.com.ar"
-                    className="flex items-center justify-center gap-2 w-full border border-secondary/30 text-secondary py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:bg-secondary/5 transition-colors"
+                  <InquiryButton
+                    intent="consulta"
+                    subject={p.title}
+                    icon="chat"
+                    className="flex items-center justify-center gap-2 w-full border border-secondary/30 text-secondary py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:bg-secondary/5 transition-colors cursor-pointer"
                   >
-                    <span className="material-symbols-outlined text-sm">mail</span>
                     Consultar
-                  </a>
-                  <a
-                    href="https://wa.me/5491100000000"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full bg-on-primary-container text-white py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:brightness-110 transition-all"
+                  </InquiryButton>
+                  <InquiryButton
+                    intent="inscripcion"
+                    subject={p.title}
+                    icon="assignment_turned_in"
+                    className="flex items-center justify-center gap-2 w-full bg-on-primary-container text-white py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:brightness-110 transition-all cursor-pointer"
                   >
-                    <span className="material-symbols-outlined text-sm">assignment_turned_in</span>
                     Inscribite ahora
-                  </a>
+                  </InquiryButton>
                 </div>
               )}
 
               {isProximamente && (
                 <div className="pt-4 border-t border-outline-variant/20">
-                  <a
-                    href="mailto:secretaria@eaam.com.ar"
-                    className="flex items-center justify-center gap-2 w-full bg-surface-container-lowest text-on-surface-variant py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:bg-surface-container transition-colors"
+                  <InquiryButton
+                    intent="novedades"
+                    subject={p.title}
+                    icon="notifications"
+                    className="flex items-center justify-center gap-2 w-full bg-surface-container-lowest text-on-surface-variant py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:bg-surface-container transition-colors cursor-pointer"
                   >
-                    <span className="material-symbols-outlined text-sm">mail</span>
                     Recibir novedades
-                  </a>
+                  </InquiryButton>
                 </div>
               )}
             </div>

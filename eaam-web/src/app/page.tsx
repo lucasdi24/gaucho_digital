@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { readImageConfig } from "@/lib/imageConfig";
+import { YOUTUBE_CHANNEL_URL } from "@/lib/siteLinks";
+import { ProfesoresStaffPreview } from "@/components/ProfesoresStaffPreview";
 import HeroCarousel from "./HeroCarousel";
+import OpenEnrollmentSection from "./OpenEnrollmentSection";
 
 export const dynamic = "force-dynamic";
 
@@ -14,8 +17,7 @@ const DEFAULTS = {
     "https://lh3.googleusercontent.com/aida-public/AB6AXuCSt2zzwYrLmBayq_aTjFT8_oUUUHacJvZ84j8LoMvCweF0p30bQzO26i1F4H4YaXxsyhOVnXcn4jlgdUE33DWW27rs6qvHz9XEfOeSJmMgr2kxzy52ocQhfgyhv_t4zEoyMbZD77CawYNgxozKC1SgLwiMGRZh8bDr0KC6gV9oIA2oX54YVr2XagNYWZLQw8vBwSqNIXetK4em_HlUKbVPDkmSRhKzZBVeDEPpeMbKroJbhLWaX1EEMazeIO8eqvu8kWOculHH",
   colPostitulos:
     "https://lh3.googleusercontent.com/aida-public/AB6AXuBtQAEAeKwSfIZjA8ukYft5HsqD9Rrd2h0vowjvst8Okkb3ZzX6icB6eL_FZj7VGDHPvuH3naqRr4Zd_ba_FCwNkla0PdkyG1JZmu0PcDZRvTzsQQANtqDCxzytuWF9UD4g1uKuXFcwtTqvlr-BY3B8Q4s1PkunkKrbLuekx_LmLWGYMROQOA3HA6zEeKwzbIw1DVxrBgMTgwVoGf6qr5-csNJLGX_hKCC8wtl_q1IwLIazApUP9a_sfhDoXPq1IKtLZFLYpDFS",
-  colCursos:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuAjGCPV3OcuG633-8G9XHeXtlM8UIHwO7unbmflUh-ySLJxIN1QeJ6XbKv3mgCnaKpNlzlqMIFHseBKVJ2HPwzExs_UiwSqNC3FSivbDiteXH1ooTEF0Yk9DSk8HHRLO4lXbUSwj-U7yLhZilMn1867XN5BnphC6VjIx7IaM27EZ9xF5h3TllD81149Hd6nC5c_Mv3ZFBN15w-OXL4gbtyL5c0siStQSvBI2nNxdcp6YYyyMDx9j3GLTy_-w4N7LfbCFIxOOQXQ",
+  colCursos: "/home/col-cursos.jpg",
 };
 
 export default async function HomePage() {
@@ -24,83 +26,11 @@ export default async function HomePage() {
   const colCarrerasSrc = cfg["col-carreras"] ?? DEFAULTS.colCarreras;
   const colPostitutosSrc = cfg["col-postitulos"] ?? DEFAULTS.colPostitulos;
   const colCursosSrc = cfg["col-cursos"] ?? DEFAULTS.colCursos;
-  const profImgs = {
-    "Pablo González": cfg["prof-pablo-gonzalez"] ?? "https://lh3.googleusercontent.com/aida-public/AB6AXuDhhWEVSgqqajymG73-7cJarTmA1jlAureYX1doCltXLQubxP0XGix-bfEW0do1kOieYa-xRtH3RJ_A0ZpcGMSU7WyIGQPOieYqD62JjhDkTmQkuIwO69jgA7-KT0-WiUg5tHTivRB0dxVtMUrw9WZtJCsuSy0ySRfcvqxm6F8x3YPDOYHmRPLILGCNWjyl5xlIgFCMtI8ZPSoxWVC_xuKqHoXAhr8yRgZo2HZnvkvoFDz2b8ZLOw2piW8V2zT8170bkB8-Tzrm",
-    "Lucía Martínez": cfg["prof-lucia-martinez"] ?? "https://lh3.googleusercontent.com/aida-public/AB6AXuC77W3u6fJgGU_9l29x4Rv22HCDIwh00_5lCEoOCUTVGrYorDhnbuUY81YMGGIE-b6lY8KZfIO7nAfzzySfqRbQHYMinnYwarYDyIHpKtX5-CA0kwyrUefQOmvhMlgaPqWFE8xm_FT-93WkfXrtbzGGSZ6lz2n07eBl-G5FDbScC6zi1swAYTwdznfzd_vWkIqBZ_ti_ZdDp1eoI5EVusyoYfIAsWjfn9sbzzoTGgwsu1yleBswYK-b4Xc2Sk8KA2QP3LFEh0qt",
-    "Andrés Riva": cfg["prof-andres-riva"] ?? "https://lh3.googleusercontent.com/aida-public/AB6AXuAJw7eqAf3cPF7k7YyB5qoQFQf4s79SaWtRSeY29SPvlBI8c0FKxMr5zSjEXbVjEVw84-GAlIf2NN3Jyh8IlZFSRJrYOFmHhVzi11G1HD_AnCyVi5b3d7caSyU--hP3tXggOPVsWuUgYCGhLLF6m-OpnPR3xO-tDrsLBiQ7Abm2TXm7KInI8FojXB9ohcEc0FKsqQQAv2fO-BZdrc-TzM5tXMlt_-HQA2sx4DCUHRCjxDzqSbRoFHaQEOlMdX_nfwbp",
-    "Martín Castro": cfg["prof-martin-castro"] ?? "https://lh3.googleusercontent.com/aida-public/AB6AXuCjb6SFR8yw9rZiaFKB1H58CwUMes-zeJ3SU_biLxnfblLcG5tUZF2G50JQCYqDGvNvrJLT3o5buEyuhrJq_VYUP-1gz7WZwlPbpSQ25VXzQ7MHLUZpR7Zod4H3g4q1mB3NepawNG5RRwx1XvjLWFbPoK3wkFkhF_pxXAzAc_tCTGqXSMwWJ1VWuCzbacyLuGbhXJxWJbxLHRbXxkdVcRPOKvWxV58NSS8Puxo_-3WGL22JWbEjawuO_8taisGaWQDAoyO773SXK",
-  };
   return (
     <>
       <HeroCarousel />
 
-      {/* Open Enrollment */}
-      <section className="py-14 md:py-32 px-6 md:px-12 bg-surface">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between md:items-end mb-8 md:mb-16 gap-5 md:gap-8">
-            <div>
-              <span className="font-[family-name:var(--font-headline)] font-bold text-on-primary-container tracking-widest uppercase text-sm block mb-2">
-                Oferta Académica
-              </span>
-              <h2 className="font-[family-name:var(--font-headline)] text-4xl md:text-5xl font-black text-secondary">
-                Inscripciones abiertas
-              </h2>
-            </div>
-            <div className="flex gap-1 p-1 bg-surface-container rounded-full overflow-x-auto scrollbar-none">
-              {["Todos", "Carreras", "Cursos", "Postítulos"].map((tab, i) => (
-                <button
-                  key={tab}
-                  className={`px-4 py-2 rounded-full font-[family-name:var(--font-headline)] font-semibold text-sm transition-colors whitespace-nowrap flex-shrink-0 ${
-                    i === 0
-                      ? "bg-white text-secondary shadow-sm font-bold"
-                      : "text-on-surface-variant hover:text-secondary"
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
-            {[
-              { type: "Carrera", title: "Guía de Montaña – Mixto (Todo el país)", duration: "3 Años", modality: "Mixto", href: "/carreras" },
-              { type: "Postítulo", title: "Postítulo en Actividades y Deportes en la Naturaleza – Mixto (Todo el País)", duration: "6 Meses", modality: "Mixto", href: "/postitulos" },
-              { type: "Curso", title: "Curso Integral de Montañismo y Trekking SEMI-PRESENCIAL (todo el país)", duration: "80 Hs", modality: "Semi-Presencial", href: "/cursos" },
-              { type: "Curso", title: "Curso Integral de Montañismo y Trekking PRESENCIAL", duration: "80 Hs", modality: "Presencial", href: "/cursos" },
-              { type: "Curso", title: "Iniciación al Montañismo PRESENCIAL", duration: "40 Hs", modality: "Presencial", href: "/cursos" },
-              { type: "Curso", title: "Iniciación al Montañismo SEMI-PRESENCIAL", duration: "40 Hs", modality: "Semi-Presencial", href: "/cursos" },
-            ].map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="bg-surface-container-lowest p-5 md:p-8 rounded-xl group hover:shadow-2xl transition-all duration-500 flex flex-col justify-between cursor-pointer"
-              >
-                <div>
-                  <div className="flex justify-between items-start mb-6">
-                    <span className="bg-surface-container-high px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest text-secondary">
-                      {item.type}
-                    </span>
-                    <span className="material-symbols-outlined text-outline group-hover:text-on-primary-container transition-colors">
-                      arrow_outward
-                    </span>
-                  </div>
-                  <h4 className="text-2xl font-[family-name:var(--font-headline)] font-bold text-primary mb-4 leading-tight">
-                    {item.title}
-                  </h4>
-                </div>
-                <div className="flex items-center gap-4 text-xs font-bold text-secondary uppercase tracking-widest mt-4">
-                  <span className="flex items-center gap-1">
-                    <span className="material-symbols-outlined text-sm">schedule</span> {item.duration}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <span className="material-symbols-outlined text-sm">location_on</span> {item.modality}
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <OpenEnrollmentSection />
 
       {/* Institutional Claim */}
       <section className="relative py-20 md:py-48 overflow-hidden">
@@ -180,25 +110,7 @@ export default async function HomePage() {
           <h2 className="font-[family-name:var(--font-headline)] text-3xl md:text-4xl font-black text-secondary mb-4">Conocé a nuestro staff de profesores</h2>
           <p className="text-on-surface-variant">Guías UIAGM y profesionales con décadas de experiencia internacional.</p>
         </div>
-        <div className="max-w-[1440px] mx-auto flex flex-wrap justify-center gap-8 md:gap-12">
-          {[
-            { name: "Pablo González", role: "Guía UIAGM", img: profImgs["Pablo González"] },
-            { name: "Lucía Martínez", role: "Especialista en Rescate", img: profImgs["Lucía Martínez"] },
-            { name: "Andrés Riva", role: "Medicina de Montaña", img: profImgs["Andrés Riva"] },
-            { name: "Martín Castro", role: "Cartografía Avanzada", img: profImgs["Martín Castro"] },
-          ].map((prof) => (
-            <div key={prof.name} className="flex flex-col items-center group">
-              <div className="w-28 h-28 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-surface-container-high group-hover:border-on-primary-container transition-colors mb-4 md:mb-6">
-                <Image src={prof.img} alt={prof.name} width={160} height={160} className="w-full h-full object-cover" />
-              </div>
-              <h4 className="font-[family-name:var(--font-headline)] font-bold text-primary text-base md:text-xl text-center">{prof.name}</h4>
-              <p className="text-xs md:text-sm text-on-surface-variant font-bold uppercase tracking-widest mt-1 text-center">{prof.role}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-10 md:mt-16 text-center">
-          <Link href="/profesores" className="bg-surface-container-high text-secondary px-8 py-3 rounded-lg font-bold hover:bg-secondary hover:text-white transition-all">Ver más</Link>
-        </div>
+        <ProfesoresStaffPreview variant="circular" />
       </section>
 
       {/* YouTube */}
@@ -210,7 +122,7 @@ export default async function HomePage() {
             </h2>
           </div>
           <Link
-            href="https://www.youtube.com/@eaam"
+            href={YOUTUBE_CHANNEL_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-all shadow-lg"

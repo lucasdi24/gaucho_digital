@@ -1,1 +1,10 @@
-{}
+{
+  "hero-carreras": "/carreras/hero.jpg",
+  "hero-cursos": "/cursos/hero.jpg",
+  "col-cursos": "/home/col-cursos.jpg",
+  "hero-nosotros": "/nosotros/hero.jpg",
+  "hero-profesores": "/profesores/hero.png",
+  "hero-egresados": "/egresados/hero.png",
+  "hero-beneficios": "/beneficios/hero.png",
+  "hero-postitulos": "/postitulos/hero.png"
+}

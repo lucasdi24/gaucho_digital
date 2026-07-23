@@ -81,6 +81,115 @@ export async function removeImage(key: string): Promise<void> {
   revalidatePath("/", "layout");
 }
 
+type EntityImageType = "carrera" | "curso" | "postitulo" | "profesor" | "egresado";
+
+async function writeEntityImageFile(
+  subdir: string,
+  id: string,
+  file: File
+): Promise<string> {
+  const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
+  const filename = `${id}.${ext}`;
+  const uploadDir = path.join(process.cwd(), "public", "uploads", subdir);
+  await mkdir(uploadDir, { recursive: true });
+  const bytes = await file.arrayBuffer();
+  await writeFile(path.join(uploadDir, filename), Buffer.from(bytes));
+  return `/uploads/${subdir}/${filename}`;
+}
+
+export async function uploadEntityImage(formData: FormData): Promise<{ url: string }> {
+  if (!(await isAuthed())) throw new Error("Unauthorized");
+
+  const entity = formData.get("entity") as EntityImageType;
+  const id = (formData.get("id") as string)?.trim();
+  const file = formData.get("file") as File;
+
+  if (!entity || !id || !file || file.size === 0) throw new Error("Datos incompletos");
+
+  let url = "";
+
+  switch (entity) {
+    case "carrera": {
+      const list = readCarreras();
+      const idx = list.findIndex((c) => c.id === id);
+      if (idx < 0) throw new Error("Carrera no encontrada");
+      url = await writeEntityImageFile("carreras", id, file);
+      list[idx] = { ...list[idx], imageSrc: url };
+      writeCarreras(list);
+      revalidatePath("/carreras");
+      revalidatePath(`/carreras/${list[idx].slug}`);
+      revalidatePath("/admin/carreras");
+      break;
+    }
+    case "curso": {
+      const list = readCursos();
+      const idx = list.findIndex((c) => c.id === id);
+      if (idx < 0) throw new Error("Curso no encontrado");
+      url = await writeEntityImageFile("cursos", id, file);
+      list[idx] = { ...list[idx], imageSrc: url };
+      writeCursos(list);
+      revalidatePath("/cursos");
+      revalidatePath(`/cursos/${list[idx].slug}`);
+      revalidatePath("/admin/cursos");
+      break;
+    }
+    case "postitulo": {
+      const list = readPostitulos();
+      const idx = list.findIndex((p) => p.id === id);
+      if (idx < 0) throw new Error("Postítulo no encontrado");
+      url = await writeEntityImageFile("postitulos", id, file);
+      list[idx] = { ...list[idx], imageSrc: url };
+      writePostitulos(list);
+      revalidatePath("/postitulos");
+      revalidatePath(`/postitulos/${list[idx].slug}`);
+      revalidatePath("/admin/postitulos");
+      break;
+    }
+    case "profesor": {
+      const list = readProfesores();
+      const idx = list.findIndex((p) => p.id === id);
+      if (idx < 0) throw new Error("Profesor no encontrado");
+      const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
+      const uploadsDir = path.join(process.cwd(), "public", "uploads");
+      await mkdir(uploadsDir, { recursive: true });
+      const filename = `prof-${id}.${ext}`;
+      const bytes = await file.arrayBuffer();
+      await writeFile(path.join(uploadsDir, filename), Buffer.from(bytes));
+      url = `/uploads/${filename}`;
+      list[idx] = { ...list[idx], imageSrc: url };
+      writeProfesores(list);
+      revalidatePath("/profesores");
+      revalidatePath("/nosotros");
+      revalidatePath("/admin/profesores");
+      break;
+    }
+    case "egresado": {
+      const list = readEgresados();
+      const idx = list.findIndex((e) => e.id === id);
+      if (idx < 0) throw new Error("Egresado no encontrado");
+      const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
+      const uploadsDir = path.join(process.cwd(), "public", "uploads");
+      await mkdir(uploadsDir, { recursive: true });
+      const filename = `egresado-${id}.${ext}`;
+      const bytes = await file.arrayBuffer();
+      await writeFile(path.join(uploadsDir, filename), Buffer.from(bytes));
+      url = `/uploads/${filename}`;
+      list[idx] = { ...list[idx], imageSrc: url };
+      writeEgresados(list);
+      revalidatePath("/egresados");
+      revalidatePath("/admin/egresados");
+      break;
+    }
+    default:
+      throw new Error("Tipo de entidad inválido");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/", "layout");
+
+  return { url };
+}
+
 // --- Profesores CRUD ---
 
 export async function saveProfesor(formData: FormData): Promise<void> {
@@ -113,6 +222,8 @@ export async function saveProfesor(formData: FormData): Promise<void> {
     list.push({ id, name, role, imageSrc });
   }
   writeProfesores(list);
+  revalidatePath("/");
+  revalidatePath("/nosotros");
   revalidatePath("/profesores");
   revalidatePath("/admin/profesores");
 }
@@ -121,6 +232,8 @@ export async function deleteProfesor(id: string): Promise<void> {
   if (!(await isAuthed())) throw new Error("Unauthorized");
   const list = readProfesores().filter((p) => p.id !== id);
   writeProfesores(list);
+  revalidatePath("/");
+  revalidatePath("/nosotros");
   revalidatePath("/profesores");
   revalidatePath("/admin/profesores");
 }

@@ -2,6 +2,8 @@ import { HeroSection } from "@/components/ui/HeroSection";
 import { ProgramCard } from "@/components/ui/ProgramCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { readCarreras } from "@/lib/carrerasData";
+import { readImageConfig } from "@/lib/imageConfig";
+import { PAGE_HERO_DEFAULTS, pageHeroConfigKey } from "@/lib/pageHeroImages";
 import Image from "next/image";
 
 export const dynamic = "force-dynamic";
@@ -9,6 +11,8 @@ export const metadata = { title: "Carreras" };
 
 export default function CarrerasPage() {
   const carreras = readCarreras().filter((c) => c.visible);
+  const cfg = readImageConfig();
+  const heroSrc = cfg[pageHeroConfigKey("carreras")] ?? PAGE_HERO_DEFAULTS.carreras;
 
   return (
     <>
@@ -16,8 +20,8 @@ export default function CarrerasPage() {
         badge="Academia de Altura"
         title="Carreras"
         subtitle="Formate profesionalmente en lo que más te gusta con el respaldo de la institución líder en montaña."
-        imageSrc="https://lh3.googleusercontent.com/aida-public/AB6AXuDRoUI5VlUeMm0VkSIYCegHc8bniGYNbg3hYkE211t1x9a1i3wsQVzhl9O34tMpcuPh0ZdX4rwrVwFv7H_5Y8ntx9I1emQYPTmpqxJEt3ZOuGwctDlMIzAlJ-gRDOA2oeVw70KN4_mzdsRWkEt5NNtyFdiDakZSyczB13V9QIOswBw5mZ7OlUvk_bMVA1jJ9ChFbVeI_CUfJcZTlVY8kMwNmCPgVCyX8boSNC_En3eCv4me9sRDGg0XdvwG_ytu_xX5WmT9wcJn"
-        imageAlt="Grupo de montañistas ascendiendo una ladera nevada en los Andes"
+        imageSrc={heroSrc}
+        imageAlt="Kayaks en la costa — actividades de montaña y naturaleza EAAM"
       />
 
       <main className="container mx-auto px-6 md:px-12 py-10 md:py-24 -mt-10 md:-mt-20 relative z-20">
@@ -34,7 +38,7 @@ export default function CarrerasPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-12 gap-y-10 md:gap-y-20">
-          {carreras.map((carrera, i) => (
+          {carreras.map((carrera) => (
             <ProgramCard
               key={carrera.id}
               title={carrera.title}
@@ -43,7 +47,6 @@ export default function CarrerasPage() {
               duration={carrera.duracion}
               modality={`${carrera.modalidad} (${carrera.location})`}
               href={`/carreras/${carrera.slug}`}
-              offset={i % 2 === 1}
             />
           ))}
         </div>
@@ -55,16 +58,15 @@ export default function CarrerasPage() {
           <div className="bg-white p-7 md:p-20 rounded-3xl shadow-sm flex flex-col md:flex-row items-center gap-8 md:gap-16 relative">
             <div className="flex-1">
               <h2 className="text-2xl md:text-5xl font-black text-on-surface leading-tight mb-5 md:mb-8 font-[family-name:var(--font-headline)]">
-                Nuestra excelencia académica en la cumbre
+                Nuestra excelencia académica
               </h2>
               <p className="text-on-surface-variant text-base md:text-lg leading-relaxed mb-5 md:mb-8">
-                Contamos con un equipo de docentes certificados internacionalmente por UIAGM y UIMLA. No solo enseñamos técnica, formamos líderes capaces de gestionar riesgos en los entornos más desafiantes del planeta.
+                La excelencia de una escuela se mide por quienes enseñan. En EAAM, nuestros docentes son profesionales titulados con amplia experiencia guiando en diversos ambientes naturales de Argentina y el mundo. Más que transmitir conocimientos técnicos, forman líderes capaces de gestionar riesgos, tomar decisiones y conducir personas con seguridad y profesionalismo en los entornos más desafiantes.
               </p>
               <div className="flex items-center gap-6 md:gap-12">
                 {[
                   { value: "15+", label: "Años de trayectoria" },
-                  { value: "500+", label: "Graduados activos" },
-                  { value: "UIAGM", label: "Certificación" },
+                  { value: "A.P.N.", label: "Reconocidos por Administración de Parques Nacionales" },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
                     <p className="text-4xl font-black text-mountain-orange">{stat.value}</p>

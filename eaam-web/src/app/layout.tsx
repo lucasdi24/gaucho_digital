@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Public_Sans } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { MobileAppNav } from "@/components/layout/MobileAppNav";
+import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import "./globals.css";
 
 const inter = Inter({
@@ -40,8 +42,12 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-[calc(3.75rem+env(safe-area-inset-bottom))] md:pb-0">
+          {children}
+        </main>
         <Footer />
+        <MobileAppNav />
+        <WhatsAppFloat />
       </body>
     </html>
   );

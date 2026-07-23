@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { readCursos } from "@/lib/cursosData";
+import { InquiryButton } from "@/components/contact/InquiryButton";
 
 export const dynamic = "force-dynamic";
 
@@ -61,7 +62,8 @@ export default async function CursoDetailPage({ params }: Props) {
   const curso = cursos.find((c) => c.slug === slug && c.visible);
   if (!curso) notFound();
 
-  const isProximamente = curso.badge === "Próximamente";
+  const isUnavailable =
+    curso.badge === "Próximamente" || curso.badge === "Cerrado";
 
   return (
     <>
@@ -78,13 +80,13 @@ export default async function CursoDetailPage({ params }: Props) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 max-w-[1440px] mx-auto pb-10">
-                <HeroContent curso={{ title: curso.title, badge: curso.badge, icon: curso.icon, modalidad: curso.modalidad }} isProximamente={isProximamente} />
+                <HeroContent curso={{ title: curso.title, badge: curso.badge, icon: curso.icon, modalidad: curso.modalidad }} isUnavailable={isUnavailable} />
               </div>
             </div>
           ) : (
             <div className="bg-gradient-to-br from-stone-900 to-slate-900 px-6 md:px-12 max-w-[1440px] mx-auto py-16">
               <div className="max-w-4xl">
-                <HeroContent curso={{ title: curso.title, badge: curso.badge, icon: curso.icon, modalidad: curso.modalidad }} isProximamente={isProximamente} />
+                <HeroContent curso={{ title: curso.title, badge: curso.badge, icon: curso.icon, modalidad: curso.modalidad }} isUnavailable={isUnavailable} />
               </div>
             </div>
           )}
@@ -234,38 +236,37 @@ export default async function CursoDetailPage({ params }: Props) {
                 <InfoRow icon="person" label="Coordinador" value={curso.coordinador} />
               )}
 
-              {!isProximamente && (
+              {!isUnavailable && (
                 <div className="pt-4 space-y-3 border-t border-outline-variant/20">
-                  <a
-                    href="mailto:secretaria@eaam.com.ar"
-                    className="flex items-center justify-center gap-2 w-full border border-secondary/30 text-secondary py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:bg-secondary/5 transition-colors"
+                  <InquiryButton
+                    intent="consulta"
+                    subject={curso.title}
+                    icon="chat"
+                    className="flex items-center justify-center gap-2 w-full border border-secondary/30 text-secondary py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:bg-secondary/5 transition-colors cursor-pointer"
                   >
-                    <span className="material-symbols-outlined text-sm">mail</span>
                     Consultar
-                  </a>
-                  <a
-                    href="https://wa.me/5491100000000"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full bg-on-primary-container text-white py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:brightness-110 transition-all"
+                  </InquiryButton>
+                  <InquiryButton
+                    intent="inscripcion"
+                    subject={curso.title}
+                    icon="assignment_turned_in"
+                    className="flex items-center justify-center gap-2 w-full bg-on-primary-container text-white py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:brightness-110 transition-all cursor-pointer"
                   >
-                    <span className="material-symbols-outlined text-sm">
-                      assignment_turned_in
-                    </span>
                     Inscribite ahora
-                  </a>
+                  </InquiryButton>
                 </div>
               )}
 
-              {isProximamente && (
+              {isUnavailable && (
                 <div className="pt-4 border-t border-outline-variant/20">
-                  <a
-                    href="mailto:secretaria@eaam.com.ar"
-                    className="flex items-center justify-center gap-2 w-full bg-surface-container-lowest text-on-surface-variant py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:bg-surface-container transition-colors"
+                  <InquiryButton
+                    intent="novedades"
+                    subject={curso.title}
+                    icon="notifications"
+                    className="flex items-center justify-center gap-2 w-full bg-surface-container-lowest text-on-surface-variant py-3 rounded-xl font-[family-name:var(--font-headline)] font-bold text-sm uppercase tracking-widest hover:bg-surface-container transition-colors cursor-pointer"
                   >
-                    <span className="material-symbols-outlined text-sm">mail</span>
                     Recibir novedades
-                  </a>
+                  </InquiryButton>
                 </div>
               )}
             </div>
@@ -278,17 +279,17 @@ export default async function CursoDetailPage({ params }: Props) {
 
 function HeroContent({
   curso,
-  isProximamente,
+  isUnavailable,
 }: {
   curso: { title: string; badge: string; icon: string; modalidad: string };
-  isProximamente: boolean;
+  isUnavailable: boolean;
 }) {
   return (
     <div>
       <div className="flex items-center gap-3 mb-4">
         <span
           className={`text-[10px] font-extrabold px-3 py-1.5 rounded uppercase tracking-widest font-[family-name:var(--font-headline)] text-white ${
-            isProximamente ? "bg-slate-700/90" : "bg-secondary/90"
+            isUnavailable ? "bg-slate-700/90" : "bg-secondary/90"
           }`}
         >
           {curso.badge}

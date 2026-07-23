@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { InquiryButton } from "@/components/contact/InquiryButton";
 
 interface ProgramCardProps {
   title: string;
@@ -51,12 +52,13 @@ export function ProgramCard({
           >
             Más información
           </Link>
-          <Link
-            href="#"
-            className="flex-1 py-3 px-6 rounded-lg bg-mountain-orange text-white font-bold text-sm text-center shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+          <InquiryButton
+            intent="consulta"
+            subject={title}
+            className="flex-1 py-3 px-6 rounded-lg bg-mountain-orange text-white font-bold text-sm text-center shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer"
           >
             Consultar
-          </Link>
+          </InquiryButton>
         </div>
       </div>
     </div>

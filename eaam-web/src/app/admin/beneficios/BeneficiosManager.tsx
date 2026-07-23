@@ -19,6 +19,8 @@ const EMPTY: FormState = {
   id: "",
   title: "",
   description: "",
+  discount: "",
+  url: "",
   imageSrc: "",
   visible: true,
 };
@@ -159,7 +161,9 @@ export function BeneficiosManager({ initialData }: { initialData: BeneficioData[
             )}
             <div className="p-4">
               <p className="text-sm font-bold text-white mb-1 line-clamp-1">{b.title}</p>
-              <p className="text-xs text-slate-400 line-clamp-2 mb-3">{b.description}</p>
+              <p className="text-xs text-[#E87C3E] font-bold mb-1">{b.discount}</p>
+              {b.description && <p className="text-xs text-slate-400 line-clamp-2 mb-3">{b.description}</p>}
+              {!b.description && <div className="mb-3" />}
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => openEdit(b)}
@@ -250,17 +254,37 @@ export function BeneficiosManager({ initialData }: { initialData: BeneficioData[
               <p className={SECTION_TITLE_CLS}>Datos</p>
               <div className="space-y-4">
                 <div>
-                  <label className={LABEL_CLS}>Título *</label>
+                  <label className={LABEL_CLS}>Marca / título *</label>
                   <input
                     type="text"
                     value={form.title}
                     onChange={(e) => handleField("title", e.target.value)}
-                    placeholder="Ej: 40% OFF — Ferrino"
+                    placeholder="Ej: Ferrino"
                     className={INPUT_CLS}
                   />
                 </div>
                 <div>
-                  <label className={LABEL_CLS}>Descripción</label>
+                  <label className={LABEL_CLS}>Descuento *</label>
+                  <input
+                    type="text"
+                    value={form.discount}
+                    onChange={(e) => handleField("discount", e.target.value)}
+                    placeholder="Ej: 40% OFF"
+                    className={INPUT_CLS}
+                  />
+                </div>
+                <div>
+                  <label className={LABEL_CLS}>URL del sitio (opcional)</label>
+                  <input
+                    type="url"
+                    value={form.url ?? ""}
+                    onChange={(e) => handleField("url", e.target.value)}
+                    placeholder="https://..."
+                    className={INPUT_CLS}
+                  />
+                </div>
+                <div>
+                  <label className={LABEL_CLS}>Descripción (opcional)</label>
                   <textarea
                     value={form.description}
                     onChange={(e) => handleField("description", e.target.value)}

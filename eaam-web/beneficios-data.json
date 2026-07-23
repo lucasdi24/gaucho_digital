@@ -1,44 +1,227 @@
 [
   {
     "id": "ferrino",
-    "title": "40% OFF — Ferrino",
-    "description": "Descuentos en equipamiento técnico de la marca Ferrino para alumnos activos de la EAAM.",
-    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuCVdJX_aUVxonzEmGlU9j1Vur7v2YIRZbz-pJE5cIofzorvFdo_hQahgBeSi645vf831SgAMBPp4bfLySSsmqkTtslIgmraxKuz5wqJiWZ4rQ4fz1hM14QBORyoVhjxEcsy6ToANn4qfXp0VhSGJaR-AHLGTcETnzWKaFq7q5wg2YwcPT3ohW5GlhwZYrQkLNqy67dwtE_GLAAF2cZSY949gLS4j9qh0p-F4-Qnd53Drs1Yki7LX3ZoFmaQiqXrJPUkXX0TM9L_",
+    "title": "Ferrino",
+    "discount": "20% OFF",
+    "url": "https://www.eversport.com.ar/",
+    "imageSrc": "/beneficios/ferrino.webp",
+    "description": "",
     "visible": true
   },
   {
-    "id": "seguros",
-    "title": "25% OFF — Seguros de Montaña",
-    "description": "Cobertura especializada para actividades de montaña y rescate con las mejores aseguradoras del país.",
-    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuCI1C_n29iqWIBT_b5_m3MQ6oBUhijuZ3K5hS0FflbIFX7_bpqFWPvBREn4jXvNDrLPm1gFe2kY3_GCqoEzMlLKIUhI4sRa-mB3y1_w3Q5pG-bRNkZADJV-CWWMzQFzYjOXiTzAi0P0MjhW4w9Y1e4GQv2GR-7h6sJhgvXJCb7RnBJ_",
+    "id": "aymd-camp",
+    "title": "AYMD / CAMP",
+    "discount": "10% OFF",
+    "url": "https://aymd-camp.com.ar/",
+    "imageSrc": "/beneficios/aymd-camp.webp",
+    "description": "",
     "visible": true
   },
   {
-    "id": "salidas",
-    "title": "10% OFF — Salidas de Práctica",
-    "description": "Descuentos en excursiones y salidas de campo organizadas por la escuela a destinos de montaña.",
-    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuAKyVV0O2WXTL8i2p1wN8e_J9b3pYHQvJxC8mGvT8z3_Og5T1dBfVNnGvFT7Nj5MhXmzKjZhQCG3xyMmSuVAh8bXpuaAbzKuMeY3d_YJz1fF-cBuHtOsHqKJhqYHtf2p6OJC6K_J_",
+    "id": "garmont",
+    "title": "Garmont",
+    "discount": "30% OFF",
+    "url": "https://www.garmont.com.ar/",
+    "imageSrc": "/beneficios/garmont.webp",
+    "description": "",
     "visible": true
   },
   {
-    "id": "cursos-comp",
-    "title": "20% OFF — Cursos Complementarios",
-    "description": "Precio especial en workshops y capacitaciones cortas para alumnos y egresados de la EAAM.",
-    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuDMH7oqCXs7OgJZsHcfBsGJ5cN0sFkHhUiGLUFm2u_bJmrUXFHN3Q5gT5rBjxkLb8ywW1u3zKpnAL_qFnzuX4F9vdkqGBFj7cTHyqyDCYdRv9vIPx5CkIKFqkn1_J_",
+    "id": "ansilta",
+    "title": "Ansilta",
+    "discount": "15% OFF",
+    "url": "https://ansilta.com/",
+    "imageSrc": "/beneficios/ansilta.webp",
+    "description": "",
     "visible": true
   },
   {
-    "id": "refugios",
-    "title": "15% OFF — Alojamiento en Refugios",
-    "description": "Convenios con refugios de montaña en las principales rutas del país para alumnos activos.",
-    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuBtjNl-xLelw5CbT-7HPIFfJc1Tk0OcbqZHlVmE44RV2CJuDgZ4eHWlzNsTTQlJJzGtZIrYkMI2yDh8vB2eoEJm0nUe2p6f9A01RO2zMfhJJrpuQCPuJgXt73rQf_J_",
+    "id": "naka-outdoors",
+    "title": "Naka Outdoors",
+    "discount": "15% OFF",
+    "url": "https://www.nakaoutdoors.com.ar/",
+    "imageSrc": "/beneficios/naka-outdoors.webp",
+    "description": "",
     "visible": true
   },
   {
-    "id": "bibliografia",
-    "title": "30% OFF — Bibliografía Técnica",
-    "description": "Descuentos en material de estudio y publicaciones especializadas en montañismo y actividades al aire libre.",
-    "imageSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuCVdJX_aUVxonzEmGlU9j1Vur7v2YIRZbz-pJE5cIofzorvFdo_hQahgBeSi645vf831SgAMBPp4bfLySSsmqkTtslIgmraxKuz5wqJiWZ4rQ4fz1hM14QBORyoVhjxEcsy6ToANn4qfXp0VhSGJaR-AHLGTcETnzWKaFq7q5wg2YwcPT3ohW5GlhwZYrQkLNqy67dwtE_GLAAF2cZSY949gLS4j9qh0p-F4-Qnd53Drs1Yki7LX3ZoFmaQiqXrJPUkXX0TM9L_",
+    "id": "realization",
+    "title": "Realization",
+    "discount": "25% OFF",
+    "url": "https://www.instagram.com/realizationescalada/",
+    "imageSrc": "/beneficios/realization.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "unkai",
+    "title": "Unkai",
+    "discount": "25% OFF",
+    "url": "",
+    "imageSrc": "/beneficios/unkai.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "lepau",
+    "title": "Lepau",
+    "discount": "40% OFF",
+    "url": "https://www.lepau.com/",
+    "imageSrc": "/beneficios/lepau.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "campus",
+    "title": "Campus",
+    "discount": "30% OFF",
+    "url": "",
+    "imageSrc": "/beneficios/campus.webp",
+    "description": "",
+    "visible": false
+  },
+  {
+    "id": "el-refugio",
+    "title": "El Refugio",
+    "discount": "30% OFF",
+    "url": "https://elrefugioaconcagua.com/",
+    "imageSrc": "/beneficios/el-refugio.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "estacion-vertical",
+    "title": "Estación Vertical",
+    "discount": "20% OFF",
+    "url": "https://www.estacionvertical.com.ar/",
+    "imageSrc": "/beneficios/estacion-vertical.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "la-sportiva",
+    "title": "La Sportiva Argentina",
+    "discount": "15% OFF",
+    "url": "https://www.instagram.com/lasportivaargentinaok/",
+    "imageSrc": "/beneficios/la-sportiva.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "alquimia-expediciones",
+    "title": "Alquimia Expediciones",
+    "discount": "25% OFF",
+    "url": "https://alquimiaturismo.com.ar/",
+    "imageSrc": "/beneficios/alquimia-expediciones.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "rocksun-outdoors",
+    "title": "Rocksun Outdoors",
+    "discount": "15% OFF",
+    "url": "https://rocksun.com.ar/",
+    "imageSrc": "/beneficios/rocksun-outdoors.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "kailas",
+    "title": "Kailas",
+    "discount": "13% OFF",
+    "url": "",
+    "imageSrc": "/beneficios/kailas.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "ea-mountain",
+    "title": "EA Mountain",
+    "discount": "20% OFF",
+    "url": "https://eamountain.com.ar/",
+    "imageSrc": "/beneficios/ea-mountain.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "camps",
+    "title": "Camps",
+    "discount": "15% OFF",
+    "url": "https://campsfoods.com/",
+    "imageSrc": "/beneficios/camps.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "waya-expedicion",
+    "title": "Waya Expedición",
+    "discount": "15% OFF",
+    "url": "https://www.instagram.com/wayaexpedicion/",
+    "imageSrc": "/beneficios/waya-expedicion.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "rupal",
+    "title": "Rupal Mountain Gear",
+    "discount": "15% OFF",
+    "url": "https://www.rupalnet.com/",
+    "imageSrc": "/beneficios/rupal.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "iozzer",
+    "title": "Iozzer",
+    "discount": "15% OFF",
+    "url": "https://iozzer.com/",
+    "imageSrc": "/beneficios/iozzer.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "gz-rental",
+    "title": "GZ Rental",
+    "discount": "10% OFF",
+    "url": "",
+    "imageSrc": "/beneficios/gz-rental.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "camping-amigos-naturaleza",
+    "title": "Camping Amigos de la Naturaleza",
+    "discount": "4 × 3",
+    "url": "https://www.instagram.com/campingamigosnatu/",
+    "imageSrc": "/beneficios/camping-amigos-naturaleza.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "dosuna",
+    "title": "Dosuna",
+    "discount": "10% OFF",
+    "url": "https://dosuna.com.ar/",
+    "imageSrc": "/beneficios/dosuna.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "portezuelo-del-viento",
+    "title": "Portezuelo del Viento",
+    "discount": "15% OFF",
+    "url": "https://www.instagram.com/portezuelo_del_viento/",
+    "imageSrc": "/beneficios/portezuelo-del-viento.webp",
+    "description": "",
+    "visible": true
+  },
+  {
+    "id": "mono-trail",
+    "title": "Mono Trail",
+    "discount": "25% OFF",
+    "url": "https://www.instagram.com/mono_trail_tienda/",
+    "imageSrc": "/beneficios/mono-trail.webp",
+    "description": "",
     "visible": true
   }
 ]

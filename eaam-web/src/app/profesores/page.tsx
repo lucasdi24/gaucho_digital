@@ -1,4 +1,6 @@
 import { readProfesores } from "@/lib/profesoresData";
+import { readImageConfig } from "@/lib/imageConfig";
+import { PAGE_HERO_DEFAULTS, pageHeroConfigKey } from "@/lib/pageHeroImages";
 import { HeroSection } from "@/components/ui/HeroSection";
 import Image from "next/image";
 
@@ -7,14 +9,17 @@ export const metadata = { title: "Profesores" };
 
 export default async function ProfesoresPage() {
   const profesores = readProfesores();
+  const cfg = readImageConfig();
+  const heroSrc = cfg[pageHeroConfigKey("profesores")] ?? PAGE_HERO_DEFAULTS.profesores;
+
   return (
     <>
       <HeroSection
         badge="Staff Académico"
         title="Profesores"
         subtitle="Guías UIAGM y profesionales con décadas de experiencia internacional en montañismo y rescate."
-        imageSrc="https://lh3.googleusercontent.com/aida-public/AB6AXuDRoUI5VlUeMm0VkSIYCegHc8bniGYNbg3hYkE211t1x9a1i3wsQVzhl9O34tMpcuPh0ZdX4rwrVwFv7H_5Y8ntx9I1emQYPTmpqxJEt3ZOuGwctDlMIzAlJ-gRDOA2oeVw70KN4_mzdsRWkEt5NNtyFdiDakZSyczB13V9QIOswBw5mZ7OlUvk_bMVA1jJ9ChFbVeI_CUfJcZTlVY8kMwNmCPgVCyX8boSNC_En3eCv4me9sRDGg0XdvwG_ytu_xX5WmT9wcJn"
-        imageAlt="Equipo docente EAAM"
+        imageSrc={heroSrc}
+        imageAlt="Equipo docente EAAM en la montaña"
         gradient="primary"
       />
       <section className="py-10 md:py-24 px-6 md:px-12">

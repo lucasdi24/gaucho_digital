@@ -5,6 +5,8 @@ export interface BeneficioData {
   id: string;
   title: string;
   description: string;
+  discount?: string;
+  url?: string;
   imageSrc: string;
   visible: boolean;
 }

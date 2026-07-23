@@ -1,38 +1,27 @@
 import Link from "next/link";
+import { HeroSection } from "@/components/ui/HeroSection";
 import { readPostitulos } from "@/lib/postitulosData";
+import { readImageConfig } from "@/lib/imageConfig";
+import { PAGE_HERO_DEFAULTS, pageHeroConfigKey } from "@/lib/pageHeroImages";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Postítulos" };
 
-const HERO_IMG =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuCFKIsBQOT4UY5Q6FLoOIL9lhjVSz3xyEkvOhNL5RJ-kjOLpbRatRT8U7a7RnTgADtDQtB6XdcQpSY15qp3F0XMojlDVWggm1cjHR88NgKOkxAxgFucmb53-RyphYEagIa24sBL5MJpsYShO-ZK4KY24ycVlh5QFtxcA1qC7SkqzlekqR0SzP8M8mVMsDIHZVV4gMSWblXDDUGkfdlmshuWfVu1zwawDJzX4ypKIu6n4mtDmUBKltOBod0ot5eiuuCU85rkbNNs";
-
 export default function PostitulosPage() {
   const postitulos = readPostitulos().filter((p) => p.visible);
+  const cfg = readImageConfig();
+  const heroSrc = cfg[pageHeroConfigKey("postitulos")] ?? PAGE_HERO_DEFAULTS.postitulos;
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative bg-secondary overflow-hidden py-16 md:py-24">
-        <div className="absolute inset-0 z-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={HERO_IMG} alt="Montañas andinas" className="w-full h-full object-cover opacity-40 mix-blend-overlay" />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/80 to-transparent" />
-        </div>
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 pt-10">
-          <div className="max-w-2xl">
-            <span className="inline-block bg-primary-container text-on-primary-container text-xs font-bold tracking-[0.2em] uppercase px-3 py-1 mb-6 rounded-sm font-[family-name:var(--font-headline)]">
-              Especialización Académica
-            </span>
-            <h1 className="text-4xl md:text-6xl font-extrabold text-white font-[family-name:var(--font-headline)] tracking-tighter mb-4">
-              Postítulos
-            </h1>
-            <p className="text-xl text-secondary-fixed-dim font-light leading-relaxed max-w-lg">
-              Capacitaciones para crecer en tu profesión. Formación técnica avanzada con respaldo institucional.
-            </p>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        badge="Especializaciones Académicas para Profesionales titulados."
+        title="Postítulos"
+        subtitle="La experiencia te llevó hasta aquí. La especialización te prepara para ir más lejos. Formación avanzada para quienes buscan convertirse en referentes de su campo profesional."
+        imageSrc={heroSrc}
+        imageAlt="Expedición en nieve — postítulos EAAM"
+        gradient="secondary"
+      />
 
       {/* Listing */}
       <section className="max-w-[1440px] mx-auto px-6 md:px-12 py-12 md:py-24">
@@ -80,9 +69,9 @@ export default function PostitulosPage() {
       <section className="bg-surface-container-low py-12 md:py-24 mb-12 md:mb-24">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
           {[
-            { icon: "school", title: "Respaldo Ministerial", desc: "Nuestros postítulos cuentan con la certificación y supervisión del Ministerio de Educación, garantizando validez nacional y calidad académica institucional." },
-            { icon: "verified", title: "Docentes Expertos", desc: "Cuerpo docente integrado por profesionales de montaña y académicos especializados en la didáctica de las actividades al aire libre." },
-            { icon: "groups", title: "Comunidad Profesional", desc: "Acceso a una red nacional de egresados y profesionales del sector, fomentando el intercambio y las oportunidades laborales en todo el país." },
+            { icon: "school", title: "Postítulos Oficiales", desc: "Nuestros postítulos cuentan con la certificación del Ministerio de Educación y la calidad académica que garantiza la EAAM.", desc2: "" },
+            { icon: "verified", title: "Docentes especialistas altamente calificados", desc: "Un equipo docente integrado por especialistas y profesionales de las actividades en la naturaleza y la educación.", desc2: "La experiencia del terreno y la excelencia académica unidas para formar mejores profesionales." },
+            { icon: "groups", title: "Comunidad Profesional", desc: "Acceso a una red nacional de egresados y profesionales del sector, fomentando el intercambio y las oportunidades laborales en todo el país.", desc2: "" },
           ].map((item) => (
             <div key={item.title}>
               <h3 className="font-[family-name:var(--font-headline)] font-bold text-lg mb-4 flex items-center gap-2">
@@ -90,6 +79,7 @@ export default function PostitulosPage() {
                 {item.title}
               </h3>
               <p className="text-on-surface-variant text-sm leading-relaxed">{item.desc}</p>
+              {item.desc2 && <p className="text-on-surface-variant text-sm leading-relaxed mt-2">{item.desc2}</p>}
             </div>
           ))}
         </div>

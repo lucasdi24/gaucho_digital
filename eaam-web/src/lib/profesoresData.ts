@@ -24,8 +24,24 @@ export function writeProfesores(data: ProfesorData[]): void {
 }
 
 const INITIAL_PROFESORES: ProfesorData[] = [
-  { id: "pablo-gonzalez", name: "Pablo González", role: "Guía UIAGM", imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuDhhWEVSgqqajymG73-7cJarTmA1jlAureYX1doCltXLQubxP0XGix-bfEW0do1kOieYa-xRtH3RJ_A0ZpcGMSU7WyIGQPOieYqD62JjhDkTmQkuIwO69jgA7-KT0-WiUg5tHTivRB0dxVtMUrw9WZtJCsuSy0ySRfcvqxm6F8x3YPDOYHmRPLILGCNWjyl5xlIgFCMtI8ZPSoxWVC_xuKqHoXAhr8yRgZo2HZnvkvoFDz2b8ZLOw2piW8V2zT8170bkB8-Tzrm" },
-  { id: "lucia-martinez", name: "Lucía Martínez", role: "Especialista en Rescate", imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuC77W3u6fJgGU_9l29x4Rv22HCDIwh00_5lCEoOCUTVGrYorDhnbuUY81YMGGIE-b6lY8KZfIO7nAfzzySfqRbQHYMinnYwarYDyIHpKtX5-CA0kwyrUefQOmvhMlgaPqWFE8xm_FT-93WkfXrtbzGGSZ6lz2n07eBl-G5FDbScC6zi1swAYTwdznfzd_vWkIqBZ_ti_ZdDp1eoI5EVusyoYfIAsWjfn9sbzzoTGgwsu1yleBswYK-b4Xc2Sk8KA2QP3LFEh0qt" },
-  { id: "andres-riva", name: "Andrés Riva", role: "Medicina de Montaña", imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuAJw7eqAf3cPF7k7YyB5qoQFQf4s79SaWtRSeY29SPvlBI8c0FKXFLRXxMr5zSjEXbVjEVw84-GAlIf2NN3Jyh8IlZFSRJrYOFmHlMGhVzi11G1HD_AnCyVi5b3d7caSyU--hP3tXggOPVsWuUgYCGhLLF6m-OpnPR3xO-tDrsLBiQ7Abm2TXm7KInI8FojXB9ohcEc0FKsqQQAv2fO-BZdrc-TzM5tXMlt_-HQA2sx4DCUHRCjxDzqSbRoFHaQEOlMdX_nfwbp" },
-  { id: "martin-castro", name: "Martín Castro", role: "Cartografía Avanzada", imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuCjb6SFR8yw9rZiaFKB1H58CwUMes-zeJ3SU_biLxnfblLcG5tUZF2G50JQCYqDGvNvrJLT3o5buEyuhrJq_VYUP-1gz7WZwlPbpSQ25VXzQ7MHLUZpR7Zod4H3g4q1mB3NepawNG5RRwx1XvjLWFbPoK3wkFkhF_pxXAzAc_tCTGqXSMwWJ1VWuCzbacyLuGbhXJxWJwLHRbXxkdVcRPOKvWxV58NSS8Puxo_-3WGL22JWbEjawuO_8taisGaWQDAoyO773SXK" },
+  { id: "matias-marin", name: "Matías Marín", role: "Guía de Montaña en Altitud", imageSrc: "/profesores/matias-marin.webp" },
+  { id: "carla-cespedes", name: "Carla Céspedes", role: "Guía de Montaña", imageSrc: "/profesores/carla-cespedes.webp" },
+  { id: "adrian-silva", name: "Adrian Silva", role: "Guía de montaña", imageSrc: "/profesores/adrian-silva.webp" },
+  { id: "damian-romeo", name: "Damián Romeo", role: "Guía de Montaña", imageSrc: "/profesores/damian-romeo.webp" },
+  { id: "matias-genovese", name: "Matias Genovese", role: "Guía de Montaña", imageSrc: "/profesores/matias-genovese.webp" },
+  { id: "muriel-ribeiro", name: "Muriel Ribeiro Herbón", role: "Técnica superior en guía de montaña", imageSrc: "/profesores/muriel-ribeiro.webp" },
+  { id: "sebastian-pilar", name: "Sebastian Pilar", role: "Guía de Montaña", imageSrc: "/profesores/sebastian-pilar.webp" },
+  { id: "pablo-kuntz", name: "Pablo Kuntz", role: "Técnico superior guía de montaña", imageSrc: "/profesores/pablo-kuntz.webp" },
+  { id: "juan-cruz-genta", name: "Juan Cruz Genta", role: "Guía de Montaña", imageSrc: "/profesores/juan-cruz-genta.webp" },
+  { id: "maria-belen-anauati", name: "María Belén Anauati", role: "Guía de Trekking y Turismo Aventura", imageSrc: "/profesores/maria-belen-anauati.webp" },
+  { id: "lucas-llohis", name: "Lucas Llohis", role: "Guía de montaña", imageSrc: "/profesores/lucas-llohis.webp" },
+  { id: "andres-gavilan", name: "Andres Gavilan", role: "Guía de Montaña y Guía de Turismo Aventura Senderos y Selva", imageSrc: "/profesores/andres-gavilan.webp" },
+  { id: "sergio-mahnic", name: "Sergio Mahnic", role: "Profesor de Educación Física", imageSrc: "/profesores/sergio-mahnic.webp" },
+  { id: "pablo-ferrari", name: "Pablo Ferrari", role: "Guía de Montaña", imageSrc: "/profesores/pablo-ferrari.webp" },
+  { id: "cintia-peredo", name: "Cintia Peredo", role: "Guía de Trekking en cordillera", imageSrc: "/profesores/cintia-peredo.webp" },
+  { id: "gabriel-tano-benenati", name: "Gabriel Tano Benenati", role: "Guía de Trekking y Turismo Aventura", imageSrc: "/profesores/gabriel-tano-benenati.webp" },
+  { id: "ariel-maraulo", name: "Ariel Maraulo", role: "Licenciado en actividad física y deportes en la naturaleza", imageSrc: "/profesores/ariel-maraulo.webp" },
+  { id: "federico-tortarolo", name: "Federico Tortarolo", role: "GTC", imageSrc: "/profesores/federico-tortarolo.webp" },
+  { id: "lautaro-clerici", name: "Lautaro Clerici", role: "Guía de Turismo Aventura", imageSrc: "/profesores/lautaro-clerici.webp" },
+  { id: "pablo-chiardi", name: "Pablo Chiardi", role: "Especialidad en Deportes y Actividades en la Naturaleza", imageSrc: "/profesores/pablo-chiardi.webp" },
 ];

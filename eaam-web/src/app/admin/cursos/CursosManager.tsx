@@ -45,6 +45,7 @@ const EMPTY: FormState = {
 
 const BADGE_OPTIONS = [
   "Inscripciones abiertas",
+  "Cerrado",
   "Próximamente",
   "Cupos limitados",
   "Nuevo",
